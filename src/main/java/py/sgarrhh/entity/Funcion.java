@@ -9,23 +9,32 @@ import javax.persistence.Id;
 
 @Entity
 public class Funcion implements Serializable {
-	private static final long serialversion=1L;
+	
+	private static final long serialVersionUID = 1L;
+
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Integer id;
+	
 	private String descripcion;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
 	
 
 }

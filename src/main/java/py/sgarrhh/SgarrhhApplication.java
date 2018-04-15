@@ -2,9 +2,6 @@ package py.sgarrhh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-
-import py.sgarrhh.controller.FuncionController;
 
 @SpringBootApplication
 //@ComponentScan(basePackages= {"py.sgarrhh.controller"})
