@@ -2,22 +2,18 @@ package py.sgarrhh.models;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
 
 @Entity
 public class Cargo  implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,10 +22,10 @@ public class Cargo  implements Serializable {
 	
 	private String descripcion;
 
-	@ManyToOne(cascade={CascadeType.PERSIST})
+	@ManyToOne
 	private Departamento departamento;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
+	@ManyToOne
 	private Funcion funcion;
 
 	public Integer getId() {
