@@ -38,5 +38,6 @@ public class FuncionController {
 		mv.addObject("funciones",funciones);
 		return mv;
 	}
+
 	
 }
