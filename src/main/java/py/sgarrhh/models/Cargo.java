@@ -1,4 +1,4 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
 import java.io.Serializable;
 
