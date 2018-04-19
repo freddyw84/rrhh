@@ -17,9 +17,9 @@
 	<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Lista de Cargos</a>
+		      <a href="#" class="brand-logo">Lista de Salarios</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/registrarCargo" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registrar Cargo</a></li>
+		        <li><a href="/registrarSalario" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registrar Salario</a></li>
 		      </ul>
 		    </div>
 		</nav>
@@ -30,13 +30,15 @@
 			<tr>
 				<th>ID</th>
 				<th>Descripcion</th>
+				<th>Monto</th>
 				
 			</tr>
 		</thead>
 		<tbody>
-		 <tr th:each="cargo : ${cargos}">
-				<td><span th:text="${cargo.id}"></span></td>
-				<td><span th:text="${cargo.descripcion}"></span></td>
+		 <tr th:each="salario : ${salarios}">
+				<td><span th:text="${salario.id}"></span></td>
+				<td><span th:text="${salario.descripcion}"></span></td>
+				<td><span th:text="${salario.monto}"></span></td>
 		</tr>
 		</tbody>
 	

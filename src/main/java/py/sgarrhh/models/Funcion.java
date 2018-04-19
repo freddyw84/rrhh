@@ -3,6 +3,7 @@ package py.sgarrhh.models;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,10 +18,11 @@ public class Funcion implements Serializable {
 
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany
+	
+	@OneToMany(mappedBy="funcion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Cargo> cargo;
 	
 	private String descripcion;

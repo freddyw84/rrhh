@@ -1,106 +1,78 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 @Entity
-@Table(name="rhrl_contrato")
-public class Contrato {
+public class Contrato  implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="con_num")
-	private Integer numero;
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Integer id;
 	private String descripcion;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="con_codsal")
-	private Salario codSalario;
+	@ManyToOne
+	private Salario salario;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="con_codper")
-	private Persona codigoPersona;
+	@ManyToOne
+	private Persona persona;
 	
-	private Cargo codCargo;
+	@ManyToOne 
+	private Cargo cargo;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaIngreso;
 	
-	public Contrato() {
-		this.numero = 0;
-		this.descripcion = "";
-		this.codSalario = new Salario();
-		this.codigoPersona = new Persona();
-		this.codCargo = new Cargo();
-		this.fechaIngreso = new Date();	}
-
-	public Contrato(Integer numero, String descripcion, Salario codSalario, Persona codPersona, Cargo codCargo,
-			Date fechaIngreso) {
-		super();
-		this.numero = numero;
-		this.descripcion = descripcion;
-		this.codSalario = codSalario;
-		this.codigoPersona = codPersona;
-		this.codCargo = codCargo;
-		this.fechaIngreso = fechaIngreso;
+	public Integer getId() {
+		return id;
 	}
-
-	public Integer getNumero() {
-		return numero;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public Salario getCodSalario() {
-		return codSalario;
+	public Salario getSalario() {
+		return salario;
 	}
-
-	public void setCodSalario(Salario codSalario) {
-		this.codSalario = codSalario;
+	public void setSalario(Salario salario) {
+		this.salario = salario;
 	}
-
-	public Persona getCodPersona() {
-		return codigoPersona;
+	public Persona getPersona() {
+		return persona;
 	}
-
-	public void setCodPersona(Persona codPersona) {
-		this.codigoPersona = codPersona;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
-
-	public Cargo getCodCargo() {
-		return codCargo;
+	public Cargo getCargo() {
+		return cargo;
 	}
-
-	public void setCodCargo(Cargo codCargo) {
-		this.codCargo = codCargo;
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
 	}
-
 	public Date getFechaIngreso() {
 		return fechaIngreso;
 	}
-
 	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
+	
+	
 
-	@Override
-	public String toString() {
-		return "Contrato [numero=" + numero + ", descripcion=" + descripcion + ", codPersona=" + codigoPersona
-				+ ", codCargo=" + codCargo + ", fechaIngreso=" + fechaIngreso + "]";
-	}
-
+	
 }

@@ -19,12 +19,12 @@ public class Departamento  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String descripcion;
 	
-	@OneToMany(cascade={CascadeType.PERSIST})
+	@OneToMany(mappedBy="departamento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Cargo> cargo;
 	
 

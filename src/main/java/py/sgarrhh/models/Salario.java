@@ -1,67 +1,67 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+
 @Entity
-@Table(name="rhco_salario")
-public class Salario {
+public class Salario  implements Serializable {
+	
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="sal_id")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(mappedBy="idSalario", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private Collection<Contrato> contrato;
-		
-	@Column(name="sal_des")
+	@NotNull
 	private String descripcion;
 	
-	@Column(name="sal_monto")
-	private Double monto;
-	
-	public Salario() {
-		super();
-		this.id = 0;
-		this.descripcion = "";	
-		this.monto = new Double(0);	
-		}
-	
-	public Salario(Integer id, String descripcion, Double monto) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-		this.monto= monto;
-	}
-
+	@OneToMany(mappedBy="salario", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Contrato> contrato;
 		
+	private Double monto;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public List<Contrato> getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(List<Contrato> contrato) {
+		this.contrato = contrato;
+	}
+
 	public Double getMonto() {
 		return monto;
 	}
+
 	public void setMonto(Double monto) {
 		this.monto = monto;
 	}
-	@Override
-	public String toString() {
-		return "Salario [id=" + id + ", descripcion=" + descripcion + ", monto=" + monto + "]";
-	}
 	
-	
+
 }
