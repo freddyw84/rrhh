@@ -19,11 +19,11 @@ public class Concepto implements Serializable{
 	@Id
 	private Integer codigo;
 	
-	@OneToMany(mappedBy="Concepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="concepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<LiquidacionDetalle> liquidacionDetalle;
 	
 	
-	@OneToMany(mappedBy="Concepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="concepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<HaberDetalle> haberDetalle;
 	
 	private String descripcion;

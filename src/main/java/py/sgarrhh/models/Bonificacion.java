@@ -23,7 +23,7 @@ public class Bonificacion implements Serializable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(mappedBy="Bonificacion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="bonificacion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<HaberDetalle> haberDetalle;
 	
 	@ManyToOne

@@ -23,8 +23,10 @@ public class TipoDocumento implements Serializable{
 	
 	private String descripcion;
 
-	@OneToMany(mappedBy="TipoDocumento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="tipoDocumento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Persona> persona;
+	
+	
 	public Integer getId() {
 		return id;
 	}

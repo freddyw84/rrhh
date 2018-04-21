@@ -28,7 +28,7 @@ public class Descuento implements Serializable{
 	
 
 	@ManyToOne
-	private TipoDescuento descuento;
+	private TipoDescuento tipoDescuento;
 	
 	private Double monto;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -41,7 +41,7 @@ public class Descuento implements Serializable{
 	
 	private String observacion;
 	
-	@OneToMany(mappedBy="Descuento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="descuento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<HaberDetalle> haberDetalle;
 
 	public Integer getId() {
@@ -52,12 +52,14 @@ public class Descuento implements Serializable{
 		this.id = id;
 	}
 
-	public TipoDescuento getDescuento() {
-		return descuento;
+	
+
+	public TipoDescuento getTipoDescuento() {
+		return tipoDescuento;
 	}
 
-	public void setDescuento(TipoDescuento descuento) {
-		this.descuento = descuento;
+	public void setTipoDescuento(TipoDescuento tipoDescuento) {
+		this.tipoDescuento = tipoDescuento;
 	}
 
 	public Double getMonto() {

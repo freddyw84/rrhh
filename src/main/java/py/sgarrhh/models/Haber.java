@@ -24,7 +24,7 @@ public class Haber implements Serializable {
 	private Integer id;
 	
 
-	@OneToMany(mappedBy="Haber", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="haber", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<HaberDetalle> haberDetalle;
 	
 	private Float monto;

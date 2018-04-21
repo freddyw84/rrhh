@@ -20,7 +20,7 @@ public class TipoEntradaSalida implements Serializable {
 	private Integer id;
 	private String descripcion;
 	
-	@OneToMany(mappedBy="TipoEntradaSalida", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="tipoEntradaSalida", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<EntradaSalida> entradaSalida;
 	public Integer getId() {
 		return id;

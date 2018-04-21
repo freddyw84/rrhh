@@ -23,7 +23,7 @@ public class TipoDescuento implements Serializable{
 	private Integer id;
 	
 		
-	@OneToMany(mappedBy="TipoDescuento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="tipoDescuento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Descuento> descuento;
 	
 	private String descripcion;

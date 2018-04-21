@@ -11,8 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -28,8 +29,13 @@ public class Persona  implements Serializable{
 	private Integer id;
 	
 	
-	@OneToMany(mappedBy="persona", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private List<Contrato> contrato;
+	@OneToOne
+	private Contrato contrato;
+	
+	
+	@ManyToOne
+	private TipoDocumento tipoDocumento;
+	
 	
 	@NotNull
 	private String documento;
@@ -51,7 +57,8 @@ public class Persona  implements Serializable{
 	
 	private String ciudad;
 	
-	private String estadoCivil;
+	@ManyToOne
+	private EstadoCivil estadoCivil;
 	
 	@NotNull
 	private String sexo;
@@ -77,12 +84,22 @@ public class Persona  implements Serializable{
 		this.id = id;
 	}
 
-	public List<Contrato> getContrato() {
+	
+
+	public Contrato getContrato() {
 		return contrato;
 	}
 
-	public void setContrato(List<Contrato> contrato) {
+	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
+	}
+
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
 	public String getDocumento() {
@@ -141,11 +158,12 @@ public class Persona  implements Serializable{
 		this.ciudad = ciudad;
 	}
 
-	public String getEstadoCivil() {
+	
+	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
 	}
 
-	public void setEstadoCivil(String estadoCivil) {
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 

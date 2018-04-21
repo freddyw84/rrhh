@@ -19,7 +19,7 @@ public class Rubro implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 		
-	@OneToMany(mappedBy="Rubro", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="rubro", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Haber> haber;
 	
 	private String descripcion;

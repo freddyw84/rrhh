@@ -22,7 +22,7 @@ public class Funcion implements Serializable {
 	private Integer id;
 	
 	
-	@OneToMany(mappedBy="Funcion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="funcion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Cargo> cargo;
 	
 	private String descripcion;

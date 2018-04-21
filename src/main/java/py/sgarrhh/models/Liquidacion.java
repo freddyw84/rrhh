@@ -22,7 +22,7 @@ public class Liquidacion implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(mappedBy="Liquidacion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="liquidacion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<LiquidacionDetalle> liquidacionDetalle;
 	@ManyToOne
 	private Persona persona;
