@@ -1,18 +1,21 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
-public class EstadoCivil {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
+public class EstadoCivil implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer codigo;
 	private String descripcion;
-	public EstadoCivil() {
-		super();
-		this.codigo = 0;
-		this.descripcion = "";	
-		}
-	public EstadoCivil(Integer codigo, String descripcion) {
-		super();
-		this.codigo = codigo;
-		this.descripcion = descripcion;
-	}
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -25,10 +28,7 @@ public class EstadoCivil {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	@Override
-	public String toString() {
-		return "EstadoCivil [codigo=" + codigo + ", descripcion=" + descripcion + "]";
-	}
+
 	
 	
 }

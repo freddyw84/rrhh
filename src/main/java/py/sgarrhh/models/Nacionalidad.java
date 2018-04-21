@@ -1,24 +1,22 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
+
+import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name="rhrl_persona")
-public class Nacionalidad {
-	
+public class Nacionalidad implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	private String descripcion;
-	public Nacionalidad() {
-		super();
-		this.id = 0;
-		this.descripcion = "";	
-		}
-	public Nacionalidad(Integer id, String descripcion) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-	}
 	public Integer getId() {
 		return id;
 	}
@@ -31,10 +29,6 @@ public class Nacionalidad {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	@Override
-	public String toString() {
-		return "Nacionalidad [id=" + id + ", descripcion=" + descripcion + "]";
-	}
-	
+
 	
 }

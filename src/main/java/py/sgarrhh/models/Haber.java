@@ -1,59 +1,39 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-
+import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 @Entity
-@Table(name="rhlq_haber")
+
 public class Haber implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="hab_id")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
 
-	@OneToMany(mappedBy="idHaber", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private Collection<HaberDetalle> haberdetalle;
+	@OneToMany(mappedBy="Haber", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<HaberDetalle> haberDetalle;
 	
-	@Column(name="hab_monto")
 	private Float monto;
-	@Column(name="hab_fec")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
-	@Column(name="hab_obs")
 	private String observacion;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="hab_idrubro")
+	@ManyToOne
 	private Rubro rubro;
-	
-	public Haber() {
-		super();
-		this.id = 0;
-		this.monto = new Float(0);
-		this.fecha = new Date();
-		this.observacion = "";
-		this.rubro= new Rubro();
-	}
-
-	public Haber(Integer numero, Float monto, Date fecha, String observacion, Rubro rubro) {
-		super();
-		this.id = numero;
-		this.monto = monto;
-		this.fecha = fecha;
-		this.observacion = observacion;
-		this.rubro = rubro;
-	}
 
 	public Integer getId() {
 		return id;
@@ -63,7 +43,14 @@ public class Haber implements Serializable {
 		this.id = id;
 	}
 
-	
+	public List<HaberDetalle> getHaberDetalle() {
+		return haberDetalle;
+	}
+
+	public void setHaberDetalle(List<HaberDetalle> haberDetalle) {
+		this.haberDetalle = haberDetalle;
+	}
+
 	public Float getMonto() {
 		return monto;
 	}
@@ -87,7 +74,6 @@ public class Haber implements Serializable {
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
-	
 
 	public Rubro getRubro() {
 		return rubro;
@@ -97,12 +83,7 @@ public class Haber implements Serializable {
 		this.rubro = rubro;
 	}
 
-	@Override
-	public String toString() {
-		return "Haber [id=" + id + ", monto=" + monto + ", fecha="
-				+ fecha + ", observacion=" + observacion + ", rubro=" + rubro + "]";
-	}
-
-
+	
+	
 
 }

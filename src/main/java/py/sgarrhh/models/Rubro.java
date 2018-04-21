@@ -1,56 +1,51 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
 @Entity
-@Table(name="rhco_rubro")
+
 public class Rubro implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="rub_id")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 		
-	@OneToMany(mappedBy="idRubro", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private Collection<Haber> haber;
+	@OneToMany(mappedBy="Rubro", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Haber> haber;
 	
-	
-	@Column(name="rub_des")
 	private String descripcion;
-	
-	public Rubro() {
-		super();
-		this.id = 0;
-		this.descripcion = "";	
-		}
-	public Rubro(Integer id, String descripcion) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public List<Haber> getHaber() {
+		return haber;
+	}
+
+	public void setHaber(List<Haber> haber) {
+		this.haber = haber;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	@Override
-	public String toString() {
-		return "Rubro [id=" + id + ", descripcion=" + descripcion + "]";
-	}
-	
 	
 }

@@ -1,78 +1,64 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
-import java.util.Collection;
-
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
 
 @Entity
-@Table(name="rhco_concepto")
-public class Concepto {
+
+public class Concepto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(name="cot_cod")
 	private Integer codigo;
 	
-	@OneToMany(mappedBy="codigoConcepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private Collection<LiquidacionDetalle> liquidaciondetalle;
+	@OneToMany(mappedBy="Concepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<LiquidacionDetalle> liquidacionDetalle;
 	
 	
-	@OneToMany(mappedBy="codigoConcepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private Collection<HaberDetalle> haberdetalle;
+	@OneToMany(mappedBy="Concepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<HaberDetalle> haberDetalle;
 	
-	
-	@Column(name="cot_des")
 	private String descripcion;
-
-	public Concepto() {
-		super();
-		this.codigo = 0;
-		this.descripcion = "";
-	}
-
-
-
-	public Concepto(Integer codigo, String descripcion) {
-		super();
-		this.codigo = codigo;
-		this.descripcion = descripcion;
-	}
-
-
 
 	public Integer getCodigo() {
 		return codigo;
 	}
 
-
-
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
+	public List<LiquidacionDetalle> getLiquidaciondetalle() {
+		return liquidacionDetalle;
+	}
 
+	public void setLiquidacionDetalle(List<LiquidacionDetalle> liquidacionDetalle) {
+		this.liquidacionDetalle = liquidacionDetalle;
+	}
+
+	public List<HaberDetalle> getHaberDetalle() {
+		return haberDetalle;
+	}
+
+	public void setHaberDetalle(List<HaberDetalle> haberDetalle) {
+		this.haberDetalle = haberDetalle;
+	}
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "Concepto [codigo=" + codigo + ", descripcion=" + descripcion + "]";
-	}
-
-	
-	
 	
 }

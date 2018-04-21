@@ -1,49 +1,46 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
 import java.io.Serializable;
 
-import annotation.Column;
-import annotation.DataType;
-import annotation.Entity;
-import annotation.GeneratedValue;
-import annotation.Id;
-import annotation.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name="ciudad")
-
 public class Ciudad implements Serializable {
 	
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
-	@Column(name="id",type=DataType.INTEGER,unique=true)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
 	
-	@Column(name="descripcion",type=DataType.STRING,length=255)
 	private String descripcion;
-	
-	
-	public Ciudad() {
-	}
-	
+
+
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
+
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
+
 	public String getDescripcion() {
-		return this.descripcion;
+		return descripcion;
 	}
+
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	
+
 		
 }

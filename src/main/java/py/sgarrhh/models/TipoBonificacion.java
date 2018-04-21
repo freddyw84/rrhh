@@ -1,51 +1,49 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 @Entity
-@Table(name="rhco_tipobonificacion")
 
-public class TipoBonificacion {
+public class TipoBonificacion implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(name="tbon_id")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+
 	private Integer id;
 	
-	@OneToMany(mappedBy="idTipoBonificacion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private Collection<Bonificacion> bonificacion;
+	@OneToMany(mappedBy="TipoBonificacion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Bonificacion> bonificacion;
 	
-	@Column(name="tbon_des")
 	private String descripcion;
 	
-	@Column(name="tbon_porcentaje")
 	private Float porcentaje;
-	
-	public TipoBonificacion() {
-		super();
-		this.id = 0;
-		this.descripcion = "";
-		this.porcentaje = new Float(0);
-	}
-
-	public TipoBonificacion(Integer id, String descripcion, Float porcentaje) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-		this.porcentaje = porcentaje;
-	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setCodigo(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public List<Bonificacion> getBonificacion() {
+		return bonificacion;
+	}
+
+	public void setBonificacion(List<Bonificacion> bonificacion) {
+		this.bonificacion = bonificacion;
 	}
 
 	public String getDescripcion() {
@@ -64,11 +62,5 @@ public class TipoBonificacion {
 		this.porcentaje = porcentaje;
 	}
 
-	@Override
-	public String toString() {
-		return "TipoBonificacion[codigo=" + id + ", descripcion=" + descripcion + ", porcentaje=" + porcentaje + "]";
-	}
-
-	
 	
 }

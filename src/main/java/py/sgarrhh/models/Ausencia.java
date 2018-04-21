@@ -1,109 +1,72 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Ausencia {
-	
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
+public class Ausencia implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
-	private Persona idPersona;
+	@ManyToOne
+	private Persona persona;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaInicio;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaFin;
     private String descripcion;
-    private TipoAusencia idtipoAusencia;
+   
+    @ManyToOne
+    private TipoAusencia tipoAusencia;
 	
-    
-    public Ausencia() {
-		super();
-		this.id = 0;
-		this.idPersona = new Persona();
-		this.fechaInicio = new Date();
-		this.fechaFin = new Date();
-		this.descripcion = "";
-		this.idtipoAusencia = new TipoAusencia();	}
-
-
-	public Ausencia(Integer codigo, Persona codPersona, Date fechaInicio, Date fechaFin, String descripcion,
-			TipoAusencia tipoAusencia) {
-		super();
-		this.id = codigo;
-		this.idPersona = codPersona;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
-		this.descripcion = descripcion;
-		this.idtipoAusencia = tipoAusencia;
-	}
-
-
-	public Integer getCodigo() {
+    public Integer getId() {
 		return id;
 	}
-
-
-	public void setCodigo(Integer codigo) {
-		this.id = codigo;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-
-
-	public Persona getCodPersona() {
-		return idPersona;
+	public Persona getPersona() {
+		return persona;
 	}
-
-
-	public void setCodPersona(Persona codPersona) {
-		this.idPersona = codPersona;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
-
-
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
-
-
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-
-
 	public Date getFechaFin() {
 		return fechaFin;
 	}
-
-
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-
-
 	public String getDescripcion() {
 		return descripcion;
 	}
-
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-
 	public TipoAusencia getTipoAusencia() {
-		return idtipoAusencia;
+		return tipoAusencia;
 	}
-
-
 	public void setTipoAusencia(TipoAusencia tipoAusencia) {
-		this.idtipoAusencia = tipoAusencia;
+		this.tipoAusencia = tipoAusencia;
 	}
+	
 
-
-	@Override
-	public String toString() {
-		return "Ausencia [codigo=" + id + ", codPersona=" + idPersona + ", fechaInicio=" + fechaInicio
-				+ ", fechaFin=" + fechaFin + ", descripcion=" + descripcion + ", tipoAusencia=" + idtipoAusencia + "]";
-	}
-    
-	
-	
-	
-    
-    
 
 }

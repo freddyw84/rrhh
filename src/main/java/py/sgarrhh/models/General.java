@@ -1,6 +1,7 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,42 +9,21 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 
-public abstract class General {
+public abstract class General implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	public General() {
-		
-		// TODO Auto-generated constructor stub
-				
-	}
- 
-
-	public General(Integer id) {
-		super();
-		this.id = id;
-	}
-
-
-
 	public Integer getId() {
 		return id;
 	}
-
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
-	@Override
-	public String toString() {
-		return "General [id=" + id + "]";
-	}
-	
 	
 
 }
