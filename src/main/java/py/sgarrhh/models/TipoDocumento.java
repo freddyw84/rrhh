@@ -1,57 +1,54 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
+
+import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="rhco_tipodocumento")
-public class TipoDocumento {
+public class TipoDocumento implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(name="tdo_id")
-	//bi-directional many-to-one association to Pedido
-	
-	@OneToMany(mappedBy="persona", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="tdo_des")
 	private String descripcion;
-	
-	public TipoDocumento() {
-		super();
-		this.id = 0;
-		this.descripcion = "";	
-		}
-	public TipoDocumento(Integer id) {
-		super();
-		this.id = id;
-		this.descripcion="";
-	}
-	public TipoDocumento(Integer id, String descripcion) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-	}
+
+	@OneToMany(mappedBy="TipoDocumento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Persona> persona;
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	@Override
-	public String toString() {
-		return "TipoDocumento [id=" + id + ", descripcion=" + descripcion + "]";
+
+	public List<Persona> getPersona() {
+		return persona;
 	}
+
+	public void setPersona(List<Persona> persona) {
+		this.persona = persona;
+	}
+	
 	
 	
 }

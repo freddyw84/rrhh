@@ -1,23 +1,20 @@
 /**
  * 
  */
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
 /**
  * @author cvargas
  *
  */
 import java.io.Serializable;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="rhlq_haber_detalle")
 
 public class HaberDetalle implements Serializable{
 
@@ -29,54 +26,31 @@ public class HaberDetalle implements Serializable{
 
 	
 	@Id
-	@Column(name="had_id")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="had_idhaber")
+	@ManyToOne
 	private Haber haber;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="had_idconcep")
+	@ManyToOne
 	private Concepto concepto;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="had_idliq")
+	@ManyToOne
 	private Liquidacion liquidacion;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="had_iddescue")
+	@ManyToOne
 	private Descuento descuento;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="had_idboni")
+	@ManyToOne
 	private Bonificacion bonificacion;
-	
-	
-	
-	public HaberDetalle() {
-		// TODO Auto-generated constructor stub
-		
-		super();
-		this.haber = new Haber();
-		this.concepto = new Concepto();
-		this.liquidacion = new Liquidacion();
-		this.descuento = new Descuento() ;
-		this.bonificacion = new Bonificacion();
-		
+
+	public Integer getId() {
+		return id;
 	}
 
-	public HaberDetalle(Haber haber, Concepto concepto, Liquidacion liquidacion,
-			Descuento descuento, Bonificacion bonificacion) {
-		super();
-		this.haber = haber;
-		this.concepto = concepto;
-		this.liquidacion = liquidacion;
-		this.descuento = descuento;
-		this.bonificacion = bonificacion;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-
-	
 
 	public Haber getHaber() {
 		return haber;
@@ -106,7 +80,7 @@ public class HaberDetalle implements Serializable{
 		return descuento;
 	}
 
-	public void setidDescuento(Descuento descuento) {
+	public void setDescuento(Descuento descuento) {
 		this.descuento = descuento;
 	}
 
@@ -117,14 +91,9 @@ public class HaberDetalle implements Serializable{
 	public void setBonificacion(Bonificacion bonificacion) {
 		this.bonificacion = bonificacion;
 	}
+	
+	
 
-	@Override
-	public String toString() {
-		return "HaberDetalle [id=" + haber + ", concepto=" + concepto + ", liquidacion="
-				+ liquidacion + ", descuento=" + descuento + ", bonificacion="
-				+ bonificacion + "]";
-	}
-    
 	
 	
 }

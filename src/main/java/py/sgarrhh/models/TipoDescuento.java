@@ -1,43 +1,34 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
-import java.util.Collection;
+
+import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 @Entity
-@Table(name="rhco_tipodescuento")
-public class TipoDescuento {
+public class TipoDescuento implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
-	@Column(name="tdes_id")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
 		
-	@OneToMany(mappedBy="tipoDescuento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private Collection<Descuento> descuento;
+	@OneToMany(mappedBy="TipoDescuento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Descuento> descuento;
 	
-	@Column(name="tdes_des")
 	private String descripcion;
 	
-	@Column(name="tdes_porcentaje")
 	private Float porcentaje;
-	
-	public TipoDescuento() {
-		super();
-		this.id = 0;
-		this.descripcion = "";
-		this.porcentaje = new Float(0);
-	}
-
-	public TipoDescuento(Integer id, String descripcion, Float porcentaje) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-		this.porcentaje = porcentaje;
-	}
 
 	public Integer getId() {
 		return id;
@@ -45,6 +36,14 @@ public class TipoDescuento {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public List<Descuento> getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(List<Descuento> descuento) {
+		this.descuento = descuento;
 	}
 
 	public String getDescripcion() {
@@ -62,12 +61,7 @@ public class TipoDescuento {
 	public void setPorcentaje(Float porcentaje) {
 		this.porcentaje = porcentaje;
 	}
-
-	@Override
-	public String toString() {
-		return "TipoDescuento [id=" + id + ", descripcion=" + descripcion + ", porcentaje=" + porcentaje + "]";
-	}
-
+	
 	
 	
 }

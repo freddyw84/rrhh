@@ -1,40 +1,41 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EntradaSalida {
-	private Integer codigo;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
+public class EntradaSalida implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Integer id;
+	@ManyToOne
 	private Persona persona;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaEntrada;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaSalida;
+	@ManyToOne
 	private TipoEntradaSalida tipoEntradaSalida;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date horaEntrada;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date horaSalida;
-	public EntradaSalida() {
-		super();
-		this.codigo = 0;
-		this.persona = new Persona();
-		this.fechaEntrada = new Date();
-		this.fechaSalida = new Date();
-		this.tipoEntradaSalida = new TipoEntradaSalida();
-		this.horaEntrada = new Date();
-		this.horaSalida = new Date();	}
-	public EntradaSalida(Integer codigo, Persona persona, Date fechaEntrada, Date fechaSalida,
-			TipoEntradaSalida tipoEntradaSalida, Date horaEntrada, Date horaSalida) {
-		super();
-		this.codigo = codigo;
-		this.persona = persona;
-		this.fechaEntrada = fechaEntrada;
-		this.fechaSalida = fechaSalida;
-		this.tipoEntradaSalida = tipoEntradaSalida;
-		this.horaEntrada = horaEntrada;
-		this.horaSalida = horaSalida;
+	public Integer getId() {
+		return id;
 	}
-	public Integer getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public Persona getPersona() {
 		return persona;
@@ -72,12 +73,6 @@ public class EntradaSalida {
 	public void setHoraSalida(Date horaSalida) {
 		this.horaSalida = horaSalida;
 	}
-	@Override
-	public String toString() {
-		return "EntradaSalida [codigo=" + codigo + ", persona=" + persona + ", fechaEntrada=" + fechaEntrada
-				+ ", fechaSalida=" + fechaSalida + ", tipoEntradaSalida=" + tipoEntradaSalida + ", horaEntrada="
-				+ horaEntrada + ", horaSalida=" + horaSalida + "]";
-	}
-	
+
 	
 }

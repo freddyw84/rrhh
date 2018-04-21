@@ -1,17 +1,18 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rhlq_liquidacion_detalle")
 
 public class LiquidacionDetalle implements Serializable{
 	/**
@@ -20,67 +21,51 @@ public class LiquidacionDetalle implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="lqd_id")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+
 	private Integer id;
 	
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="lqd_idliquidacion")
+	@ManyToOne
 	private Liquidacion liquidacion;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
-	@JoinColumn(name="lqd_idconcepto")
+	@ManyToOne
 	private Concepto concepto;
 
-	@Column(name="lqd_montoparcial")
 	private Double montoParcial;
-	
-	public LiquidacionDetalle() {
-		super();
-		this.id =0;
-		this.concepto = new Concepto();
-		this.liquidacion = new Liquidacion();
-		this.montoParcial = new Double(0);
-	}
-	public LiquidacionDetalle(Integer id, Concepto concepto, Liquidacion liquidacion, Double montoParcial) {
-		super();
-		this.id = id;
-		this.concepto = concepto;
-		this.liquidacion = liquidacion;
-		this.montoParcial = montoParcial;
-		
-	}
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Concepto getConcepto() {
-		return concepto;
-	}
-	public void setConcepto(Concepto concepto) {
-		this.concepto = concepto;
-	}
+
 	public Liquidacion getLiquidacion() {
 		return liquidacion;
 	}
+
 	public void setLiquidacion(Liquidacion liquidacion) {
 		this.liquidacion = liquidacion;
 	}
+
+	public Concepto getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(Concepto concepto) {
+		this.concepto = concepto;
+	}
+
 	public Double getMontoParcial() {
 		return montoParcial;
 	}
+
 	public void setMontoParcial(Double montoParcial) {
 		this.montoParcial = montoParcial;
 	}
-	@Override
-	public String toString() {
-		return "LiquidacionDetalle [concepto=" + concepto + ", liquidacion=" + liquidacion
-				+ ", montoParcial=" + montoParcial + "]";
-	}
+	
 	
 	
 	

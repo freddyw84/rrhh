@@ -1,17 +1,28 @@
-package py.sgarrhh.entity;
+package py.sgarrhh.models;
 
-public class TipoAusencia {
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+@Entity
+public class TipoAusencia implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	private String descripcion;
-	public TipoAusencia() {
-		super();
-		this.id = 0;
-		this.descripcion = "";	}
-	public TipoAusencia(Integer id, String descripcion) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-	}
+	
+	@OneToMany(mappedBy="tipoAusencia", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Ausencia> ausencia;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -24,9 +35,12 @@ public class TipoAusencia {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	@Override
-	public String toString() {
-		return "TipoAusencia [id=" + id + ", descripcion=" + descripcion + "]";
+	public List<Ausencia> getAusencia() {
+		return ausencia;
 	}
+	public void setAusencia(List<Ausencia> ausencia) {
+		this.ausencia = ausencia;
+	}
+	
 	
 }
