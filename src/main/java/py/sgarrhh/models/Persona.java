@@ -3,16 +3,14 @@ package py.sgarrhh.models;
 import java.io.Serializable;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,6 +34,9 @@ public class Persona  implements Serializable{
 	@ManyToOne
 	private TipoDocumento tipoDocumento;
 	
+	@ManyToOne
+	private Ciudad ciudad;
+	
 	
 	@NotNull
 	private String documento;
@@ -51,11 +52,13 @@ public class Persona  implements Serializable{
 	private Date fec_nacimiento;
 	
 	
-	private String nacionalidad;
+	@ManyToOne
+	private Nacionalidad nacionalidad;
+	
 	
 	private String domicilio;
 	
-	private String ciudad;
+	
 	
 	@ManyToOne
 	private EstadoCivil estadoCivil;
@@ -134,11 +137,13 @@ public class Persona  implements Serializable{
 		this.fec_nacimiento = fec_nacimiento;
 	}
 
-	public String getNacionalidad() {
+	
+
+	public Nacionalidad getNacionalidad() {
 		return nacionalidad;
 	}
 
-	public void setNacionalidad(String nacionalidad) {
+	public void setNacionalidad(Nacionalidad nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
 
@@ -150,15 +155,17 @@ public class Persona  implements Serializable{
 		this.domicilio = domicilio;
 	}
 
-	public String getCiudad() {
+	
+
+	
+	public Ciudad getCiudad() {
 		return ciudad;
 	}
 
-	public void setCiudad(String ciudad) {
+	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
 	}
 
-	
 	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
 	}
