@@ -3,15 +3,15 @@ package py.sgarrhh.models;
 import java.io.Serializable;
 
 import java.util.Date;
+import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -26,11 +26,10 @@ public class Persona  implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@OneToMany(mappedBy="persona", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Contrato> contrato;
 	
-	@OneToOne
-	private Contrato contrato;
-	
-	
+		
 	@ManyToOne
 	private TipoDocumento tipoDocumento;
 	
@@ -89,11 +88,11 @@ public class Persona  implements Serializable{
 
 	
 
-	public Contrato getContrato() {
+	public List<Contrato> getContrato() {
 		return contrato;
 	}
 
-	public void setContrato(Contrato contrato) {
+	public void setContrato(List<Contrato> contrato) {
 		this.contrato = contrato;
 	}
 
