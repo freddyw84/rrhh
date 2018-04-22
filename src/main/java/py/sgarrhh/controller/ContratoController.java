@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import py.sgarrhh.models.Cargo;
+
 import py.sgarrhh.models.Contrato;
 import py.sgarrhh.repository.ContratoRepository;
 
