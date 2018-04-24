@@ -6,5 +6,5 @@ import py.sgarrhh.models.Cargo;
 
 
 public interface CargoRepository extends CrudRepository<Cargo, String>{
-	
+
 }

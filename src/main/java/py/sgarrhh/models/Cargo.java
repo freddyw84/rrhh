@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+
 
 @Entity
 public class Cargo  implements Serializable {
@@ -19,21 +21,30 @@ public class Cargo  implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
+	@NotEmpty
 	private String descripcion;
+
 
 	@ManyToOne
 	private Departamento departamento;
 	
+	
 	@ManyToOne
 	private Funcion funcion;
+    
 
 	@OneToMany(mappedBy="cargo", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Contrato> contrato;
 	
-	public Integer getId() {
+	
+	public long getId() {
 		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public void setId(Integer id) {
