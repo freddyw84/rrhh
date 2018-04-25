@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -22,6 +23,7 @@ public class Departamento  implements Serializable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotEmpty
 	private String descripcion;
 	
 	@OneToMany(mappedBy="departamento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
