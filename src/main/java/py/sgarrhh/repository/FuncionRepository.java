@@ -8,5 +8,5 @@ import py.sgarrhh.models.Funcion;
 
 public interface FuncionRepository extends CrudRepository<Funcion, String>{
 
-	
+	 Funcion findById(long funcion_id);
 }

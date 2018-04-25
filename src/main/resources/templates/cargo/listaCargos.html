@@ -37,6 +37,8 @@
 		 <tr th:each="cargo : ${cargos}">
 				<td><span th:text="${cargo.id}"></span></td>
 				<td><span th:text="${cargo.descripcion}"></span></td>
+				<td><span th:value="${cargo.funcion_id}"></span></td>
+				<td><span th:value="${cargo.departamento_id}"></span></td>
 		</tr>
 		</tbody>
 	
