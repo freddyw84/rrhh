@@ -13,7 +13,7 @@ import py.sgarrhh.repository.FuncionRepository;
 public class FuncionController {
 	
 	@Autowired
-	private FuncionRepository er;
+	private FuncionRepository fr;
 	
 	@RequestMapping(value="/registrarFuncion", method=RequestMethod.GET)
 	public String form() {
@@ -23,7 +23,7 @@ public class FuncionController {
 	@RequestMapping(value="/registrarFuncion", method=RequestMethod.POST)
 	public String form(Funcion funcion) {
 	
-		er.save(funcion);
+		fr.save(funcion);
 		
 		return "redirect:/registrarFuncion";
 	}
@@ -32,10 +32,11 @@ public class FuncionController {
 	public ModelAndView listaFunciones() {
 
 		ModelAndView mv= new ModelAndView("funcion/listaFunciones");
-		Iterable <Funcion> funciones= er.findAll();
+		Iterable <Funcion> funciones= fr.findAll();
 		mv.addObject("funciones",funciones);
 		return mv;
 	}
-
+	
+	
 	
 }

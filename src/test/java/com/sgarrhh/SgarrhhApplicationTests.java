@@ -1,4 +1,4 @@
-package com.postgrado.sgarrhh;
+package com.sgarrhh;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

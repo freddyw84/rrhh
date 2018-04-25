@@ -32,15 +32,18 @@
 	
 	<div class="container formCargo">
 	
-	<form class="container"  method="post">
+	<form class="container" th:object="${funcion}"  method="post">
 		Descripcion: <input type="text" value="" name="descripcion"/>
 		Funcion: <input type="number" value="" name="funcion"/>
+	
 		Departamento: <input type="number" value="" name="departamento"/>
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	
 	</form>	
-			
+	
+	
+    			
 	</div>	
 	
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

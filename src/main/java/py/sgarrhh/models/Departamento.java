@@ -1,7 +1,7 @@
 package py.sgarrhh.models;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 import javax.persistence.CascadeType;
 
@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
 
@@ -26,8 +27,8 @@ public class Departamento  implements Serializable {
 	@NotEmpty
 	private String descripcion;
 	
-	@OneToMany(mappedBy="departamento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
-	private List<Cargo> cargo;
+	@OneToOne(mappedBy="departamento", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private Cargo cargo;
 	
 
 	public Integer getId() {
@@ -40,12 +41,12 @@ public class Departamento  implements Serializable {
 	}
 
 
-	public List<Cargo> getCargo() {
+	public Cargo getCargo() {
 		return cargo;
 	}
 
 
-	public void setCargo(List<Cargo> cargo) {
+	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
 
