@@ -34,20 +34,35 @@
 	
 	
 	<div class="container formFuncion">
-		<form method="post" th:object="${funcion}">
-			Funcion: <input type="number" value="" name="id" placeholder="id completo"/>
-			
+		<form method="post" th:object="${funcion_id}">
 			Descripcion: <input type="text" value="" name="descripcion"/>
-
-	
-		Departamento: <input type="number" value="" name="departamento"/>
-		
+			
+			Funcion: <input type="number" value="" name="funcion.id" placeholder="id completo"/>
+			
+			Departamento: <input type="number" value="" name="departamento.id" placeholder="id completo"/>
+			
+            
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 		</form>
+		
+		
+			<div class="form-group blu-margin">
+			    <select class="form-control" th:object="${funciones}"  id="dropFuncion">
+			    <option value="0" th:text="${funciones}" ></option>
+			    <option th:each="funcion : ${funciones}" th:value="${funcion.id}" th:text="${funcion.descripcion}"></option>
+			    </select>
+			</div>
+		
 		</div>
+	
+
 	
     			
 	</div>	
+	
+	
+	
+	
 	
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		    <script type="text/javascript" src="js/materialize.min.js"></script>

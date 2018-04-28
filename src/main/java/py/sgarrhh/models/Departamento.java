@@ -22,7 +22,7 @@ public class Departamento  implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
 	@NotEmpty
 	private String descripcion;
@@ -31,12 +31,12 @@ public class Departamento  implements Serializable {
 	private Cargo cargo;
 	
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
