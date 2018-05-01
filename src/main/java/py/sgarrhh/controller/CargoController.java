@@ -44,7 +44,8 @@ public class CargoController {
 	}
 	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
 	public String form(Cargo cargo) {
-	
+		System.out.println("pase por aca cargo");
+
 		cr.save(cargo);
 		
 		return "redirect:/registrarCargo";
@@ -61,30 +62,7 @@ public class CargoController {
 	}
 
 	
-	@RequestMapping(value="/{funcion_id}", method=RequestMethod.POST)
-	public String detalleFuncionPost(@PathVariable("funcion_id") long funcion_id, Cargo cargo){
-		
-		Funcion funcion = fr.findById(funcion_id);
-		cargo.setFuncion(funcion);
-		cr.save(cargo);
-		
-		return "redirect:/{funcion_id}";
-	}
-
-	@RequestMapping(value="/{departamento_id}", method=RequestMethod.POST)
-	public String detalleDepartamentoPost(@PathVariable("departamento_id") long departamento_id, Cargo cargo){
-	
-
-		Departamento departamento = dr.findById(departamento_id);
-		cargo.setDepartamento(departamento);
-		cr.save(cargo);
-		
-		return "redirect:/{departamento_id}";
-	}
-	
-
-	
-	@RequestMapping(value="/{funciones}", method=RequestMethod.GET)
+/*	@RequestMapping(value="/{funciones}", method=RequestMethod.GET)
 	public ModelAndView listaFunciones() {
 		ModelAndView mv= new ModelAndView("cargo/formCargo");
 		Iterable <Funcion> funciones= fr.findAll();
@@ -93,6 +71,6 @@ public class CargoController {
 		
 		
 		
-	}
+	}*/
 	
 }
