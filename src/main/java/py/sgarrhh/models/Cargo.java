@@ -9,8 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.validation.constraints.NotEmpty;
 
 
@@ -28,11 +29,11 @@ public class Cargo  implements Serializable {
 	private String descripcion;
 
 
-	@OneToOne
+	@ManyToOne
 	private Departamento departamento;
 	
 	
-	@OneToOne
+	@ManyToOne
 	private Funcion funcion;
     
 
