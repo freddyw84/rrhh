@@ -21,57 +21,36 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Cargo:</a>
+		      <a href="#" class="brand-logo">Registro de Funcion:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaCargos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Cargos</a></li>
+		        <li><a href="/listaFunciones" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Funciones</a></li>
 		      </ul>
 		    </div>
 		</nav>
 		</header>
-		
-	
-	<div class="container formCargo">
-	
 	
 	<div class="container formFuncion">
-		<form method="post" >
-			Descripcion: <input type="text" value="" name="descripcion"/>
-			
-			Funcion: <input type="number" value="" name="funcion.id" placeholder="funcion"/>
-			
-			Departamento: <input type="number" value="" name="departamento.id" placeholder="departamento"/>
-			
+	
+	<form class="container" method="post">
+	
+<!-- 		Descripcion: <input class="form-control" -->
+<!-- 			           type="text" -->
+<!-- 			           th:value="${funciones.descripcion}" name="descripcion" /> -->
+		<input type="text" th:value="${funciones.descripcion}" th:name="descripcion" th:id="id" />
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
-		</form>
-		
-		
-<!-- 			<div class="form-group blu-margin"> -->
-<!-- 			    <select class="form-control" th:object="${funciones}"  id="dropFuncion"> -->
-<!-- 			    <option value="0" th:text="${funciones}" ></option> -->
-<!-- 			    <option th:each="funcion : ${funciones}" th:value="${funcion.id}" th:text="${funcion.descripcion}"></option> -->
-<!-- 			    </select> -->
-<!-- 			</div> -->
-		
-		</div>
 	
-
+	</form>	
 	
-    			
+	
+			
 	</div>	
-	
-	
-	
-	
-	
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		    <script type="text/javascript" src="js/materialize.min.js"></script>
 
 	  </body>
-	  
-	 	  
-	  
-	  <footer>
+		
+		<footer>
 		
 			<nav class="menu">
 		    <div class="nav-wrapper">
@@ -82,5 +61,4 @@
 		    </div>
 		</nav>
 		</footer>
-
 </html>

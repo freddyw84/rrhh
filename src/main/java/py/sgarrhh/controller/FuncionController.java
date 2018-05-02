@@ -42,7 +42,18 @@ public class FuncionController {
         Funcion f =fr.findById(id);
 		ModelAndView mv= new ModelAndView("funcion/detalleFuncion");
 		mv.addObject("funciones",f);
+		
 		return mv;
 	}
+	
 
+	
+	/*@RequestMapping(value="/{funciones}", method=RequestMethod.GET)
+	public ModelAndView selectFunciones() {
+		ModelAndView mv= new ModelAndView("cargo/formCargo");
+		Iterable <Funcion> funciones= fr.findAll();
+		mv.addObject("funciones",funciones);
+		return mv;
+	}
+	*/
 }

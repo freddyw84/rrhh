@@ -61,6 +61,7 @@ public class Cargo  implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+	
 	public Departamento getDepartamento() {
 		return departamento;
 	}
@@ -69,7 +70,6 @@ public class Cargo  implements Serializable {
 		this.departamento = departamento;
 	}
 
-	
 	public Funcion getFuncion() {
 		return funcion;
 	}

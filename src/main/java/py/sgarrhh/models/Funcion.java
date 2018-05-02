@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.OneToMany;
 
 
@@ -23,7 +24,7 @@ public class Funcion implements Serializable {
 	private long id;
 	
 	
-	@OneToMany(mappedBy="funcion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+    @OneToMany(mappedBy="funcion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Cargo> cargo;
 	
 	private String descripcion;
