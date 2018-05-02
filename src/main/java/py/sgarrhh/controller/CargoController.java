@@ -5,6 +5,7 @@ package py.sgarrhh.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,7 +62,7 @@ public class CargoController {
 		cr.delete(cargo);
 		return "redirect:/listaCargos";
 	}
-	@RequestMapping(value="/registrarCargo", method=RequestMethod.GET)
+	/*@RequestMapping(value="/registrarCargo", method=RequestMethod.GET)
 	public ModelAndView cargoFunciones() {
 		System.out.println("get cargo");
 		ModelAndView mv= new ModelAndView("cargo/formCargo");
@@ -73,6 +74,18 @@ public class CargoController {
 		return mv;
 		
 		
+	}*/
+	
+	@RequestMapping(value = { "/registrarCargo" }, method = RequestMethod.GET)
+	public String cargoFunciones(Model model) {
+	 
+	    Cargo form = new Cargo();
+	    model.addAttribute("cargo", form);
+	    Iterable <Funcion> funciones= fr.findAll();
+	   
+	    model.addAttribute("funciones", funciones);
+	 
+	    return "cargo/formCargo";
 	}
 	
 }

@@ -67,3 +67,12 @@
 .menu{
 	background-color: #3399ff;
 }
+
+
+.custom-select {
+  div.select-wrapper {
+    .select-wrapper input.select-dropdown {
+      border-bottom: none !important;
+    }
+  }
+}
