@@ -43,12 +43,21 @@
  	<div class="row"> 
 		<form name ="f" method="post" th:object="${cargo}" class = "col s12">
 			Descripcion: <input type="text" value="" name="descripcion"/>
-			Departamento: <input type="number" value="" name="departamento.id" placeholder="departamento"/>
+<!-- 			Departamento: <input type="number" value="" name="departamento.id" placeholder="departamento"/> -->
 			
 <!-- 			 <input type="number" value="" name="funcion.id" placeholder="funcion"/> -->
 		  <div class="row">
+			Departamento:
+			<select id="departamento" th:field="*{departamento.id}" class="browser-default" >
+			 
+			<option th:each="departamento : ${departamentos}" 
+					th:value="${departamento.id}" 
+					th:text="${departamento.descripcion}"></option>
+	
+				</select>
 		
-			<select id="funcion" th:field="*{id}" class="browser-default" >
+			Funcion:
+			<select id="funcion" th:field="*{funcion.id}" class="browser-default" >
 			 
 			<option th:each="funcion : ${funciones}" 
 					th:value="${funcion.id}" 

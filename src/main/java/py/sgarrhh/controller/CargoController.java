@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import py.sgarrhh.models.Cargo;
+import py.sgarrhh.models.Departamento;
 import py.sgarrhh.models.Funcion;
 import py.sgarrhh.repository.CargoRepository;
+import py.sgarrhh.repository.DepartamentoRepository;
 import py.sgarrhh.repository.FuncionRepository;
 
 
@@ -30,6 +32,10 @@ public class CargoController {
 	@Autowired
 	private FuncionRepository fr;
 	
+
+	@Autowired
+	private DepartamentoRepository dr;
+	
 /*	@RequestMapping(value="/registrarCargo", method=RequestMethod.GET)
 	public String form() {
 	
@@ -37,14 +43,14 @@ public class CargoController {
 		
 	
 	}*/
-	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
-	public String form(Cargo cargo) {
-
-
-		cr.save(cargo);
-		
-		return "redirect:/registrarCargo";
-	}
+//	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
+//	public String form(Cargo cargo) {
+//
+//
+//		cr.save(cargo);
+//		
+//		return "redirect:/registrarCargo";
+//	}
 
 	@RequestMapping("/listaCargos")
 	public ModelAndView listaCargos() {
@@ -76,14 +82,28 @@ public class CargoController {
 		
 	}*/
 	
+	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
+	public String cargoPost(Cargo cargo) {
+	System.out.println("pasé por aquí: "+ cargo.getId()+" "+cargo.getDescripcion()
+						+" "+cargo.getDepartamento()
+						+" "+cargo.getFuncion());
+		cr.save(cargo);
+		
+		return "cargo/formCargo";
+	}
+	
 	@RequestMapping(value = { "/registrarCargo" }, method = RequestMethod.GET)
 	public String cargoFunciones(Model model) {
 	 
 	    Cargo form = new Cargo();
 	    model.addAttribute("cargo", form);
 	    Iterable <Funcion> funciones= fr.findAll();
-	   
 	    model.addAttribute("funciones", funciones);
+	    
+	    Departamento departamento = new Departamento();
+	    model.addAttribute("departamento", departamento);
+	    Iterable <Departamento> departamentos= dr.findAll();
+	    model.addAttribute("departamentos", departamentos);
 	 
 	    return "cargo/formCargo";
 	}
