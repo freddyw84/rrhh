@@ -45,6 +45,13 @@ public class FuncionController {
 		
 		return mv;
 	}
+	@RequestMapping(value="/{id}", method=RequestMethod.POST)
+	public String detalleFuncionPost(Funcion funcion) {
+	System.out.println("pasé por aquí: "+ funcion.getId()+" "+funcion.getDescripcion());
+		fr.save(funcion);
+		
+		return "redirect:/listaFunciones";
+	}
 	
 
 	

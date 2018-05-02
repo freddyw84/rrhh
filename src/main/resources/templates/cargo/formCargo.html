@@ -33,25 +33,40 @@
 	<div class="container formCargo">
 	
 	
-	<div class="container formFuncion">
-		<form method="post" >
+	<div class="form-group">
+		<form th:action="@{funciones}" method="post" >
 			Descripcion: <input type="text" value="" name="descripcion"/>
 			
-			Funcion: <input type="number" value="" name="funcion.id" placeholder="funcion"/>
+<!-- 			Funcion: <input type="number" value="" name="funcion.id" placeholder="funcion"/> -->
 			
 			Departamento: <input type="number" value="" name="departamento.id" placeholder="departamento"/>
 			
+			
+			seleccionar funcion
+			<div class="col-md-5">
+			<select th:field="*{funciones}">
+<!-- 			    <option th:field="#{select_item}">Selecciona Funcion...</option> -->
+			    <option th:each="funcion : ${funciones}" 
+			            th:value="${funcion.id}" 
+			            th:text="${funcion.descripcion}">Mis funciones</option>
+			</select>
+			
+			<tbody>
+
+			</div>
+<!-- 			<select name="funcion"> -->
+<!-- 			    <option th:each="funcion : ${funciones}"  -->
+<!-- 			     th:value="${funcion.id}"  -->
+<!-- 			     th:attr="id=${funcion.id}, id=*{funcion.id}, showselected=(${funcion.id} == *{funcion.id})"  -->
+<!-- 			     th:text="${funcion.descripcion}"></option> -->
+<!-- 			</select> -->
 		
-		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
+<!-- 		<button class="waves-effect waves-light btn" type="submit">Guardar</button> -->
 		</form>
 		
 		
-<!-- 			<div class="form-group blu-margin"> -->
-<!-- 			    <select class="form-control" th:object="${funciones}"  id="dropFuncion"> -->
-<!-- 			    <option value="0" th:text="${funciones}" ></option> -->
-<!-- 			    <option th:each="funcion : ${funciones}" th:value="${funcion.id}" th:text="${funcion.descripcion}"></option> -->
-<!-- 			    </select> -->
-<!-- 			</div> -->
+			
+		
 		
 		</div>
 	
