@@ -36,7 +36,7 @@
 		<tbody>
 		 <tr th:each="departamento : ${departamentos}">
 				<td><span th:text="${departamento.id}"></span></td>
-				<td><span th:text="${departamento.descripcion}"></span></td>
+				<td><a th:href="${(#mvc.url('DC#detalleDepartamento').arg(0, departamento.id)).build()}"><span th:text="${departamento.descripcion}"></span></a></td>
 		</tr>
 		</tbody>
 	
