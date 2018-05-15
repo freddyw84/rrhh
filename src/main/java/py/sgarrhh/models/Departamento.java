@@ -40,9 +40,6 @@ public class Departamento  implements Serializable {
 	}
 
 
-	
-
-
 	public List<Cargo> getCargo() {
 		return cargo;
 	}

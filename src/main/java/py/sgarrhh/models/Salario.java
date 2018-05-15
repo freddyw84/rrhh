@@ -3,7 +3,6 @@ package py.sgarrhh.models;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,21 +20,22 @@ public class Salario  implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
 	@NotNull
 	private String descripcion;
 	
-	@OneToMany(mappedBy="salario", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="salario") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Contrato> contrato;
 		
 	private Double monto;
 
-	public Integer getId() {
+	
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

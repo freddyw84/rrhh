@@ -33,12 +33,22 @@
 				
 			</tr>
 		</thead>
+		
 		<tbody>
 		 <tr th:each="funcion : ${funciones}">
 				<td><span th:text="${funcion.id}"></span></td>
 				<td><a th:href="${(#mvc.url('FC#detalleFuncion').arg(0, funcion.id)).build()}"><span th:text="${funcion.descripcion}"></span></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('FC#eliminarFuncion').arg(0, funcion.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				
 		</tr>
-		</tbody>
+		</tbody>		
+		
+<!-- 		<tbody> -->
+<!-- 		 <tr th:each="funcion : ${funciones}"> -->
+<!-- 				<td><span th:text="${funcion.id}"></span></td> -->
+<!-- 				<td><a th:href="${(#mvc.url('FC#detalleFuncion').arg(0, funcion.id)).build()}"><span th:text="${funcion.descripcion}"></span></a></td> -->
+<!-- 		</tr> -->
+<!-- 		</tbody> -->
 	
 	</table>
 		        

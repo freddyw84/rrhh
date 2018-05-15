@@ -6,6 +6,7 @@ package py.sgarrhh.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -106,6 +107,29 @@ public class CargoController {
 	    model.addAttribute("departamentos", departamentos);
 	 
 	    return "cargo/formCargo";
+	}
+	
+	
+	@RequestMapping("/c{id}")
+	private ModelAndView detalleCargo(@PathVariable("id") long id) {
+        Cargo cargo =cr.findById(id);
+		ModelAndView mvf= new ModelAndView("cargo/detalleCargo");
+		mvf.addObject("cargos",cargo);
+		
+		Iterable <Funcion> funciones= fr.findAll();
+		mvf.addObject("funciones",funciones);
+		
+		Iterable <Departamento> departamentos= dr.findAll();
+		mvf.addObject("departamentos",departamentos);
+		
+		
+		return mvf;
+	}
+	@RequestMapping(value="/c{id}", method=RequestMethod.POST)
+	private String detalleCargoPost(Cargo cargo) {
+		cr.save(cargo);
+		
+		return "redirect:/listaCargos";
 	}
 	
 }

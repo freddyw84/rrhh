@@ -16,7 +16,7 @@ import py.sgarrhh.repository.DepartamentoRepository;
 public class DepartamentoController {
 	
 	@Autowired
-	private DepartamentoRepository er;
+	private DepartamentoRepository dr;
 	
 	@RequestMapping(value="/registrarDepartamento", method=RequestMethod.GET)
 	public String form() {
@@ -26,7 +26,7 @@ public class DepartamentoController {
 	@RequestMapping(value="/registrarDepartamento", method=RequestMethod.POST)
 	public String form(Departamento departamento) {
 	
-		er.save(departamento);
+		dr.save(departamento);
 	
 		return "redirect:/registrarDepartamento";
 	}
@@ -35,25 +35,32 @@ public class DepartamentoController {
 	public ModelAndView listaDepartamentos() {
  
 		ModelAndView mv= new ModelAndView("departamento/listaDepartamentos");
-		Iterable <Departamento> departamento= er.findAll();
+		Iterable <Departamento> departamento= dr.findAll();
 		mv.addObject("departamentos",departamento);
 		return mv;
 	}
-
-	@RequestMapping("/{id1}")
-	public ModelAndView detalleDepartamento(@PathVariable("id") long id) {
-        Departamento f =er.findById(id);
-		ModelAndView mv= new ModelAndView("departamento/detalleDepartamento");
-		mv.addObject("departamentos",f);
 		
-		return mv;
+	@RequestMapping("/d{id}")
+	private ModelAndView detalleDepartamento(@PathVariable("id") long id) {
+        Departamento departamento =dr.findById(id);
+		ModelAndView mvd= new ModelAndView("departamento/detalleDepartamento");
+		mvd.addObject("departamentos",departamento);
+		
+		return mvd;
 	}
-	@RequestMapping(value="/{id1}", method=RequestMethod.POST)
-	public String detalleDepartamentoPost(Departamento departamento) {
-		er.save(departamento);
+	
+	@RequestMapping(value="/d{idDepartamento}", method=RequestMethod.POST)
+	private String detalleDepartamentoPost(Departamento departamento) {
+		dr.save(departamento);
 		
 		return "redirect:/listaDepartamentos";
 	}
 	
+	@RequestMapping("/eliminarDepartamento")
+	private String eliminarDepartamento(long id){
+		Departamento departamento = dr.findById(id);
+		dr.delete(departamento);
+		return "redirect:/listaDepartamentos";
+	}
 	
 }

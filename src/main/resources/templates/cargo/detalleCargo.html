@@ -21,22 +21,48 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Funcion:</a>
+		      <a href="#" class="brand-logo">Registro de Cargo:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaFunciones" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Funciones</a></li>
+		        <li><a href="/listaCargos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Cargos</a></li>
 		      </ul>
 		    </div>
 		</nav>
 		</header>
 	
-	<div class="container formFuncion">
+	<div class="container formCargo">
 	
 	<form class="container" method="post">
 	
 <!-- 		Descripcion: <input class="form-control" -->
 <!-- 			           type="text" -->
-<!-- 			           th:value="${funciones.descripcion}" name="descripcion" /> -->
-		<input type="text" th:value="${funciones.descripcion}" th:name="descripcion" th:id="id" />
+<!-- 			           th:value="${departamentos.descripcion}" name="descripcion" /> -->
+		<input type="text" th:value="${cargos.descripcion}" th:name="descripcion" th:id="id" />
+		
+		 <div class="row">
+		
+			Departamento:
+			<select id="departamento" th:field="*{cargos.departamento.id}" class="browser-default" >
+			 
+			<option th:each="departamento : ${departamentos}" 
+					th:value="${departamento.id}" 
+					th:text="${departamento.descripcion}"></option>
+	
+				</select>
+		
+			Funcion:
+			<select id="funcion" th:field="*{cargos.funcion.id}" class="browser-default" >
+			 
+			<option th:each="funcion : ${funciones}" 
+					th:value="${funcion.id}" 
+					th:text="${funcion.descripcion}"></option>
+	
+			</select>
+		</div>
+		
+		
+		
+		
+		
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	

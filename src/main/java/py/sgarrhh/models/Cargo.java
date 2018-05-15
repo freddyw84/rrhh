@@ -3,7 +3,6 @@ package py.sgarrhh.models;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +36,7 @@ public class Cargo  implements Serializable {
 	private Funcion funcion;
     
 
-	@OneToMany(mappedBy="cargo", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="cargo") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Contrato> contrato;
 	
 	

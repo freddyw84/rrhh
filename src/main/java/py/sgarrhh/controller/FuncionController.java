@@ -37,23 +37,29 @@ public class FuncionController {
 		mv.addObject("funciones",funciones);
 		return mv;
 	}
-	@RequestMapping("/{id}")
-	public ModelAndView detalleFuncion(@PathVariable("id") long id) {
-        Funcion f =fr.findById(id);
-		ModelAndView mv= new ModelAndView("funcion/detalleFuncion");
-		mv.addObject("funciones",f);
+	
+	@RequestMapping("/f{id}")
+	private ModelAndView detalleFuncion(@PathVariable("id") long id) {
+        Funcion funcion =fr.findById(id);
+		ModelAndView mvf= new ModelAndView("funcion/detalleFuncion");
+		mvf.addObject("funciones",funcion);
 		
-		return mv;
+		return mvf;
 	}
-	@RequestMapping(value="/{id}", method=RequestMethod.POST)
-	public String detalleFuncionPost(Funcion funcion) {
-	System.out.println("pasé por aquí: "+ funcion.getId()+" "+funcion.getDescripcion());
+	
+	@RequestMapping(value="/f{id}", method=RequestMethod.POST)
+	private String detalleFuncionPost(Funcion funcion) {
 		fr.save(funcion);
 		
 		return "redirect:/listaFunciones";
 	}
 	
-
+	@RequestMapping("/eliminarFuncion")
+	private String eliminarFuncion(long id){
+		Funcion funcion = fr.findById(id);
+		fr.delete(funcion);
+		return "redirect:/listaFunciones";
+	}
 	
 	/*@RequestMapping(value="/{funciones}", method=RequestMethod.GET)
 	public ModelAndView selectFunciones() {
