@@ -40,21 +40,7 @@ public class CargoController {
 	@Autowired
 	private DepartamentoRepository dr;
 	
-/*	@RequestMapping(value="/registrarCargo", method=RequestMethod.GET)
-	public String form() {
-	
-		return "cargo/formCargo";
-		
-	
-	}*/
-//	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
-//	public String form(Cargo cargo) {
-//
-//
-//		cr.save(cargo);
-//		
-//		return "redirect:/registrarCargo";
-//	}
+
 
 	@RequestMapping("/listaCargos")
 	public ModelAndView listaCargos() {
@@ -66,26 +52,7 @@ public class CargoController {
 		return mv;
 	}
 
-	@RequestMapping("/eliminarCargo")
-	public String eliminarCargo(long id, RedirectAttributes attributes){
-		Cargo cargo = cr.findById(id);
-		cr.delete(cargo);
-		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
-		return "redirect:/listaCargos";
-	}
-	/*@RequestMapping(value="/registrarCargo", method=RequestMethod.GET)
-	public ModelAndView cargoFunciones() {
-		System.out.println("get cargo");
-		ModelAndView mv= new ModelAndView("cargo/formCargo");
-		Iterable <Funcion> funciones= fr.findAll();
-		for(Funcion fu:funciones) {
-			System.out.println("f: "+fu.getId()+" "+fu.getDescripcion());
-		}
-		mv.addObject("funciones",funciones);
-		return mv;
-		
-		
-	}*/
+
 	
 	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
 	public String cargoPost( @Valid Cargo cargo,  BindingResult result, RedirectAttributes attributes) {
@@ -150,4 +117,11 @@ public class CargoController {
 		return "redirect:/listaCargos";
 	}
 	
+	@RequestMapping("/eliminarCargo")
+	public String eliminarCargo(long id, RedirectAttributes attributes){
+		Cargo cargo = cr.findById(id);
+		cr.delete(cargo);
+		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
+		return "redirect:/listaCargos";
+	}
 }
