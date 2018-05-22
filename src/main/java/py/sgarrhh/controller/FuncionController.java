@@ -73,7 +73,7 @@ public class FuncionController {
 		try {
 			fr.delete(funcion);
 		} catch (Exception e) {
-			attributes.addFlashAttribute("mensaje", "Funcion esta siendo utilizado en cargo!:       "+e.getMessage());
+			attributes.addFlashAttribute("mensaje", "Funcion esta siendo utilizado en cargo!");
 			return "redirect:/listaFunciones";
 		}
 		
