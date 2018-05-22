@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 
@@ -17,18 +19,19 @@ public class Rubro implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 		
-	@OneToMany(mappedBy="rubro", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="rubro")
 	private List<Haber> haber;
-	
+	@NotEmpty
+	@NotNull
 	private String descripcion;
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

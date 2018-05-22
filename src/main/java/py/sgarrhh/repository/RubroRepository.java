@@ -6,5 +6,5 @@ import py.sgarrhh.models.Rubro;
 
 
 public interface RubroRepository extends CrudRepository<Rubro, String>{
-	
+	Rubro findById(long id);
 }
