@@ -30,12 +30,11 @@
 		</header>
 	
 	<div class="container formCargo">
+		<th:block th:include="mensajeValidacion"></th:block>
 	
 	<form class="container" method="post">
 	
-<!-- 		Descripcion: <input class="form-control" -->
-<!-- 			           type="text" -->
-<!-- 			           th:value="${departamentos.descripcion}" name="descripcion" /> -->
+
 		<input type="text" th:value="${cargos.descripcion}" th:name="descripcion" th:id="id" />
 		
 		 <div class="row">
