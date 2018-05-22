@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -24,9 +24,9 @@ public class Persona  implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
-	@OneToMany(mappedBy="persona", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="persona")
 	private List<Contrato> contrato;
 	
 		
@@ -36,16 +36,16 @@ public class Persona  implements Serializable{
 	@ManyToOne
 	private Ciudad ciudad;
 	
-	
+	@NotEmpty
 	@NotNull
 	private String documento;
-	
+	@NotEmpty
 	@NotNull
 	private String nombre;
-	
+	@NotEmpty
 	@NotNull
 	private String apellido;
-	
+	@NotEmpty
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fec_nacimiento;
@@ -58,9 +58,9 @@ public class Persona  implements Serializable{
 	private String domicilio;
 	
 	
-	
-	@ManyToOne
-	private EstadoCivil estadoCivil;
+	@NotEmpty
+	@NotNull
+	private String estadoCivil;
 	
 	@NotNull
 	private String sexo;
@@ -78,7 +78,7 @@ public class Persona  implements Serializable{
 	
 	private byte[] imagen;
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -165,11 +165,11 @@ public class Persona  implements Serializable{
 		this.ciudad = ciudad;
 	}
 
-	public EstadoCivil getEstadoCivil() {
+	public String getEstadoCivil() {
 		return estadoCivil;
 	}
 
-	public void setEstadoCivil(EstadoCivil estadoCivil) {
+	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 
