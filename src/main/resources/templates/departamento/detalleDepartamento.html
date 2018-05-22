@@ -28,15 +28,13 @@
 		    </div>
 		</nav>
 		</header>
-	
+	<th:block th:include="mensajeValidacion"></th:block>
 	<div class="container formDepartamento">
 	
 	<form class="container" method="post">
 	
-<!-- 		Descripcion: <input class="form-control" -->
-<!-- 			           type="text" -->
-<!-- 			           th:value="${departamentos.descripcion}" name="descripcion" /> -->
-		<input type="text" th:value="${departamentos.descripcion}" th:name="descripcion" th:id="idDepartamento" />
+
+		<input type="text" th:value="${departamentos.descripcion}" th:name="descripcion" th:id="id" />
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	

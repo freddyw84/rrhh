@@ -1,12 +1,16 @@
 package py.sgarrhh.controller;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Departamento;
 import py.sgarrhh.repository.DepartamentoRepository;
@@ -24,9 +28,13 @@ public class DepartamentoController {
 	}
 
 	@RequestMapping(value="/registrarDepartamento", method=RequestMethod.POST)
-	public String form(Departamento departamento) {
-	
+	public String form(@Valid Departamento departamento, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()){
+			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
+			return "redirect:/registrarDepartamento";
+		}
 		dr.save(departamento);
+		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 	
 		return "redirect:/registrarDepartamento";
 	}
@@ -49,18 +57,24 @@ public class DepartamentoController {
 		return mvd;
 	}
 	
-	@RequestMapping(value="/d{idDepartamento}", method=RequestMethod.POST)
-	private String detalleDepartamentoPost(Departamento departamento) {
+	@RequestMapping(value="/d{id}", method=RequestMethod.POST)
+	private String detalleDepartamentoPost(@PathVariable("id") long id,@Valid Departamento departamento, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()){
+			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
+			return "redirect:/d{id}";
+		}
 		dr.save(departamento);
-		
+		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 		return "redirect:/listaDepartamentos";
 	}
 	
 	@RequestMapping("/eliminarDepartamento")
-	private String eliminarDepartamento(long id){
+	private String eliminarDepartamento(long id, RedirectAttributes attributes){
 		Departamento departamento = dr.findById(id);
 		dr.delete(departamento);
+		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
 		return "redirect:/listaDepartamentos";
 	}
+
 	
 }
