@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  <head>
+	  
+	   	<title>SGARRH</title>
+	  	
+			<!--Import Google Icon Font -->
+		      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<!-- 		      Import materialize.css -->
+		      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+		
+<!-- 		      Let browser know website is optimized for mobile -->
+		      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		      <link rel="stylesheet" href="style/styleCss.css"/>
+	
+		      
+		      <script>
+		         $(document).ready(function() {
+		            $('select').material_select();
+		         });
+		      </script>
+	  </head>
+	  
+	  <body>
+	  
+		<header>
+		<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Registro de Persona:</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/listaPersonas" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Personas</a></li>
+		      </ul>
+		    </div>
+		</nav>
+		</header>
+	<th:block th:include="mensajeValidacion"></th:block>
+	<div class="container formPersona">
+	
+	<form name ="fPerson" method="post" th:object="${persona}" class = "col s12">
+	
+		Nombre: <input type="text" value="" name="nombre"/>
+		Apellido:<input type="text" value="" name="apellido"/> 
+		
+		Tipo de doc.:
+			<select id="tipoDocumento" th:field="*{tipoDocumento.id}" class="browser-default" >
+			 
+			<option th:each="tipoDocumento : ${tipoDocumentos}" 
+					th:value="${tipoDocumento.id}" 
+					th:text="${tipoDocumento.descripcion}"></option>
+	
+				</select>
+		Documento: <input type="text" value="" name="documento"/> <!-- Documento -->
+				
+		Ciudad.:
+			<select id="ciudad" th:field="*{ciudad.id}" class="browser-default" >
+			 
+			<option th:each="ciudad : ${ciudades}" 
+					th:value="${ciudad.id}" 
+					th:text="${ciudad.descripcion}"></option>
+	
+				</select>
+		Fecha de nacimiento: <input id="date" type="date" value="" name="fec_nacimiento"/>
+	    
+	    Nacionalidad:
+			<select id="nacionalidad" th:field="*{nacionalidad.id}" class="browser-default" >
+			 
+			<option th:each="nacionalidad : ${nacionalidades}" 
+					th:value="${nacionalidad.id}" 
+					th:text="${nacionalidad.descripcion}"></option>
+	
+				</select>
+		Domicilio: <input type="text" value="" name="domicilio"/>
+		Estado Civil: <input type="text" value="" name="estadoCivil"/>
+		Sexo: <input type="text" value="" name="sexo"/>
+		Teléfono: <input type="text" value="" name="telefono"/>
+		Email: <input type="text" value="" name="email"/>
+		Observación: <input type="text" value="" name="observacion"/>	
+		Estado: <input type="text" value="" name="estado"/>
+		Imagen: <input type="text" value="" name="imagen"/>	<!-- byte[] -->
+
+		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
+	
+	</form>	
+			
+	</div>	
+			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+	  </body>
+	  
+	  <footer>
+		
+			<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Volver al Menu</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Menu</a></li>
+		      </ul>
+		    </div>
+		</nav>
+		</footer>
+
+</html>
