@@ -40,7 +40,7 @@
 <!-- 				<td><span th:text="${salario.descripcion}"></span></td> -->
 				<td><a th:href="${(#mvc.url('SC#detalleSalario').arg(0, salario.id)).build()}"><span th:text="${salario.descripcion}"></span></a></td>
 				<td><span th:text="${salario.monto}"></span></td>
-				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('SC#eliminarSalario').arg(0, salario.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('SC#eliminarSalario').arg(0, salario.id)).build()}"><i class="material-icons left">delete</i></a></td>
 		</tr>
 		</tbody>
 	

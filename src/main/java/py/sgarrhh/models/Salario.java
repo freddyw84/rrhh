@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 
+
 @Entity
 public class Salario  implements Serializable {
 	
