@@ -33,10 +33,10 @@
 	
 	<form class="container" method="post">
 	
-<!-- 		Descripcion: <input class="form-control" -->
-<!-- 			           type="text" -->
-<!-- 			           th:value="${funciones.descripcion}" name="descripcion" /> -->
+
 		<input type="text" th:value="${salarios.descripcion}" th:name="descripcion" th:id="id" />
+		<input type="number" th:value="${salarios.monto}" th:name="monto" th:id="id" />
+		
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	
