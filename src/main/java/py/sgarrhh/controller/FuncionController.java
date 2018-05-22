@@ -70,7 +70,14 @@ public class FuncionController {
 	@RequestMapping("/eliminarFuncion")
 	private String eliminarFuncion(long id , RedirectAttributes attributes){
 		Funcion funcion = fr.findById(id);
-		fr.delete(funcion);
+		try {
+			fr.delete(funcion);
+		} catch (Exception e) {
+			attributes.addFlashAttribute("mensaje", "Funcion esta siendo utilizado en cargo!:       "+e.getMessage());
+			return "redirect:/listaFunciones";
+		}
+		
+		
 		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
 		return "redirect:/listaFunciones";
 	}
