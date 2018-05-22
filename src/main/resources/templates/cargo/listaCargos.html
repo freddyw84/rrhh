@@ -35,6 +35,8 @@
 			</tr>
 		</thead>
 		<tbody>
+		<th:block th:include="mensajeValidacion"></th:block>
+		
 		 <tr th:each="cargo : ${cargos}">
 				<td><span th:text="${cargo.id}"></span></td>
 <!-- 				<td><span th:text="${cargo.descripcion}"></span></td> -->
@@ -42,7 +44,7 @@
 				
 				<td><span th:text="${cargo.funcion.id}+'|'+${cargo.funcion.descripcion}"></span></td>
 				<td><span th:text="${cargo.departamento.id}+'|'+${cargo.departamento.descripcion}"></span></td>
-				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('CC#eliminarCargo').arg(0, cargo.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'"  th:href="${(#mvc.url('CC#eliminarCargo').arg(0, cargo.id)).build()}"><i class="material-icons left">delete</i></a></td>
 				
 		</tr>
 		</tbody>

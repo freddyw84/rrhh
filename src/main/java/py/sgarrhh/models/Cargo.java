@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -25,13 +26,15 @@ public class Cargo  implements Serializable {
 	private long id;
 	
 	@NotEmpty
+	@NotNull
 	private String descripcion;
 
-
+	
+	@NotNull
 	@ManyToOne
 	private Departamento departamento;
 	
-	
+	@NotNull
 	@ManyToOne
 	private Funcion funcion;
     

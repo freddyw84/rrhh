@@ -3,14 +3,17 @@ package py.sgarrhh.controller;
 
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Cargo;
 import py.sgarrhh.models.Departamento;
@@ -64,9 +67,10 @@ public class CargoController {
 	}
 
 	@RequestMapping("/eliminarCargo")
-	public String eliminarCargo(long id){
+	public String eliminarCargo(long id, RedirectAttributes attributes){
 		Cargo cargo = cr.findById(id);
 		cr.delete(cargo);
+		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
 		return "redirect:/listaCargos";
 	}
 	/*@RequestMapping(value="/registrarCargo", method=RequestMethod.GET)
@@ -84,12 +88,20 @@ public class CargoController {
 	}*/
 	
 	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
-	public String cargoPost(Cargo cargo) {
-	System.out.println("pasé por aquí: "+ cargo.getId()+" "+cargo.getDescripcion()
+	public String cargoPost( @Valid Cargo cargo,  BindingResult result, RedirectAttributes attributes) {
+	/*System.out.println("pasé por aquí: "+ cargo.getId()+" "+cargo.getDescripcion()
 						+" "+cargo.getDepartamento()
-						+" "+cargo.getFuncion());
-		cr.save(cargo);
+						+" "+cargo.getFuncion());*/
 		
+		if(result.hasErrors()){
+			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
+			return "redirect:/registrarCargo";
+		}
+		
+		
+		cr.save(cargo);
+		attributes.addFlashAttribute("mensaje", "Registro guardado!");
+
 		return "cargo/formCargo";
 	}
 	
@@ -126,9 +138,15 @@ public class CargoController {
 		return mvf;
 	}
 	@RequestMapping(value="/c{id}", method=RequestMethod.POST)
-	private String detalleCargoPost(Cargo cargo) {
-		cr.save(cargo);
+	private String detalleCargoPost(@Valid Cargo cargo,  BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()){
+			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
+			return "redirect:/c{id}";
+		}
 		
+		cr.save(cargo);
+		attributes.addFlashAttribute("mensaje", "Registro guardado!");
+
 		return "redirect:/listaCargos";
 	}
 	

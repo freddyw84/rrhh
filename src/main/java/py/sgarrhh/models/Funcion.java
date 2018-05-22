@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 
@@ -25,7 +27,9 @@ public class Funcion implements Serializable {
 	
     @OneToMany(mappedBy="funcion")//, cascade={CascadeType.PERSIST}, orphanRemoval=true
 	private List<Cargo> cargo;
-	
+    
+	@NotEmpty
+	@NotNull
 	private String descripcion;
 
 	

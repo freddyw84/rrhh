@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 
@@ -25,6 +26,7 @@ public class Salario  implements Serializable {
 	private long id;
 	
 	@NotEmpty	
+	@NotNull
 	private String descripcion;
 	
 	@OneToMany(mappedBy="salario") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
