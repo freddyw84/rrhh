@@ -71,7 +71,13 @@ public class DepartamentoController {
 	@RequestMapping("/eliminarDepartamento")
 	private String eliminarDepartamento(long id, RedirectAttributes attributes){
 		Departamento departamento = dr.findById(id);
-		dr.delete(departamento);
+		try {
+			dr.delete(departamento);
+		} catch (Exception e) {
+			attributes.addFlashAttribute("mensaje", "Departamento está en uso en cargo!: "+e.getMessage());
+			return "redirect:/listaDepartamentos";
+		}
+		
 		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
 		return "redirect:/listaDepartamentos";
 	}
