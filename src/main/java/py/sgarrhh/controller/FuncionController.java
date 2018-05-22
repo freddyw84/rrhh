@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import py.sgarrhh.models.Departamento;
 import py.sgarrhh.models.Funcion;
 import py.sgarrhh.repository.FuncionRepository;
 
