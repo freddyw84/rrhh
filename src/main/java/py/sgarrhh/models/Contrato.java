@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -21,6 +23,8 @@ public class Contrato  implements Serializable {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
+	@NotEmpty
+	@NotNull
 	private String descripcion;
 	
 	@ManyToOne

@@ -86,9 +86,12 @@ public class SalarioController {
 	
 
 	@RequestMapping("/eliminarSalario")
-	private String eliminarSalario(long id){
+	private String eliminarSalario(long id, RedirectAttributes attributes){
+		
 		Salario salario = sr.findById(id);
 		sr.delete(salario);
+		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
+
 		return "redirect:/listaSalarios";
 	}
 	
