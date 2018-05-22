@@ -74,7 +74,7 @@ public class DepartamentoController {
 		try {
 			dr.delete(departamento);
 		} catch (Exception e) {
-			attributes.addFlashAttribute("mensaje", "Departamento está en uso en cargo!: "+e.getMessage());
+			attributes.addFlashAttribute("mensaje", "Departamento está siendo utilizado en cargo!: "+e.getMessage());
 			return "redirect:/listaDepartamentos";
 		}
 		
