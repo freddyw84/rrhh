@@ -15,10 +15,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
-public class Usuario implements Serializable{
+public class Usuario implements  UserDetails, Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -91,6 +92,12 @@ public class Usuario implements Serializable{
 	
 	public boolean isEnabled() {
 		return true;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

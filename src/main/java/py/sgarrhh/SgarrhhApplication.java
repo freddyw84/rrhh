@@ -11,5 +11,7 @@ public class SgarrhhApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SgarrhhApplication.class, args);
+		//System.out.print("pase por aqui");
+		//System.out.print(new BCryptPasswordEncoder().encode("123"));
 	}
 }

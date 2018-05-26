@@ -37,8 +37,8 @@
 		<th:block th:include="mensajeValidacion"></th:block>
 		 <tr th:each="usuario : ${usuarios}">
 				<td><span th:text="${usuario.id}"></span></td>
-				<td><a th:href="${(#mvc.url('UC#detalleUsuario').arg(0, usuario.id)).build()}"><span th:text="${usuario.login}"></span></a></td>
-				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + 'eliminar el registro?' + '\');'" th:href="${(#mvc.url('UC#eliminarUsuario').arg(0, usuario.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><a th:href="${(#mvc.url('UC#detalleUsuario').arg(0, usuario.login)).build()}"><span th:text="${usuario.login}"></span></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + 'eliminar el registro?' + '\');'" th:href="${(#mvc.url('UC#eliminarUsuario').arg(0, usuario.login)).build()}"><i class="material-icons left">delete</i></a></td>
 				
 		</tr>
 		</tbody>

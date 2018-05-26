@@ -23,8 +23,7 @@ public class ImplementsUserDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		Usuario usuario = ur.findByLogin(login);
-		System.out.println("pasé por aquí: "+ usuario.getId()+" "+usuario.getLogin()+" "+usuario.getPassword());
-
+		
 		if(usuario == null){
 			throw new UsernameNotFoundException("Usuario o senha incorrecta!");
 		}

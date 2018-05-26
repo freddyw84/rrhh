@@ -49,7 +49,7 @@ public class UsuarioController {
 	}
 		
 	@RequestMapping("/u{login}")
-	private ModelAndView detalleUsuario(@PathVariable("id") String login) {
+	private ModelAndView detalleUsuario(@PathVariable("login") String login) {
         Usuario usuario =ur.findByLogin(login);
 		ModelAndView mvd= new ModelAndView("usuario/detalleUsuario");
 		mvd.addObject("usuarios",usuario);
