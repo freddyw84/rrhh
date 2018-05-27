@@ -5,6 +5,7 @@
 	  
 	  	<title>SGARRH</title>
 	  	
+			<!--Import Google Icon Font -->
 		      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 		      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 		
@@ -25,9 +26,9 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Cargo:</a>
+		      <a href="#" class="brand-logo">Registro de Contrato:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaCargos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Cargos</a></li>
+		        <li><a href="/listaContratos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Contratos</a></li>
 		      </ul>
 		    </div>
 		</nav>
@@ -35,31 +36,37 @@
 		
 		<th:block th:include="mensajeValidacion"></th:block>
 	
-	<div class="container formCargo">
+	<div class="container formContrato">
 	
 	
  	<div class="row"> 
-		<form name ="f" method="post" th:object="${cargo}" class = "col s12">
+		<form name ="fcontrato" method="post" th:object="${contrato}" class = "col s12">
 			Descripcion: <input type="text" value="" name="descripcion"/>
-<!-- 			Departamento: <input type="number" value="" name="departamento.id" placeholder="departamento"/> -->
 			
-<!-- 			 <input type="number" value="" name="funcion.id" placeholder="funcion"/> -->
 		  <div class="row">
-			Departamento:
-			<select id="departamento" th:field="*{departamento.id}" class="browser-default" >
+			Salario:
+			<select id="salario" th:field="*{salario.id}" class="browser-default" >
 			 
-			<option th:each="departamento : ${departamentos}" 
-					th:value="${departamento.id}" 
-					th:text="${departamento.descripcion}"></option>
+			<option th:each="salario : ${salarios}" 
+					th:value="${salario.id}" 
+					th:text="${salario.descripcion}"></option>
 	
 				</select>
 		
-			Funcion:
-			<select id="funcion" th:field="*{funcion.id}" class="browser-default" >
+			Persona:
+			<select id="persona" th:field="*{persona.id}" class="browser-default" >
 			 
-			<option th:each="funcion : ${funciones}" 
-					th:value="${funcion.id}" 
-					th:text="${funcion.descripcion}"></option>
+			<option th:each="persona : ${personas}" 
+					th:value="${persona.id}" 
+					th:text="${persona.descripcion}"></option>
+	
+				</select>
+				Cargo:
+			<select id="cargo" th:field="*{cargo.id}" class="browser-default" >
+			 
+			<option th:each="cargo : ${cargo}" 
+					th:value="${cargo.id}" 
+					th:text="${cargo.descripcion}"></option>
 	
 				</select>
 		</div>
@@ -70,16 +77,10 @@
 	</div>	
 	
 	</div>	
-	
-		
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		    <script type="text/javascript" src="js/materialize.min.js"></script>
-
 	  </body>
-	  
-
 	  <footer>
-		
 			<nav class="menu">
 		    <div class="nav-wrapper">
 		      <a href="#" class="brand-logo">Volver al Menu</a>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  <head>
+	  
+	  	<title>SGARRH</title>
+	  	
+			<!--Import Google Icon Font-->
+		      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		      <!--Import materialize.css-->
+		      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+		
+		      <!--Let browser know website is optimized for mobile-->
+		      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		      <link rel="stylesheet" href="style/styleCss.css"/>
+			  
+	  </head>
+	  
+	  <body>
+	  
+		<header>
+		<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Registro de Contrato:</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/listaContratos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Contratos</a></li>
+		      </ul>
+		    </div>
+		</nav>
+		</header>
+	
+	<div class="container formContrato">
+		<th:block th:include="mensajeValidacion"></th:block>
+	
+	<form class="container" method="post">
+	
+
+		<input type="text" th:value="${contratos.descripcion}" th:name="descripcion" th:id="id" />
+		
+		 <div class="row">
+		
+			Departamento:
+			<select id="persona" th:field="*{contratos.persona.id}" class="browser-default" >
+			 
+			<option th:each="persona : ${personas}" 
+					th:value="${persona.id}" 
+					th:text="${persona.descripcion}"></option>
+	
+				</select>
+		
+			Cargo:
+			<select id="cargo" th:field="*{contratos.cargo.id}" class="browser-default" >
+			 
+			<option th:each="cargo : ${cargos}" 
+					th:value="${cargo.id}" 
+					th:text="${cargo.descripcion}"></option>
+	
+			</select>
+		</div>
+		
+		
+		
+		
+		
+		
+		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
+	
+	</form>	
+	
+	
+			
+	</div>	
+			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+	  </body>
+		
+		<footer>
+		
+			<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Volver al Menu</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Menu</a></li>
+		      </ul>
+		    </div>
+		</nav>
+		</footer>
+</html>

@@ -22,27 +22,31 @@ public class Contrato  implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	@NotEmpty
 	@NotNull
 	private String descripcion;
 	
+	@NotEmpty
+	@NotNull
 	@ManyToOne
 	private Salario salario;
-	
+	@NotEmpty
+	@NotNull
 	@ManyToOne
 	private Persona persona;
-	
+	@NotEmpty
+	@NotNull
 	@ManyToOne 
 	private Cargo cargo;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaIngreso;
 	
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getDescripcion() {
