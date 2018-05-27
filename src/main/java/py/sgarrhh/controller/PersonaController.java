@@ -48,10 +48,7 @@ public class PersonaController {
 	    
 	    Iterable <TipoDocumento> tipoDocumentos= tdr.findAll();
 	    model.addAttribute("tipoDocumentos", tipoDocumentos);
-	    
-	    Nacionalidad nacionalidad = new Nacionalidad();
-	    model.addAttribute("nacionalidad", nacionalidad);
-	    
+	   
 	    
 	    Iterable <Nacionalidad> nacionalidades= nr.findAll();
 	    model.addAttribute("nacionalidades", nacionalidades);
@@ -65,11 +62,17 @@ public class PersonaController {
 
 	@RequestMapping(value="/registrarPersona", method=RequestMethod.POST)
 	public String formPersona(@Valid Persona persona , BindingResult result, RedirectAttributes attributes) {
-		
+		System.out.println("nombre> "+persona.getNombre());
+		System.out.println("fec_nacimiento> "+persona.getFec_nacimiento());
+		System.out.println("errrorrr"+result.getFieldError());
+		System.out.println("errrorrr"+result.toString());
 		if(result.hasErrors()){
 			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
 			return "redirect:/registrarPersona";
 		}
+		
+		
+		
 		pr.save(persona);
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 		return "redirect:/registrarPersona";

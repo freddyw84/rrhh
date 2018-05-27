@@ -29,7 +29,11 @@ public class Persona  implements Serializable{
 	@OneToMany(mappedBy="persona")
 	private List<Contrato> contrato;
 	
-		
+	@OneToMany(mappedBy="persona")
+	private List<Bonificacion> bonificacion;
+	
+	@NotNull
+	//@NotEmpty
 	@ManyToOne
 	private TipoDocumento tipoDocumento;
 	
@@ -45,9 +49,10 @@ public class Persona  implements Serializable{
 	@NotEmpty
 	@NotNull
 	private String apellido;
-	@NotEmpty
+	
+	//@NotEmpty
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.DATE)
 	private Date fec_nacimiento;
 	
 	

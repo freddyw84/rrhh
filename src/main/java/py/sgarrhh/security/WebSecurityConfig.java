@@ -22,10 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable().authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/").permitAll()
-		.antMatchers(HttpMethod.GET, "/listaCargos").hasRole("ADMIN")
+		/*.antMatchers(HttpMethod.GET, "/listaCargos").hasRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/registrarCargo").hasRole("ADMIN")
 		.antMatchers(HttpMethod.POST, "/registrarCargo").hasRole("ADMIN")
-		.antMatchers(HttpMethod.POST, "/listaCargos").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/listaCargos").hasRole("ADMIN")*/
 
 		.anyRequest().authenticated()
 		.and().formLogin().permitAll()

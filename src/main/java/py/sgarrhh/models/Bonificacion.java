@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Bonificacion implements Serializable {
@@ -21,31 +22,53 @@ public class Bonificacion implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
-	@OneToMany(mappedBy="bonificacion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@NotEmpty
+	@NotNull
+	private String descripcion;
+	
+	@OneToMany(mappedBy="bonificacion")
 	private List<HaberDetalle> haberDetalle;
 	
+	@NotNull
+	@NotEmpty
 	@ManyToOne
 	private TipoBonificacion tipoBonificacion;
 	
+	@NotEmpty
+	@NotNull
 	private Double monto;
 	
 	@ManyToOne
-	private Persona Persona;
-
+	private Persona persona;
+    
+	@NotNull
 	private String estado;
+	
+	@NotEmpty
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 	
 	private String observacion;
 
-	public Integer getId() {
+	
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public List<HaberDetalle> getHaberDetalle() {
@@ -72,12 +95,14 @@ public class Bonificacion implements Serializable {
 		this.monto = monto;
 	}
 
+	
+
 	public Persona getPersona() {
-		return Persona;
+		return persona;
 	}
 
 	public void setPersona(Persona persona) {
-		Persona = persona;
+		this.persona = persona;
 	}
 
 	public String getEstado() {

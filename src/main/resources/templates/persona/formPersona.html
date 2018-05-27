@@ -19,7 +19,19 @@
 		         $(document).ready(function() {
 		            $('select').material_select();
 		         });
+		         
+		         
+		         
+		         
+		         $('.datepicker').pickadate({
+		        	    selectMonths: true, // Creates a dropdown to control month
+		        	    selectYears: 15 // Creates a dropdown of 15 years to control year
+		        	  });
 		      </script>
+		      
+		   
+		      
+		      
 	  </head>
 	  
 	  <body>
@@ -38,6 +50,17 @@
 	<div class="container formPersona">
 	
 	<form name ="fPerson" method="post" th:object="${persona}" class = "col s12">
+	
+				 <div class="file-field input-field">
+			      <div class="btn">
+			        <span>Imagen</span>
+			        <input type="file">
+			      </div>
+			      <div class="file-path-wrapper">
+			        <input class="file-path validate" type="text" name="imagen">
+			      </div>
+			    </div>
+	
 	
 		Nombre: <input type="text" value="" name="nombre"/>
 		Apellido:<input type="text" value="" name="apellido"/> 
@@ -60,7 +83,12 @@
 					th:text="${ciudad.descripcion}"></option>
 	
 				</select>
-		Fecha de nacimiento: <input id="date" type="date" value="" name="fec_nacimiento"/>
+		Fecha de nacimiento:   <input type="date" class="datepicker" name="fec_nacimiento">
+		
+		
+		
+		
+<!-- 		<input  type="date" value="" name="fec_nacimiento"/> -->
 	    
 	    Nacionalidad:
 			<select id="nacionalidad" th:field="*{nacionalidad.id}" class="browser-default" >
@@ -77,8 +105,8 @@
 		Email: <input type="text" value="" name="email"/>
 		Observación: <input type="text" value="" name="observacion"/>	
 		Estado: <input type="text" value="" name="estado"/>
-		Imagen: <input type="text" value="" name="imagen"/>	<!-- byte[] -->
-
+<!-- 		Imagen: <input type="image" value="" name="imagen"/>	byte[] -->
+		 
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	
 	</form>	
