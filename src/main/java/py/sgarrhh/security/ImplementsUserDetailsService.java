@@ -17,6 +17,7 @@ import py.sgarrhh.models.Usuario;
 @Transactional
 public class ImplementsUserDetailsService implements UserDetailsService{
 
+	
 	@Autowired
 	private UsuarioRepository ur;
 	
