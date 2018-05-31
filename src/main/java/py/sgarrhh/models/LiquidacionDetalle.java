@@ -9,14 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
 
 public class LiquidacionDetalle implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,13 +24,21 @@ public class LiquidacionDetalle implements Serializable{
 
 	private Integer id;
 	
-	
+
+	@NotEmpty
+	@NotNull
 	@ManyToOne
 	private Liquidacion liquidacion;
 	
+
+	@NotEmpty
+	@NotNull
 	@ManyToOne
 	private Concepto concepto;
 
+
+	@NotEmpty
+	@NotNull
 	private Double montoParcial;
 
 	public Integer getId() {

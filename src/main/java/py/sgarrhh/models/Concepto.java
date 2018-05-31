@@ -2,38 +2,51 @@ package py.sgarrhh.models;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
 
 public class Concepto implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer codigo;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	private long id;
 	
-	@OneToMany(mappedBy="concepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+
+	
+	@OneToMany(mappedBy="concepto")
 	private List<LiquidacionDetalle> liquidacionDetalle;
 	
-	
-	@OneToMany(mappedBy="concepto", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+
+	@OneToMany(mappedBy="concepto")
 	private List<HaberDetalle> haberDetalle;
 	
+
+	@NotEmpty
+	@NotNull
 	private String descripcion;
 
-	public Integer getCodigo() {
-		return codigo;
+
+	public long getId() {
+		return id;
 	}
 
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<LiquidacionDetalle> getLiquidacionDetalle() {
+		return liquidacionDetalle;
 	}
 
 	public List<LiquidacionDetalle> getLiquidaciondetalle() {

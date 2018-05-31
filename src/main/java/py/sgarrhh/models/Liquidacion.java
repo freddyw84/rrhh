@@ -10,6 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Liquidacion implements Serializable{
 	
@@ -19,13 +25,25 @@ public class Liquidacion implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotEmpty
+	@NotNull
 	@OneToMany(mappedBy="liquidacion")
 	private List<LiquidacionDetalle> liquidacionDetalle;
 	
+	@NotEmpty
+	@NotNull
 	@ManyToOne
 	private Persona persona;
+	
+	@NotNull(message="Fecha es una informacion necesaria")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
+	
+	@NotEmpty
+	@NotNull
 	private Double monto;
+	
 	private String observacion;
 	
 	public Integer getId() {
