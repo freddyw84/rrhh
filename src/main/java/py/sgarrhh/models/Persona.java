@@ -1,7 +1,6 @@
 package py.sgarrhh.models;
 
 import java.io.Serializable;
-
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class Persona  implements Serializable{
@@ -51,11 +51,13 @@ public class Persona  implements Serializable{
 	private String apellido;
 	
 	//@NotEmpty
-	@NotNull
-	//@Temporal(TemporalType.DATE)
+	//@NotNull
+	@Temporal(TemporalType.DATE)
 	private Date fec_nacimiento;
 	
 	
+	
+
 	@ManyToOne
 	private Nacionalidad nacionalidad;
 	
@@ -83,15 +85,23 @@ public class Persona  implements Serializable{
 	
 	private byte[] imagen;
 
+	
+
 	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	
+	public List<Bonificacion> getBonificacion() {
+		return bonificacion;
+	}
+
+	public void setBonificacion(List<Bonificacion> bonificacion) {
+		this.bonificacion = bonificacion;
+	}
 
 	public List<Contrato> getContrato() {
 		return contrato;
@@ -99,6 +109,16 @@ public class Persona  implements Serializable{
 
 	public void setContrato(List<Contrato> contrato) {
 		this.contrato = contrato;
+	}
+
+	
+
+	public Date getFec_nacimiento() {
+		return fec_nacimiento;
+	}
+
+	public void setFec_nacimiento(Date fec_nacimiento) {
+		this.fec_nacimiento = fec_nacimiento;
 	}
 
 	public TipoDocumento getTipoDocumento() {
@@ -131,14 +151,6 @@ public class Persona  implements Serializable{
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public Date getFec_nacimiento() {
-		return fec_nacimiento;
-	}
-
-	public void setFec_nacimiento(Date fec_nacimiento) {
-		this.fec_nacimiento = fec_nacimiento;
 	}
 
 	

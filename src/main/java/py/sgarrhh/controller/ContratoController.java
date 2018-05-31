@@ -75,14 +75,11 @@ public class ContratoController {
 	}
 	
 	@RequestMapping(value = { "/registrarContrato" }, method = RequestMethod.GET)
-	public String contratoPersonaes(Model model) {
-	 
+	public String contratoPersonas(Model model) {
+		
 	    Contrato form = new Contrato();
 	    model.addAttribute("contrato", form);
-	    
-	    Iterable <Persona> personas= pr.findAll();
-	    model.addAttribute("personas", personas);
-	    
+	  	    
 	    Salario salario = new Salario();
 	    model.addAttribute("salario", salario);
 	    
@@ -95,6 +92,13 @@ public class ContratoController {
 	    Iterable <Cargo> cargos= car.findAll();
 	    model.addAttribute("cargos", cargos);
 	 
+	    
+	    Persona persona = new Persona();
+	    model.addAttribute("persona", persona);
+	    
+	    Iterable <Persona> personas= pr.findAll();
+	    model.addAttribute("personas", personas);
+	    
 	    return "contrato/formContrato";
 	}
 	
