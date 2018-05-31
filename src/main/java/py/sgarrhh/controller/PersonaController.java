@@ -1,6 +1,8 @@
 package py.sgarrhh.controller;
 
 
+
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,16 +65,14 @@ public class PersonaController {
 	@RequestMapping(value="/registrarPersona", method=RequestMethod.POST)
 	public String formPersona(@Valid Persona persona , BindingResult result, RedirectAttributes attributes) {
 		System.out.println("nombre> "+persona.getNombre());
-		System.out.println("fec_nacimiento> "+persona.getFec_nacimiento());
 		System.out.println("errrorrr"+result.getFieldError());
 		System.out.println("errrorrr"+result.toString());
+		System.out.println("fec_nacimiento> "+persona.getFec_nacimiento());
 		if(result.hasErrors()){
 			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
 			return "redirect:/registrarPersona";
 		}
-		
-		
-		
+
 		pr.save(persona);
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 		return "redirect:/registrarPersona";

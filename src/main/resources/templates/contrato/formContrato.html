@@ -52,23 +52,25 @@
 					th:text="${salario.descripcion}"></option>
 	
 				</select>
-		
-			Persona:
+		Persona:
 			<select id="persona" th:field="*{persona.id}" class="browser-default" >
 			 
 			<option th:each="persona : ${personas}" 
 					th:value="${persona.id}" 
-					th:text="${persona.descripcion}"></option>
+					th:text="${persona.nombre}"></option>
 	
-				</select>
-				Cargo:
+			</select>
+		
+		Cargo:
 			<select id="cargo" th:field="*{cargo.id}" class="browser-default" >
 			 
-			<option th:each="cargo : ${cargo}" 
+			<option th:each="cargo : ${cargos}" 
 					th:value="${cargo.id}" 
 					th:text="${cargo.descripcion}"></option>
 	
-				</select>
+		   </select>
+			
+				
 		</div>
 		
  		<button class="waves-effect waves-light btn" type="submit">Guardar</button> 
