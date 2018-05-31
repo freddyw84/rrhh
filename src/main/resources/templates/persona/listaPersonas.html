@@ -29,7 +29,7 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Descripcion</th>
+				<th>Nombre</th>
 				
 			</tr>
 		</thead>
@@ -37,7 +37,7 @@
 		<th:block th:include="mensajeValidacion"></th:block>
 		 <tr th:each="persona : ${personas}">
 				<td><span th:text="${persona.id}"></span></td>
-				<td><a th:href="${(#mvc.url('PC#detallePersona').arg(0, persona.id)).build()}"><span th:text="${persona.descripcion}"></span></a></td>
+				<td><a th:href="${(#mvc.url('PC#detallePersonaPost').arg(0, persona.id)).build()}"><span th:text="${persona.nombre}"></span></a></td>
 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '�eliminar el registro?' + '\');'" th:href="${(#mvc.url('PC#eliminarPersona').arg(0, persona.id)).build()}"><i class="material-icons left">delete</i></a></td>
 				
 		</tr>

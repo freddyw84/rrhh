@@ -15,6 +15,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 public class Persona  implements Serializable{
@@ -51,7 +53,8 @@ public class Persona  implements Serializable{
 	private String apellido;
 	
 	//@NotEmpty
-	//@NotNull
+	@NotNull(message="Fecha es una informacion necesaria")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fec_nacimiento;
 	
