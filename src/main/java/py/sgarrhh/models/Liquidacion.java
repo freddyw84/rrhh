@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,16 +13,15 @@ import javax.persistence.OneToMany;
 @Entity
 public class Liquidacion implements Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(mappedBy="liquidacion", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="liquidacion")
 	private List<LiquidacionDetalle> liquidacionDetalle;
+	
 	@ManyToOne
 	private Persona persona;
 	private Date fecha;
