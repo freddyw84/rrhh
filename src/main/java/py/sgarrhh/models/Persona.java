@@ -56,7 +56,7 @@ public class Persona  implements Serializable{
 	@NotNull(message="Fecha es una informacion necesaria")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date fec_nacimiento;
+	private Date fechaNacimiento;
 	
 	
 	
@@ -116,12 +116,12 @@ public class Persona  implements Serializable{
 
 	
 
-	public Date getFec_nacimiento() {
-		return fec_nacimiento;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFec_nacimiento(Date fec_nacimiento) {
-		this.fec_nacimiento = fec_nacimiento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public TipoDocumento getTipoDocumento() {

@@ -30,14 +30,38 @@
 			<tr>
 				<th>ID</th>
 				<th>Nombre</th>
-				
+				<th>Apellido</th>
+				<th>Documento</th>
+				<th>Domicilio</th>
+				<th>Email</th>
+				<th>Estado</th>
+<!-- 				<th>Estado civil</th> -->
+<!-- 				<th>Fecha de Nacimiento</th> -->
+<!-- 				<th>Sexo</th> -->
+				<th>Teléfono</th>
+				<th>Ciudad</th>
+				<th>Nacionalidad</th>
+<!-- 				<th>Tipo de documento</th> -->
 			</tr>
 		</thead>
 		<tbody>
+		
 		<th:block th:include="mensajeValidacion"></th:block>
 		 <tr th:each="persona : ${personas}">
 				<td><span th:text="${persona.id}"></span></td>
 				<td><a th:href="${(#mvc.url('PC#detallePersonaPost').arg(0, persona.id)).build()}"><span th:text="${persona.nombre}"></span></a></td>
+				<td><span th:text="${persona.apellido}"></span></td>
+				<td><span th:text="${persona.documento}"></span></td>
+				<td><span th:text="${persona.domicilio}"></span></td>
+				<td><span th:text="${persona.email}"></span></td>
+				<td><span th:text="${persona.estado}"></span></td>
+<!-- 				<td><span th:text="${persona.estadoCivil}"></span></td> -->
+<!-- 				<td><span th:text="${persona.fechaNacimiento}"></span></td> -->
+<!-- 				<td><span th:text="${persona.sexo}"></span></td> -->
+				<td><span th:text="${persona.telefono}"></span></td>
+				<td><span th:text="${persona.ciudad.descripcion}"></span></td>
+				<td><span th:text="${persona.nacionalidad.descripcion}"></span></td>
+<!-- 				<td><span th:text="${persona.tipoDocumento.descripcion}"></span></td> -->
 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '�eliminar el registro?' + '\');'" th:href="${(#mvc.url('PC#eliminarPersona').arg(0, persona.id)).build()}"><i class="material-icons left">delete</i></a></td>
 				
 		</tr>
