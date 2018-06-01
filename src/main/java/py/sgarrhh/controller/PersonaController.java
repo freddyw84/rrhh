@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Ciudad;
+import py.sgarrhh.models.Departamento;
+import py.sgarrhh.models.Funcion;
 import py.sgarrhh.models.Nacionalidad;
 import py.sgarrhh.models.Persona;
 import py.sgarrhh.models.TipoDocumento;
@@ -36,11 +38,13 @@ public class PersonaController {
 	private TipoDocumentoRepository tdr;
 	@Autowired
 	private CiudadRepository cr;
-	
-	/*@RequestMapping(value="/registrarPersona")
+	/*
+	@RequestMapping(value="/registrarPersona", method=RequestMethod.GET)
 	public String form() {
 		return "persona/formPersona";
-	}*/
+	}
+*/
+	
 
 	@RequestMapping(value = { "/registrarPersona" }, method = RequestMethod.GET)
 	public String personaItems(Model model) {
@@ -88,6 +92,26 @@ public class PersonaController {
 		mv.addObject("personas",personas);
 		return mv;
 	}
+	@RequestMapping("/p{id}")
+	private ModelAndView detallePersona(@PathVariable("id") long id) {
+        Persona persona =pr.findById(id);
+		ModelAndView mvf= new ModelAndView("persona/detallePersona");
+		mvf.addObject("personas",persona);
+		
+
+	    Iterable <TipoDocumento> tipoDocumentos= tdr.findAll();
+	    mvf.addObject("tipoDocumentos", tipoDocumentos);
+	   
+	    
+	    Iterable <Nacionalidad> nacionalidades= nr.findAll();
+	    mvf.addObject("nacionalidades", nacionalidades);
+	    
+	    Iterable <Ciudad> ciudades= cr.findAll();
+	    mvf.addObject("ciudades", ciudades);
+		
+		return mvf;
+	}
+	
 	@RequestMapping(value="/p{id}", method=RequestMethod.POST)
 	private String detallePersonaPost(@PathVariable("id") long id,@Valid Persona persona, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()){

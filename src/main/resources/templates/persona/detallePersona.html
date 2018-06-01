@@ -33,8 +33,52 @@
 	<form class="container" method="post">
 	
 
-		<input type="text" th:value="${personas.nombre}" th:name="nombre" th:id="id" />
+		Nombre: <input type="text" th:value="${personas.nombre}" th:name="nombre" th:id="id" />
+		Apellido: <input type="text" th:value="${personas.apellido}" th:name="apellido" th:id="id" />
+		Documento: <input type="text" th:value="${personas.documento}" th:name="documento" th:id="id" />
+		Domicilio: <input type="text" th:value="${personas.domicilio}" th:name="domicilio" th:id="id" />
+		Email: <input type="text" th:value="${personas.email}" th:name="email" th:id="id" />
+		Estado: <input type="text" th:value="${personas.estado}" th:name="estado" th:id="id" />
+		Estado civil: <input type="text" th:value="${personas.estadoCivil}" th:name="estadoCivil" th:id="id" />
+		Fecha de Nacimiento: <input type="text" th:value="${personas.fechaNacimiento}" th:name="fechaNacimiento" th:id="id" />
+		<div class="file-field input-field">
+			      <div class="btn">
+			        <span>Imagen</span>
+			        <input type="file">
+			      </div>
+			      <div class="file-path-wrapper">
+			        <input class="file-path validate" th:field="${personas.imagen}" type="text" name="imagen">
+			      </div>
+		</div>
+		Sexo: <input type="text" th:value="${personas.sexo}" th:name="sexo" th:id="id" />
+		Teléfono: <input type="text" th:value="${personas.telefono}" th:name="telefono" th:id="id" />
+ <div class="row">
 		
+	Ciudad:
+			<select id="ciudad" th:field="*{personas.ciudad.id}" class="browser-default" >
+			 
+			<option th:each="ciudad : ${ciudades}" 
+					th:value="${ciudad.id}" 
+					th:text="${ciudad.descripcion}"></option>
+	
+			</select>
+		Nacionalidad:
+			<select id="nacionalidad" th:field="*{personas.nacionalidad.id}" class="browser-default" >
+			 
+			<option th:each="nacionalidad : ${nacionalidades}" 
+					th:value="${nacionalidad.id}" 
+					th:text="${nacionalidad.descripcion}"></option>
+	
+			</select>
+		Tipo de documento:
+			<select id="tipoDocumento" th:field="*{personas.tipoDocumento.id}" class="browser-default" >
+			 
+			<option th:each="tipoDocumento : ${tipoDocumentos}" 
+					th:value="${tipoDocumento.id}" 
+					th:text="${tipoDocumento.descripcion}"></option>
+	
+			</select>
+		</div>
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	
 	</form>	

@@ -49,7 +49,8 @@
 		<th:block th:include="mensajeValidacion"></th:block>
 		 <tr th:each="persona : ${personas}">
 				<td><span th:text="${persona.id}"></span></td>
-				<td><a th:href="${(#mvc.url('PC#detallePersonaPost').arg(0, persona.id)).build()}"><span th:text="${persona.nombre}"></span></a></td>
+				<td><a th:href="${(#mvc.url('PC#detallePersona').arg(0, persona.id)).build()}">
+				<span th:text="${persona.nombre}"></span></a></td>
 				<td><span th:text="${persona.apellido}"></span></td>
 				<td><span th:text="${persona.documento}"></span></td>
 				<td><span th:text="${persona.domicilio}"></span></td>
