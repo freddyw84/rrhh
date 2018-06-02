@@ -1,99 +1,136 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	  <head>
-	  
-	  	<title>SGARRH</title>
-	  	
-			<!--Import Google Icon Font-->
-		      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-		      <!--Import materialize.css-->
-		      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-		
-		      <!--Let browser know website is optimized for mobile-->
-		      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		      <link rel="stylesheet" href="style/styleCss.css"/>
-			  
-	  </head>
-	  
-	  <body>
-		<header>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<title>SGARRH</title>
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"
+	media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="style/styleCss.css" />
+<script>
+	$(document).ready(function() {
+		$('select').material_select();
+	});
+</script>
+
+</head>
+
+<body>
+	<header>
 		<nav class="menu">
-		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Persona:</a>
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaPersonas" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Personas</a></li>
-		      </ul>
-		    </div>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Registro de Persona:</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="/listaPersonas"
+						class="waves-effect waves-light btn"><i
+							class="material-icons left">format_list_bulleted</i>Lista de
+							Personas</a></li>
+				</ul>
+			</div>
 		</nav>
-		</header>
+	</header>
 	<th:block th:include="mensajeValidacion"></th:block>
 	<div class="container formPersona">
-	
-	<form class="container" method="post">
-	
 
-		Nombre: <input type="text" th:value="${personas.nombre}" th:name="nombre" th:id="id" />
-		Apellido: <input type="text" th:value="${personas.apellido}" th:name="apellido" th:id="id" />
-		Documento: <input type="text" th:value="${personas.documento}" th:name="documento" th:id="id" />
-		Domicilio: <input type="text" th:value="${personas.domicilio}" th:name="domicilio" th:id="id" />
-		Email: <input type="text" th:value="${personas.email}" th:name="email" th:id="id" />
-		Estado: <input type="text" th:value="${personas.estado}" th:name="estado" th:id="id" />
-		Estado civil: <input type="text" th:value="${personas.estadoCivil}" th:name="estadoCivil" th:id="id" />
-		Fecha de Nacimiento: <input type="text" th:value="${personas.fechaNacimiento}" th:name="fechaNacimiento" th:id="id" />
-		<div class="file-field input-field">
-			      <div class="btn">
-			        <span>Imagen</span>
-			        <input type="file">
-			      </div>
-			      <div class="file-path-wrapper">
-			        <input class="file-path validate" th:field="${personas.imagen}" type="text" name="imagen">
-			      </div>
+		<form class="container" method="post">
+
+			<label for="nombre">Nombre:</label> <input type="text"
+				th:value="${personas.nombre}" th:name="nombre" th:id="nombre" /> <label
+				for="apellido">Apellido:</label> <input type="text"
+				th:value="${personas.apellido}" th:name="apellido" th:id="apellido" />
+			<label for="documento">Documento:</label> <input type="text"
+				th:value="${personas.documento}" th:name="documento"
+				th:id="documento" /> <label for="domicilio">Domicilio:</label> <input
+				type="text" th:value="${personas.domicilio}" th:name="domicilio"
+				th:id="domicilio" /> <label for="email">Email:</label> <input
+				type="text" th:value="${personas.email}" th:name="email"
+				th:id="email" /> <label for="apellido">Estado:</label> <input
+				type="text" th:value="${personas.estado}" th:name="estado"
+				
+				th:id="estado" /> <label for="estadoCivil">Estado civil:</label>
+				<select th:field="*{personas.estadoCivil}" id="estadoCivil" class="browser-default" >
+					<option value="" >Seleccione una opción</option>
+					<option value="SO">Soltero/a</option>
+					<option value="CA">Casado/a</option>
+					<option value="DI">Divorciado/a</option>
+					<option value="VI">Viudo/a</option>
+				</select> <label>Materialize Select</label>
+
+			<input type="text" th:value="${personas.fechaNacimiento}"
+				th:name="fechaNacimiento" th:id="id" />
+			<div class="file-field input-field">
+				<div class="btn">
+					<span>Imagen</span> <input type="file">
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" th:field="${personas.imagen}"
+						type="text" name="imagen">
+				</div>
+			</div>
+			<label for="sexo">Sexo:</label>
+			<p>
+				<label> <input name="sexo" value="M" type="radio"  th:checked="*{personas.sexo}==M"/> <span>Masculino</span>
+				</label>
+			</p>
+			<p>
+				<label> <input name="sexo" value="F" type="radio" th:checked="*{personas.sexo}==F" /> <span>Femenino</span>
+				</label>
+			</p>
+
+			<label for="telefono">Teléfono:</label> <input type="text"
+				th:value="${personas.telefono}" th:name="telefono" th:id="id" />
+			<div class="row">
+
+				<label for="ciudad">Ciudad:</label> <select id="ciudad"
+					th:field="*{personas.ciudad.id}" class="browser-default">
+
+					<option th:each="ciudad : ${ciudades}" th:value="${ciudad.id}"
+						th:text="${ciudad.descripcion}"></option>
+
+				</select> <label for="nacionalidad">Nacionalidad:</label> <select
+					id="nacionalidad" th:field="*{personas.nacionalidad.id}"
+					class="browser-default">
+
+					<option th:each="nacionalidad : ${nacionalidades}"
+						th:value="${nacionalidad.id}"
+						th:text="${nacionalidad.descripcion}"></option>
+
+				</select> <label for="tipoDocumento">Tipo de documento:</label> <select
+					id="tipoDocumento" th:field="*{personas.tipoDocumento.id}"
+					class="browser-default">
+
+					<option th:each="tipoDocumento : ${tipoDocumentos}"
+						th:value="${tipoDocumento.id}"
+						th:text="${tipoDocumento.descripcion}"></option>
+
+				</select>
+			</div>
+			<button class="waves-effect waves-light btn" type="submit">Guardar</button>
+
+		</form>
+
+	</div>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+<footer>
+	<nav class="menu">
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">Volver al Menu</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="/" class="waves-effect waves-light btn"><i
+						class="material-icons left">format_list_bulleted</i>Menu</a></li>
+			</ul>
 		</div>
-		Sexo: <input type="text" th:value="${personas.sexo}" th:name="sexo" th:id="id" />
-		Teléfono: <input type="text" th:value="${personas.telefono}" th:name="telefono" th:id="id" />
- <div class="row">
-		
-	Ciudad:
-			<select id="ciudad" th:field="*{personas.ciudad.id}" class="browser-default" >
-			 
-			<option th:each="ciudad : ${ciudades}" 
-					th:value="${ciudad.id}" 
-					th:text="${ciudad.descripcion}"></option>
-	
-			</select>
-		Nacionalidad:
-			<select id="nacionalidad" th:field="*{personas.nacionalidad.id}" class="browser-default" >
-			 
-			<option th:each="nacionalidad : ${nacionalidades}" 
-					th:value="${nacionalidad.id}" 
-					th:text="${nacionalidad.descripcion}"></option>
-	
-			</select>
-		Tipo de documento:
-			<select id="tipoDocumento" th:field="*{personas.tipoDocumento.id}" class="browser-default" >
-			 
-			<option th:each="tipoDocumento : ${tipoDocumentos}" 
-					th:value="${tipoDocumento.id}" 
-					th:text="${tipoDocumento.descripcion}"></option>
-	
-			</select>
-		</div>
-		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
-	
-	</form>	
-	</div>	
-			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		    <script type="text/javascript" src="js/materialize.min.js"></script>
-	  </body>
-		<footer>
-			<nav class="menu">
-		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Volver al Menu</a>
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Menu</a></li>
-		      </ul>
-		    </div>
-		</nav>
-		</footer>
+	</nav>
+</footer>
 </html>

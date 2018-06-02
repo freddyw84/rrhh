@@ -16,8 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Ciudad;
-import py.sgarrhh.models.Departamento;
-import py.sgarrhh.models.Funcion;
 import py.sgarrhh.models.Nacionalidad;
 import py.sgarrhh.models.Persona;
 import py.sgarrhh.models.TipoDocumento;
