@@ -15,6 +15,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Bonificacion implements Serializable {
 	
@@ -31,12 +33,11 @@ public class Bonificacion implements Serializable {
 	@OneToMany(mappedBy="bonificacion")
 	private List<HaberDetalle> haberDetalle;
 	
-	@NotNull
-	@NotEmpty
+	
 	@ManyToOne
 	private TipoBonificacion tipoBonificacion;
 	
-	@NotEmpty
+	//@NotEmpty
 	@NotNull
 	private Double monto;
 	
@@ -46,14 +47,12 @@ public class Bonificacion implements Serializable {
 	@NotNull
 	private String estado;
 	
-	@NotEmpty
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull(message="Fecha es una informacion necesaria")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	
 	private String observacion;
-
-	
 
 	public long getId() {
 		return id;
@@ -95,8 +94,6 @@ public class Bonificacion implements Serializable {
 		this.monto = monto;
 	}
 
-	
-
 	public Persona getPersona() {
 		return persona;
 	}
@@ -128,8 +125,6 @@ public class Bonificacion implements Serializable {
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
-	
-		
 
 	
 	

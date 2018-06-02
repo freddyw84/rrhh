@@ -45,6 +45,8 @@ public class BonficacionController {
 	   
 	    model.addAttribute("bonificacion", form);
 	    
+	    TipoBonificacion tipoBonificacion = new TipoBonificacion();
+	    model.addAttribute("tipoBonificacion", tipoBonificacion);
 	    Iterable <TipoBonificacion> tipoBonificaciones= tbr.findAll();
 	    model.addAttribute("tipoBonificaciones", tipoBonificaciones);
 	   
@@ -62,6 +64,15 @@ public class BonficacionController {
 
 	@RequestMapping(value="/registrarBonificacion", method=RequestMethod.POST)
 	public String form(@Valid Bonificacion bonificacion,  BindingResult result, RedirectAttributes attributes) {
+	
+	/*	System.out.println("pasé por aquí: "+ bonificacion.getId()+" "+bonificacion.getDescripcion()
+		+" "+bonificacion.getMonto()
+		+" "+bonificacion.getEstado()
+		+" "+bonificacion.getObservacion()
+		+" "+bonificacion.getFecha()
+		+" "+bonificacion.getPersona()
+		+" "+bonificacion.getTipoBonificacion());*/
+		
 		if(result.hasErrors()){
 			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
 			return "redirect:/registrarBonificacion";

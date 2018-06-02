@@ -14,6 +14,15 @@
 		      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		      <link rel="stylesheet" href="style/styleCss.css"/>
 			  
+			    
+		      <script>
+		         $(document).ready(function() {
+		            $('select').material_select();
+		         });
+		      </script>
+			  
+			  
+			  
 	  </head>
 	  
 	  <body>
@@ -35,26 +44,34 @@
 		Descripcion: <input type="text" value="" name="descripcion"/>
 		
 		Tipo de Bonificacion:
-			<select id="tipoBonificacion"  class="browser-default" >
+			<select id="tipoBonificacion" th:field="*{tipoBonificacion.id}" class="browser-default" >
 			 
 			<option th:each="tipoBonificacion : ${tipoBonificaciones}" 
 					th:value="${tipoBonificacion.id}" 
 					th:text="${tipoBonificacion.descripcion}"></option>
 	
 				</select>
-		
+	
+				
 		Persona:
-			<select id="persona"  class="browser-default" >
+			<select id="persona" th:field="*{persona.id}" class="browser-default" >
 			 
 			<option th:each="persona : ${personas}" 
 					th:value="${persona.id}" 
-					th:text="${persona.nombre}"></option>
+					th:text="${persona.nombre}+' '+${persona.apellido}"></option>
 	
-				</select>
+			</select>
 	
-		Fecha: <input id="date" type="date" value="" name="fecha"/>
-		Estado: <input type="text" value="" name="estado"/>
-		Monto: <input type="number" value="" name="monto"/>
+		Fecha: <input type="date" value="" name="fecha"/>
+		
+		Estado:
+			  <select class="browser-default" name="estado">
+			 
+			    <option value="ACTIVO">ACTIVO</option>
+			    <option value="INACTIVO">INACTIVO</option>
+			  </select>
+					
+		Monto: <input type="number" value=0 name="monto"/>
 		Observacion: <input type="text" value="" name="observacion"/>
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>

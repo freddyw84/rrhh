@@ -34,6 +34,8 @@ public class TipoBonificacion implements Serializable{
 	private Float porcentaje;
 
 	
+	
+
 	public long getId() {
 		return id;
 	}
