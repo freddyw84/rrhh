@@ -30,7 +30,7 @@
 			<tr>
 				<th>ID</th>
 				<th>Descripcion</th>
-				<th>Tipo de Bonificacioin</th>
+				<th>Tipo de Bonificacion</th>
 				<th>Monto</th>
 				<th>Persona</th>
 								
@@ -38,16 +38,20 @@
 		</thead>
 		<tbody>
 		<th:block th:include="mensajeValidacion"></th:block>
+		
 		 <tr th:each="bonificacion : ${bonificaciones}">
 				<td><span th:text="${bonificacion.id}"></span></td>
-				<td><a th:href="${(#mvc.url('BC#detalleBonficacion').arg(0, bonificacion.id)).build()}">
-					<span th:text="${bonificacion.descripcion}"></span><span th:text="${bonificacion.tipoBonificacion}">
-					</span> <span th:text="${bonificacion.monto}"></span>
-					<span th:text="${bonificacion.persona}"></span></a>
-				</td>
-				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('BC#eliminarSalario').arg(0, bonificacion.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><a th:href="${(#mvc.url('BC#detalleBonificacion').arg(0, bonificacion.id)).build()}">
+						<span th:text="${bonificacion.descripcion}"></span></a></td>
+						
+				<td><span th:text="${bonificacion.tipoBonificacion.descripcion}"></span></td>
+				<td><span th:text="${bonificacion.monto}"></span></td>
+				<td><span th:text="${bonificacion.persona.nombre}+' '+${bonificacion.persona.apellido}"></span></td>
+				
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('BC#eliminarBonificacion').arg(0, bonificacion.id)).build()}"><i class="material-icons left">delete</i></a></td>
 		</tr>
 		</tbody>
+
 	
 	</table>
 
