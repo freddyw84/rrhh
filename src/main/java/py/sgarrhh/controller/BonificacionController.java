@@ -22,7 +22,7 @@ import py.sgarrhh.repository.TipoBonificacionRepository;
 
 
 @Controller
-public class BonficacionController {
+public class BonificacionController {
 	
 	@Autowired
 	private BonificacionRepository br;
