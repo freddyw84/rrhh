@@ -22,6 +22,7 @@ public class Rubro implements Serializable{
 		
 	@OneToMany(mappedBy="rubro")
 	private List<Haber> haber;
+	
 	@NotEmpty
 	@NotNull
 	private String descripcion;

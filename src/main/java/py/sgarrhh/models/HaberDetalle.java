@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 @Entity
 
 public class HaberDetalle implements Serializable{
-
 	
 	/**
 	 * 
@@ -27,10 +26,10 @@ public class HaberDetalle implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
-	
+	private long id;
 	@ManyToOne
 	private Haber haber;
+	
 	
 	@ManyToOne
 	private Concepto concepto;
@@ -44,13 +43,15 @@ public class HaberDetalle implements Serializable{
 	@ManyToOne
 	private Bonificacion bonificacion;
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
+
+
 
 	public Haber getHaber() {
 		return haber;
@@ -91,7 +92,8 @@ public class HaberDetalle implements Serializable{
 	public void setBonificacion(Bonificacion bonificacion) {
 		this.bonificacion = bonificacion;
 	}
-	
+
+
 	
 
 	

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  <head>
+	  
+	  	<title>SGARRH</title>
+	  	
+			<!--Import Google Icon Font-->
+		      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		      <!--Import materialize.css-->
+		      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+		
+		      <!--Let browser know website is optimized for mobile-->
+		      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		      <link rel="stylesheet" href="style/styleCss.css"/>
+			   
+		      <script>
+		         $(document).ready(function() {
+		            $('select').material_select();
+		         });
+		      </script>
+	  </head>
+	  
+	  <body>
+	  
+		<header>
+		<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Registro de Haber:</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/listaHaberes" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Haberes</a></li>
+		      </ul>
+		    </div>
+		</nav>
+		</header>
+	
+	<div th:each="haber : ${haber}" class="container detalleHaber">
+			<h5>Detalle de Haber</h5>
+				<div class="row">
+					<p>ID: <span th:text="${haber.id}"></span></p>
+					<p>Rubro: <span th:text="${haber.rubro.descripcion}"></span></p>
+					<p>Fecha: <span th:text="${#dates.format(haber.fecha,'dd-MM-yyyy')}"></span></p>
+					<p>Monto: <span th:text="${haber.monto}"></span></p>
+					<p>Observacion: <span  th:text="${haber.observacion}"></span></p>
+				</div>
+		</div>
+	
+
+	<div class="container formDetalleHaber">
+	
+	<th:block th:include="mensajeValidacion"></th:block>
+
+	<form class="container" method="post" th:object="${concepto}" >
+
+		 <div class="row">
+		
+<!-- 			Concepto: -->
+<!-- 			<select id="concepto" th:field="*{concepto.id}" class="browser-default" >  -->
+<!-- 			<option th:each="concepto : ${conceptos}"  -->
+<!-- 					th:value="${concepto.id}"  -->
+<!-- 					th:text="${concepto.descripcion}"></option> -->
+<!-- 			</select> -->
+		
+			<input type="hidden" th:value="${haber.id}" th:name="haber" th:id="id" disabled="true"/>
+				
+<!-- 			Monto Parcial: <input type="number" th:value="${haberDetalle.montoParcial}" th:name="montoParcial" th:id="id"/> -->
+			
+		
+		</div>
+		
+	
+		<button class="waves-effect waves-light btn" type="submit">Agregar</button>
+	
+	</form>	
+		
+	</div>	
+	
+	
+	<table class="container tabelaConvidado">
+		<thead>
+			<tr>
+				<th>Haber</th>
+				<th>Concepto</th>
+				<th>Liquidación</th>
+				<th>Descuento</th>
+				<th>Bonificación</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="haberDetalle : ${haberDetalle}">
+				<td><span th:text="${haberDetalle.haber.observacion}"></span></td>
+				<td><span th:text="${haberDetalle.concepto.descripcion}"></span></td>
+				<td><span th:text="${haberDetalle.liquidacion.observacion}"></span></td>
+				<td><span th:text="${haberDetalle.descuento.observacion}"></span></td>
+				<td><span th:text="${haberDetalle.bonificacion.descripcion}"></span></td>
+				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('HC#eliminarHaberDetalle').arg(0, haberDetalle.id)).build()}"><i class="material-icons left">delete</i></a></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+	  </body>
+		
+		<footer>
+		
+			<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Volver al Menu</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Menu</a></li>
+		      </ul>
+		    </div>
+		</nav>
+		</footer>
+</html>

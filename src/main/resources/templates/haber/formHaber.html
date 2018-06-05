@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<title>SGARRH</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"
+	media="screen,projection" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="style/styleCss.css" />
+
+
+<script>
+	$(document).ready(function() {
+		$('select').material_select();
+	});
+</script>
+</head>
+
+<body>
+
+	<header>
+		<nav class="menu">
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Registro de Haber:</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="/listaHaberes"
+						class="waves-effect waves-light btn"><i
+							class="material-icons left">format_list_bulleted</i>Lista de
+							Haberes</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<th:block th:include="mensajeValidacion"></th:block>
+
+	<div class="container formHaber">
+
+
+		<div class="row">
+			<form name="f" method="post" th:object="${haber}" class="col s12">
+				Monto: <input type="number" value="" name="monto" /> Fecha: <input
+					type="date" value="" name="fecha" />
+				<div class="row">
+					Rubro: <select id="rubro" th:field="*{rubro.id}"
+						class="browser-default">
+
+						<option th:each="rubro : ${rubros}" th:value="${rubro.id}"
+							th:text="${rubro.descripcion}"></option>
+
+					</select>
+
+				</div>
+				Observación: <input type="text" value="" name="observacion" />
+
+				<button class="waves-effect waves-light btn" type="submit">Guardar</button>
+			</form>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+
+</body>
+
+<footer>
+	<nav class="menu">
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">Volver al Menu</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="/" class="waves-effect waves-light btn"><i
+						class="material-icons left">format_list_bulleted</i>Menu</a></li>
+			</ul>
+		</div>
+	</nav>
+</footer>
+
+</html>

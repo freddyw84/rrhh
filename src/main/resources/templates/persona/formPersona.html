@@ -102,12 +102,35 @@
 	
 				</select>
 		Domicilio: <input type="text" value="" name="domicilio"/>
-		Estado Civil: <input type="text" value="" name="estadoCivil"/>
-		Sexo: <input type="text" value="" name="sexo"/>
+		Estado civil:
+				<select  id="estadoCivil" class="browser-default" name="estadoCivil" >
+					<option value="" >Seleccione una opción</option>
+					<option value="SOLTERO">Soltero/a</option>
+					<option value="CASADO">Casado/a</option>
+					<option value="DIVORCIADO">Divorciado/a</option>
+					<option value="VIUDO">Viudo/a</option>
+				</select> 
+		Sexo:
+			<p>
+				<label> <input name="sexo" value="MASCULINO" type="radio"  checked/> <span>Masculino</span>
+				</label>
+			</p>
+			<p>
+				<label> <input name="sexo" value="FEMENINO" type="radio"  /> <span>Femenino</span>
+				</label>
+			</p>
 		Teléfono: <input type="text" value="" name="telefono"/>
 		Email: <input type="text" value="" name="email"/>
 		Observación: <input type="text" value="" name="observacion"/>	
-		Estado: <input type="text" value="" name="estado"/>
+		Estado:
+			<p>
+				<label> <input name="estado" value="ACTIVO" type="radio"  checked/> <span>Activo</span>
+				</label>
+			</p>
+			<p>
+				<label> <input name="estado" value="INACTIVO" type="radio"  /> <span>Inactivo</span>
+				</label>
+			</p>
 <!-- 		Imagen: <input type="image" value="" name="imagen"/>	byte[] -->
 		 
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>

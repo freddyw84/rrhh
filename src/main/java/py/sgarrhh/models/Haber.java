@@ -3,7 +3,6 @@ package py.sgarrhh.models;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,34 +11,41 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 
 public class Haber implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
 
-	@OneToMany(mappedBy="haber", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="haber")
 	private List<HaberDetalle> haberDetalle;
 	
 	private Float monto;
-	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull(message="Fecha es una informacion necesaria")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)	
 	private Date fecha;
+	
+	
 	private String observacion;
 	
 	@ManyToOne
 	private Rubro rubro;
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -83,7 +89,5 @@ public class Haber implements Serializable {
 		this.rubro = rubro;
 	}
 
-	
-	
 
 }
