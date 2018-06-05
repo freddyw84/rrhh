@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,15 +22,15 @@ public class Liquidacion implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
-	@NotEmpty
-	@NotNull
+	
 	@OneToMany(mappedBy="liquidacion")
 	private List<LiquidacionDetalle> liquidacionDetalle;
 	
-	@NotEmpty
-	@NotNull
+	@ManyToOne
+	private Haber haber;
+	
 	@ManyToOne
 	private Persona persona;
 	
@@ -40,16 +39,17 @@ public class Liquidacion implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	
-	@NotEmpty
+	
 	@NotNull
 	private Double monto;
 	
 	private String observacion;
 	
-	public Integer getId() {
+	
+	public long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public List<LiquidacionDetalle> getLiquidacionDetalle() {
@@ -81,6 +81,12 @@ public class Liquidacion implements Serializable{
 	}
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
+	}
+	public Haber getHaber() {
+		return haber;
+	}
+	public void setHaber(Haber haber) {
+		this.haber = haber;
 	}
 
 }
