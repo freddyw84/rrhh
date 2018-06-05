@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Bonificacion;
+
 import py.sgarrhh.models.Persona;
 import py.sgarrhh.models.TipoBonificacion;
 import py.sgarrhh.repository.BonificacionRepository;
@@ -100,6 +101,15 @@ public class BonificacionController {
         Bonificacion bonificacion =br.findById(id);
 		ModelAndView mvf= new ModelAndView("bonificacion/detalleBonificacion");
 		mvf.addObject("bonificaciones",bonificacion);
+		
+	  	Iterable <TipoBonificacion> tipoBonificaciones= tbr.findAll();
+	 	mvf.addObject("tipoBonificaciones", tipoBonificaciones);
+		   
+		    
+		  
+	   Iterable <Persona> personas= pr.findAll();
+	   mvf.addObject("personas", personas);  
+		
 		
 		return mvf;
 	}

@@ -13,6 +13,15 @@
 		      <!--Let browser know website is optimized for mobile-->
 		      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		      <link rel="stylesheet" href="style/styleCss.css"/>
+		      
+		      
+		         
+		      <script>
+		         $(document).ready(function() {
+		            $('select').material_select();
+		         });
+		      </script>
+			  
 			  
 	  </head>
 	  
@@ -21,21 +30,49 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Salario:</a>
+		      <a href="#" class="brand-logo">Registro de Bonificacion:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaSalarios" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Salarios</a></li>
+		        <li><a href="/listaBonificaciones" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Bonificaciones</a></li>
 		      </ul>
 		    </div>
 		</nav>
 		</header>
 	<th:block th:include="mensajeValidacion"></th:block>
-	<div class="container formFuncion">
+	<div class="container formBonificacion">
 	
 	<form class="container" method="post">
 	
 
-		<input type="text" th:value="${salarios.descripcion}" th:name="descripcion" th:id="id" />
-		<input type="number" th:value="${salarios.monto}" th:name="monto" th:id="id" />
+		<input type="text" th:value="${bonificaciones.descripcion}" th:name="descripcion" th:id="id" />
+		
+		Tipo de Bonificacion:
+			<select id="bonificacion" th:field="*{bonificaciones.tipoBonificacion.id}" class="browser-default">
+			<option th:each="tipoBonificacion : ${tipoBonificaciones}" 
+					th:value="${tipoBonificacion.id}" 
+					th:text="${tipoBonificacion.descripcion}"></option>
+			</select>			
+		
+		Persona:
+			<select id="persona" th:field="*{bonificaciones.persona.id}" class="browser-default" >
+			 <option th:each="persona : ${personas}" 
+					th:value="${persona.id}" 
+					th:text="${persona.nombre}+' '+${persona.apellido}"></option>
+			</select>
+		
+		
+		Fecha: <input type="date" th:value="${bonificaciones.fecha}" th:name="fecha" th:id="id"/>
+			
+		
+		Estado:
+			<select id="estado" th:field="*{bonificaciones.estado}" class="browser-default" > 
+			  <option value="ACTIVO">ACTIVO</option>
+			    <option value="INACTIVO">INACTIVO</option>
+			 </select>
+					
+		Monto: <input type="number"th:value="${bonificaciones.monto}" th:name="monto" th:id="id"/>
+		
+		
+		Observacion: <input type="text" th:value="${bonificaciones.observacion}" th:name="observacion" th:id="id"/>
 		
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
