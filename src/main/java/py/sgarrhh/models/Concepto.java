@@ -19,7 +19,6 @@ public class Concepto implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-
 	private long id;
 	
 
@@ -35,6 +34,7 @@ public class Concepto implements Serializable{
 	@NotEmpty
 	@NotNull
 	private String descripcion;
+
 
 
 	public long getId() {

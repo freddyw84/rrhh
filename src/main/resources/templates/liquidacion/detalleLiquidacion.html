@@ -50,33 +50,39 @@
 	
 	<th:block th:include="mensajeValidacion"></th:block>
 
-	<form class="container" method="post" th:object="${liquidacionDetalle}" >
 
-		 <div class="row">
-		
-<!-- 			Concepto: -->
-<!-- 			<select id="concepto" th:field="*{concepto.id}" class="browser-default" >  -->
-<!-- 			<option th:each="concepto : ${conceptos}"  -->
-<!-- 					th:value="${concepto.id}"  -->
-<!-- 					th:text="${concepto.descripcion}"></option> -->
-<!-- 			</select> -->
-		
-			<input type="hidden" th:value="${liquidacion.id}" th:name="liquidacion" th:id="id" disabled="true"/>
-				
-<!-- 			Monto Parcial: <input type="number" th:value="${liquidacionDetalle.montoParcial}" th:name="montoParcial" th:id="id"/> -->
+	<div class="container formLiquidacionDetalle">
+		<form method="post" th:object="${concepto}" class = "col s12" >
+	
+			 <div class="row">
 			
+				Concepto:
+				<select id="concepto" th:field="*{concepto.id}" class="browser-default" > 
+				<option th:each="concepto : ${conceptos}" 
+						th:value="${concepto.id}" 
+						th:text="${concepto.descripcion}"></option>
+				</select>
+				
+				
+			
+				<input type="hidden" th:value="${liquidacion.id}" th:name="liquidacion" th:id="id" disabled="true"/>
+					
+				Monto Parcial: <input type="number"  value=0 th:name="montoParcial" th:id="id"/>
+				
+			
+			</div>
 		
-		</div>
 		
+			<button class="waves-effect waves-light btn" type="submit">Agregar</button>
+		
+		</form>	
+	</div>
 	
-		<button class="waves-effect waves-light btn" type="submit">Agregar</button>
-	
-	</form>	
 		
 	</div>	
 	
 	
-	<table class="container tabelaConvidado">
+	<table class="container tabelaDetalleLiquidacion">
 		<thead>
 			<tr>
 				<th>Concepto</th>

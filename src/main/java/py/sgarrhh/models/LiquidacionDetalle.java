@@ -32,7 +32,7 @@ public class LiquidacionDetalle implements Serializable{
 	private Concepto concepto;
 
 
-	@NotEmpty
+	//@NotEmpty
 	@NotNull
 	private Double montoParcial;
 

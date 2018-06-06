@@ -2,6 +2,7 @@ package py.sgarrhh.controller;
 
 import javax.validation.Valid;
 
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,23 +83,24 @@ public class LiquidacionController {
 	}
 	
 	
-	@RequestMapping("/lq{id}")
+	@RequestMapping(value = {"/lq{id}"} , method = RequestMethod.GET)
 	private ModelAndView detalleLiquidacion(@PathVariable("id") long id) {
 		//System.out.println("pasé por aquí:");
+		
 		Liquidacion liquidacion =lr.findById(id);
 		ModelAndView mvf= new ModelAndView("liquidacion/detalleLiquidacion");
 		mvf.addObject("liquidacion",liquidacion);
 		
-		Iterable <Persona> personas= pr.findAll();
-		mvf.addObject("personas",personas);
 		
-		LiquidacionDetalle liquidacionDetalle =ldr.findById(id);
+		LiquidacionDetalle liquidacionDetalle =ldr.findByLiquidacion(liquidacion);
 		mvf.addObject("liquidacionDetalle",liquidacionDetalle);
 	  
-		Concepto concepto = new Concepto();
-		mvf.addObject("concepto", concepto);
-	    Iterable <Concepto> conceptos= cr.findAll();
-	    mvf.addObject("conceptos", conceptos);
+		
+	    Iterable <Concepto> concepto= cr.findAll();
+	   /* for(Concepto s:conceptos) {
+	    	System.out.println("concepto: "+s.getId()+" "+s.getDescripcion()+" "+s.getHaberDetalle()+" "+s.getLiquidaciondetalle());
+	    }*/
+	    mvf.addObject("concepto", concepto);
 		
 		
 		return mvf;
@@ -106,6 +108,8 @@ public class LiquidacionController {
 	
 	@RequestMapping(value="/lq{id}", method=RequestMethod.POST)
 	private String detalleLiquidacionPost(@Valid LiquidacionDetalle liquidacionDetalle,  BindingResult result, RedirectAttributes attributes) {
+		
+		//System.out.println("pasé por aquí:");
 		if(result.hasErrors()){
 			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
 			return "redirect:/lq{id}";
@@ -114,7 +118,7 @@ public class LiquidacionController {
 		ldr.save(liquidacionDetalle);
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 
-		return "redirect:/listaLiquidaciones";
+		return "redirect:liquidacion/detalleLiquidacion";
 	}
 	
 	
@@ -128,9 +132,12 @@ public class LiquidacionController {
 	
 	@RequestMapping("/eliminarLiquidacionDetalle")
 	public String eliminarLiquidacionDetalle(long id, RedirectAttributes attributes){
-		LiquidacionDetalle liquidacionDetalle = ldr.findById(id);
+		
+		Liquidacion liquidacion =lr.findById(id);
+		
+		LiquidacionDetalle liquidacionDetalle = ldr.findByLiquidacion(liquidacion);
 		ldr.delete(liquidacionDetalle);
 		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
-		return "redirect:/listaLiquidaciones";
+		return "redirect:liquidacion/detalleLiquidacion";
 	}
 }
