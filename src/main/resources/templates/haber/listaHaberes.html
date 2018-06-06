@@ -42,10 +42,12 @@
 				<td><span th:text="${haber.id}"></span></td>
 				<td><span th:text="${haber.monto}"></span></td>
 				<td><span th:text="${haber.fecha}"></span></td>
-				<td><a th:href="${(#mvc.url('HC#detalleHaber').arg(0, haber.id)).build()}">
+				<td><span th:text="${haber.observacion}"></span></td>
+<!-- 				<td><a th:href="${(#mvc.url('HC#detalleHaber').arg(0, haber.id)).build()}"> 
 				<span th:text="${haber.observacion}"></span>
-				</a></td>
+				</a></td>-->
 				<td><span th:text="${haber.rubro.id}+'|'+${haber.rubro.descripcion}"></span></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '�Editar el registro?' + '\');'" th:href="${(#mvc.url('HC#detalleHaber').arg(0, haber.id)).build()}"><i class="material-icons left">edit</i></a></td>
 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '�eliminar el registro?' + '\');'"  th:href="${(#mvc.url('HC#eliminarHaber').arg(0, haber.id)).build()}"><i class="material-icons left">delete</i></a></td>
 				
 		</tr>
