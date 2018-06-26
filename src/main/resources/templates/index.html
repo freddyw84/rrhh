@@ -45,6 +45,7 @@
 	<nav>
 	  <div class="nav-wrapper">
 	    <a href="#!"  class="brand-logo">Menu</a>
+	    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 	    <ul class="right hide-on-med-and-down">
 	      <li><a class="dropdown-trigger" href="#!" data-target="comun">Comun<i class="material-icons right">arrow_drop_down</i></a></li>
 	     	<li><a class="dropdown-trigger" href="#!" data-target="gestion">Gestion<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -54,6 +55,14 @@
 	    </ul>
 	  </div>
 	</nav>
+	
+	 <ul class="sidenav" id="mobile-demo">
+	    <li><a href="sass.html">Sass</a></li>
+	    <li><a href="badges.html">Components</a></li>
+	    <li><a href="collapsible.html">Javascript</a></li>
+	    <li><a href="mobile.html">Mobile</a></li>
+	  </ul>
+	
 			
 <!-- 		<nav class="menu"> -->
 		    
@@ -150,10 +159,10 @@
 	 <script>
     	  $(document).ready(function(){
 		    	  $(".dropdown-trigger").dropdown();
-		    	  $(".dropdown-button").dropdown();
-		    	    $(".button-collapse").sideNav();
-		    	    $('.collapsible').collapsible();
-		    	        $('.sidenav').sidenav();
+		    	//  $(".dropdown-button").dropdown();
+		    	 //   $(".button-collapse").sideNav();
+		    	    //$('.collapsible').collapsible();
+		    	      $('.sidenav').sidenav();
 		    	    
     	    
     	  

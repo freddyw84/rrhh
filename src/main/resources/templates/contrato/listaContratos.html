@@ -43,9 +43,11 @@
 <!-- 				<td><span th:text="${contrato.descripcion}"></span></td> -->
 				
 				<td><a th:href="${(#mvc.url('CC#detalleContrato').arg(0, contrato.id)).build()}"><span th:text="${contrato.descripcion}"></span></a></td>
-				<td><span th:text="${contrato.salario.id}+'|'+${contrato.salario.descripcion}"></span></td>
-				<td><span th:text="${contrato.persona.id}+'|'+${contrato.persona.nombre}"></span></td>
+				<td><span th:text="${contrato.salario.id}+'|'+${contrato.salario.descripcion}+' '+${contrato.salario.monto}"></span></td>
+				<td><span th:text="${contrato.persona.id}+'|'+${contrato.persona.nombre}+' '+${contrato.persona.apellido}"></span></td>
 				<td><span th:text="${contrato.cargo.id}+'|'+${contrato.cargo.descripcion}"></span></td>
+			
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿Editar el registro?' + '\');'" th:href="${(#mvc.url('CC#detalleContrato').arg(0, contrato.id)).build()}"><i class="material-icons left">edit</i></a></td>
 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + 'ï¿½eliminar el registro?' + '\');'"  th:href="${(#mvc.url('CC#eliminarContrato').arg(0, contrato.id)).build()}"><i class="material-icons left">delete</i></a></td>
 				
 		</tr>

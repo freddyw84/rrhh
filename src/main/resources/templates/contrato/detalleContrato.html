@@ -44,7 +44,7 @@
 			 
 			<option th:each="persona : ${personas}" 
 					th:value="${persona.id}" 
-					th:text="${persona.descripcion}"></option>
+					th:text="${persona.nombre}+' '+${persona.apellido}"></option>
 	
 				</select>
 		
@@ -56,6 +56,23 @@
 					th:text="${cargo.descripcion}"></option>
 	
 			</select>
+			
+			Salario:
+			<select id="cargo" th:field="*{contratos.salario.id}" class="browser-default" >
+			 
+			<option th:each="salario : ${salarios}" 
+					th:value="${salario.id}" 
+					th:text="${salario.descripcion}"></option>
+	
+			</select>
+			
+			Fecha de Ingreso: <input type="date" th:value="${contratos.fechaIngreso}"
+				th:name="fechaIngreso" th:id="id" />
+				
+			Fecha de Salida: <input type="date" th:value="${contratos.fechaSalida}"
+				th:name="fechaSalida" th:id="id" />
+			
+			
 		</div>
 		
 		

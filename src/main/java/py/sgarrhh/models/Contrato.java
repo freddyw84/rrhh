@@ -14,6 +14,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 public class Contrato  implements Serializable {
@@ -27,21 +29,29 @@ public class Contrato  implements Serializable {
 	@NotNull
 	private String descripcion;
 	
-	@NotEmpty
-	@NotNull
+	
+	
 	@ManyToOne
 	private Salario salario;
-	@NotEmpty
-	@NotNull
+	
+	
 	@ManyToOne
 	private Persona persona;
-	@NotEmpty
-	@NotNull
+	
+	
 	@ManyToOne 
 	private Cargo cargo;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date fechaIngreso;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date fechaSalida;
+	
+	
 	
 	public long getId() {
 		return id;
@@ -79,6 +89,13 @@ public class Contrato  implements Serializable {
 	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
+	public void setFechaSalida(Date fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
+	
 	
 	
 
