@@ -14,98 +14,152 @@
       <link rel="stylesheet" href="style/styleCss.css"/>
 </head>
 <body>
-
-		<nav class="menu">
+	<!-- Dropdown Structure -->
+	<ul id="comun" class="dropdown-content">
+	  <li><a href="/listaCiudades">Ciudad</a></li>
+	  <li><a href="/listaNacionalidades">Nacionalidad</a></li>
+	  <li class="divider"></li>
+	   <li><a href="/listaRubros">Rubro</a></li>
+	  <li><a href="/listaConceptos">Concepto</a></li>
+	   <li><a href="/listaTipoDocumentos">Tipo de Documento</a></li>
+	  <li><a href="/listaTipoBonificaciones">Tipo de Bonificacion</a></li>
+	 
+	  
+	</ul>
+	
+	<!-- Dropdown Structure -->
+	<ul id="gestion" class="dropdown-content">
+	  <li><a href="/listaUsuarios">Usuario</a></li>
+	  <li><a href="/listaPersonas">Persona</a></li>
+	  <li><a href="/listaFunciones">Funcion</a></li>
+	  <li><a href="/listaDepartamentos">Departamento</a></li>
+	  <li><a href="/listaCargos">Cargo</a></li>
+	  <li><a href="/listaSalarios">Salario</a></li>
+	  <li><a href="/listaContratos">Contrato</a></li>
+	  <li class="divider"></li> 
+	  <li><a href="/listaBonificaciones">Bonificacion</a></li>
+	  
+	</ul>
+	
+	
+	<nav>
+	  <div class="nav-wrapper">
+	    <a href="#!"  class="brand-logo">Menu</a>
+	    <ul class="right hide-on-med-and-down">
+	      <li><a class="dropdown-trigger" href="#!" data-target="comun">Comun<i class="material-icons right">arrow_drop_down</i></a></li>
+	     	<li><a class="dropdown-trigger" href="#!" data-target="gestion">Gestion<i class="material-icons right">arrow_drop_down</i></a></li>
+	     
+	      <li><a href="/logout">Salir</a></li>
+	      <!-- Dropdown Trigger -->
+	    </ul>
+	  </div>
+	</nav>
+			
+<!-- 		<nav class="menu"> -->
 		    
-		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Menu</a>
+<!-- 		    <div class="nav-wrapper"> -->
+<!-- 		      <a href="#" class="brand-logo">Menu</a> -->
 		      
-		        <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/logout" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Salir</a></li>
-		      </ul>
+<!-- 		        <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/logout" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Salir</a></li> -->
+<!-- 		      </ul> -->
 		      
 		      
-		       <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaUsuarios" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Usuario</a></li>
-		      </ul>
+<!-- 		       <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaUsuarios" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Usuario</a></li> -->
+<!-- 		      </ul> -->
 		      
-		       <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaCiudades" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Ciudad</a></li>
-		      </ul>
+<!-- 		       <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaCiudades" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Ciudad</a></li> -->
+<!-- 		      </ul> -->
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaFunciones" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Funcion</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaFunciones" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Funcion</a></li> -->
+<!-- 		      </ul> -->
 		    
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaDepartamentos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Departamento</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaDepartamentos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Departamento</a></li> -->
+<!-- 		      </ul> -->
 		      
 		    
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaCargos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cargo</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaCargos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cargo</a></li> -->
+<!-- 		      </ul> -->
 		      
 		     
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaSalarios" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Salario</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaSalarios" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Salario</a></li> -->
+<!-- 		      </ul> -->
 		      
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaRubros" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Rubro</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaRubros" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Rubro</a></li> -->
+<!-- 		      </ul> -->
 		      
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaPersonas" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Persona</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaPersonas" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Persona</a></li> -->
+<!-- 		      </ul> -->
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaTipoDocumentos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>TipoDocumento</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaTipoDocumentos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>TipoDocumento</a></li> -->
+<!-- 		      </ul> -->
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaNacionalidades" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Nacionalidad</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaNacionalidades" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Nacionalidad</a></li> -->
+<!-- 		      </ul> -->
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaCiudades" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Ciudad</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaCiudades" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Ciudad</a></li> -->
+<!-- 		      </ul> -->
 		      
 		      
-		       <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaBonificaciones" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Bonificacion</a></li>
-		      </ul>
+<!-- 		       <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaBonificaciones" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Bonificacion</a></li> -->
+<!-- 		      </ul> -->
 		      
-		       <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaTipoBonificaciones" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Tipo de Bonificacion</a></li>
-		      </ul>
+<!-- 		       <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaTipoBonificaciones" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Tipo de Bonificacion</a></li> -->
+<!-- 		      </ul> -->
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaContratos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Contrato</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaContratos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Contrato</a></li> -->
+<!-- 		      </ul> -->
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaConceptos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Concepto</a></li>
-		      </ul>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaConceptos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Concepto</a></li> -->
+<!-- 		      </ul> -->
 		      
-		       <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaLiquidaciones" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Liquidacion</a></li>
-		      </ul>
+<!-- 		       <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaLiquidaciones" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Liquidacion</a></li> -->
+<!-- 		      </ul> -->
 		      
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaHaberes" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Haber</a></li>
-		      </ul>
-		    </div>
+<!-- 		      <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+<!-- 		        <li><a href="/listaHaberes" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Haber</a></li> -->
+<!-- 		      </ul> -->
+<!-- 		    </div> -->
 		    
-		</nav>
+<!-- 		</nav> -->
 	 
 
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+
+	 <script>
+    	  $(document).ready(function(){
+		    	  $(".dropdown-trigger").dropdown();
+		    	  $(".dropdown-button").dropdown();
+		    	    $(".button-collapse").sideNav();
+		    	    $('.collapsible').collapsible();
+		    	        $('.sidenav').sidenav();
+		    	    
+    	    
+    	  
+      });
+      
+      </script>
 
 </body>
 
