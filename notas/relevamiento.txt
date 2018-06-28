@@ -1,0 +1,78 @@
+Persona:
+- Cantidad de Hijos
+- Código reloj marcador
+- Detalle de domicilios (antecedentes) con estado
+- Detalle nacimiento ( ciudad , país, fecha, tipo de documento y documento de origen )
+- Detalle salud ( grupo sanguíneo, incapacidad y alérgico a)
+- Reposo prolongado( tipo de reposo: maternidad, lesión, enfermedad u otro... inicio, fin, médico y observación)
+- Detalle accidentes( fecha , descripción )
+- Detalle Vacaciones ( periodo , inició y fin)
+- Detalle calificación profesional ( tipo: capacitación y experiencia laboral Observación, idioma, habilidad o competencias)
+Hijo/a
+--Nombre y apellido
+- Fec Nac
+- CI
+- Sexo: Normal y especial
+Retenciones
+- Fecha inicio y fin
+- Abogado
+- beneficiario y CI
+- Porcentaje
+- Estado
+Cuenta Bancaria
+- banco
+- nro cuenta
+- Fecha apertura
+- estado
+
+CONTRATO
+- tipo periodo contractual : definido o indefinido
+- Fecha inició y fin --- ok
+- Estado
+- motivo de salida ( desvinculación, renuncia, fallecimiento, translado y otro)
+- horas por día y días por mes
+Detalle salud privada ( empresa, plan (detalles) , nro de contrato, valor mensual, estado)(múltiple registró)sólo uno activo
+-detalle ips(si o no) ( situaciones:Normal o desvinculado.. nro registró IPS, días y montó imponible.. histórico detalle de montos imponibles
+-Detalle organización ( al contrato: grupo para hojas de resumen, lugar o sector, función, rango, coordinador si o no)
+
+VALORES MES - Contrato
+- Salario
+- Montó imponible IPS p/control
+- valor del mes salud privada(vales(fecha y valor), anticipo(fecha y valor), descuento especial(fecha, detalle descripcion o motivo y monto) y bonificación especial(fecha, detalle descripción o motivo, valor ))
+- cantidad horas extras , cantidad horas adicionales que no son horas extras
+- cantidad de feriados trabajados
+- horas de nocturnidad
+- hijos activos
+- porcentaje de retención por mes
+- cantidad de días faltados y horas faltadas( ver archivo txt reloj)
+
+VACACIONES
+- fecha inicio y fin
+- Detalle motivos(maternidad, paternidad, etc)
+- año
+
+Parámetros generales(unitarios)
+-Salario mínimo nacional
+- porcentaje IPS patronal
+- porcentaje IPS obrero
+- porcentaje nocturnidad
+- porcentaje hora extra
+- año activo
+- mes activo
+- tipos VACACIONES o reposos ( anuales, reposo maternidad, reposo salud, duelo familiar, nacimiento, casamiento, sanción, permiso especial)
+- Nombre comercial de la.empresa
+- razón social
+- ruc
+- nro IPS
+- contador titular
+- ci contador
+- Nombre encargado RRHH
+- CI identidad de RH
+- domicilio fiscal de la emrpesa
+- ciudad de la empresa
+- teléfono de la emprea
+- nro de cuenta bancaria de la empresa
+- banco de la cuenta empresa
+- nombre Ejecutivo de cuenta bancaria
+- sucursal
+- teléfono de todos los anteriores

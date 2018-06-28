@@ -8,7 +8,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Repository;
+
 
 import py.sgarrhh.models.Usuario;
 
@@ -23,12 +25,18 @@ public class ImplementsUserDetailsService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+			
 		Usuario usuario = ur.findByLogin(login);
+	
+		//System.out.println("pasé por aquí: "+usuario);
 		
 		if(usuario == null){
+		
 			throw new UsernameNotFoundException("Usuario o senha incorrecta!");
+			
 		}
 		return new User(usuario.getLogin(), usuario.getPassword(), true, true, true, true, usuario.getAuthorities());
+		
 	}
-
+	
 }

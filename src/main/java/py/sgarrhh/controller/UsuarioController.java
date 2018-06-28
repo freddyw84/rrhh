@@ -27,6 +27,7 @@ public class UsuarioController {
 		return "usuario/formUsuario";
 	}
 
+
 	@RequestMapping(value="/registrarUsuario", method=RequestMethod.POST)
 	public String form(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()){
