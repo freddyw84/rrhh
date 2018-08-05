@@ -25,7 +25,7 @@ public class Rol implements GrantedAuthority{
 	@NotNull
 	private String descripcion;
 
-	@ManyToMany(mappedBy = "rol")
+	@ManyToMany(mappedBy = "roles")
     private List<Usuario> usuarios;
 	
 	
@@ -49,6 +49,14 @@ public class Rol implements GrantedAuthority{
 	public String getAuthority() {
 		// TODO Auto-generated method stub
 		return this.descripcion;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	

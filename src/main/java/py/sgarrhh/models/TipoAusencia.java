@@ -20,7 +20,7 @@ public class TipoAusencia implements Serializable{
 	private Integer id;
 	private String descripcion;
 	
-	@OneToMany(mappedBy="tipoAusencia", cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	@OneToMany(mappedBy="tipoAusencia") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Ausencia> ausencia;
 	
 	public Integer getId() {

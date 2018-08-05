@@ -41,8 +41,8 @@ public class Usuario implements  UserDetails, Serializable{
 	        joinColumns = @JoinColumn(
 	          name = "usuario_id", referencedColumnName = "login"), 
 	        inverseJoinColumns = @JoinColumn(
-	          name = "rol_id", referencedColumnName = "descripcion")) 
-    private List<Rol> rol;
+	          name = "role_id", referencedColumnName = "descripcion")) 
+    private List<Rol> roles;
 	
 	
 	public long getId() {
@@ -51,6 +51,16 @@ public class Usuario implements  UserDetails, Serializable{
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 
 	public String getLogin() {
@@ -71,7 +81,7 @@ public class Usuario implements  UserDetails, Serializable{
 	
 	
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return (Collection<? extends GrantedAuthority>) this.rol;
+		return (Collection<? extends GrantedAuthority>) this.roles;
 	}
 
 

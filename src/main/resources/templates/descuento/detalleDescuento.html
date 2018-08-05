@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  <head>
+	  
+	  	<title>SGARRH</title>
+	  	
+			<!--Import Google Icon Font-->
+		      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		      <!--Import materialize.css-->
+		      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+		
+		      <!--Let browser know website is optimized for mobile-->
+		      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		      <link rel="stylesheet" href="style/styleCss.css"/>
+			  
+	  </head>
+	  
+	  <body>
+	  
+		<header>
+		<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Registro de Descuento:</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/listaDescuentos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Descuentos</a></li>
+		      </ul>
+		    </div>
+		</nav>
+		</header>
+	
+	<div class="container formDescuento">
+		<th:block th:include="mensajeValidacion"></th:block>
+	
+	<form class="container" method="post">
+				
+		  <div class="row">
+				Descripcion: <input type="text" th:value="${descuentos.descripcion}" th:name="descripcion" th:id="id" />
+				Monto: <input type="number" th:value="${descuentos.monto}" th:name="monto" th:id="id" />
+				Fecha: <input type="date" th:value="${descuentos.fecha}" th:name="fecha" th:id="id" />
+			
+			</div>	
+			
+	 <div class="row">
+			 
+		Tipo de Descuento:
+			<select id="tipoDescuento" th:field="*{descuentos.tipoDescuento.id}" class="browser-default" >
+			 
+			<option th:each="tipoDescuento : ${tipoDescuentos}" 
+					th:value="${tipoDescuento.id}" 
+					th:text="${tipoDescuento.descripcion}"></option>
+	
+			</select>
+			
+			Persona:
+			<select id="persona" th:field="*{descuentos.persona.id}" class="browser-default" >
+			 
+			<option th:each="persona : ${personas}" 
+					th:value="${persona.id}" 
+					th:text="${persona.nombre}+' '+${persona.apellido}"></option>
+	
+			</select>
+			
+			Estado:
+			
+			<p>
+				<label> <input name="estado" value="ACTIVO" type="radio"  th:checked="*{descuentos.estado}==ACTIVO"/> <span>Activo</span>
+				</label>
+			</p>
+			<p>
+				<label> <input name="estado" value="CANCELADO" type="radio" th:checked="*{descuentos.estado}==CANCELADO" /> <span>Cancelado</span>
+				</label>
+			</p>
+			<p>
+				<label> <input name="estado" value="ANULADO" type="radio" th:checked="*{descuentos.estado}==ANULADO" /> <span>Anulado</span>
+				</label>
+			</p>
+			
+			Observacion: <input type="text" th:value="${descuentos.observacion}" th:name="observacion" th:id="id" />
+			
+			
+		</div>
+		
+		
+		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
+	
+	</form>	
+	
+	
+			
+	</div>	
+			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+	  </body>
+		
+		<footer>
+		
+			<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Volver al Menu</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Menu</a></li>
+		      </ul>
+		    </div>
+		</nav>
+		</footer>
+</html>

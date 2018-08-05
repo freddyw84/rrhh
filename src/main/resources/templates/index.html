@@ -23,7 +23,7 @@
 	  <li><a href="/listaConceptos">Concepto</a></li>
 	   <li><a href="/listaTipoDocumentos">Tipo de Documento</a></li>
 	  <li><a href="/listaTipoBonificaciones">Tipo de Bonificacion</a></li>
-	 
+	  <li><a href="/listaTipoDescuentos">Tipo de Descuento</a></li>
 	  
 	</ul>
 	
@@ -38,6 +38,7 @@
 	  <li><a href="/listaContratos">Contrato</a></li>
 	  <li class="divider"></li> 
 	  <li><a href="/listaBonificaciones">Bonificacion</a></li>
+	  <li><a href="/listaDescuentos">Descuentos</a></li>
 	  
 	</ul>
 	
@@ -57,12 +58,36 @@
 	</nav>
 	
 	 <ul class="sidenav" id="mobile-demo">
-	    <li><a href="sass.html">Sass</a></li>
-	    <li><a href="badges.html">Components</a></li>
-	    <li><a href="collapsible.html">Javascript</a></li>
-	    <li><a href="mobile.html">Mobile</a></li>
-	  </ul>
+	    <li><a class="dropdown-trigger" href="#!" data-target="comunmob">Comun<i class="material-icons right">arrow_drop_down</i></a></li>
+	    <li><a class="dropdown-trigger" href="#!" data-target="gestionmob">Gestion<i class="material-icons right">arrow_drop_down</i></a></li>
+	 </ul>
 	
+	<ul id="comunmob" class="dropdown-content">
+	  <li><a href="/listaCiudades">Ciudad</a></li>
+	  <li><a href="/listaNacionalidades">Nacionalidad</a></li>
+	  <li class="divider"></li>
+	   <li><a href="/listaRubros">Rubro</a></li>
+	  <li><a href="/listaConceptos">Concepto</a></li>
+	   <li><a href="/listaTipoDocumentos">Tipo de Documento</a></li>
+	  <li><a href="/listaTipoBonificaciones">Tipo de Bonificacion</a></li>
+	 <li><a href="/listaTipoDescuentos">Tipo de Descuento</a></li>
+	  
+	</ul>
+			
+				<!-- Dropdown Structure -->
+	<ul id="gestionmob" class="dropdown-content">
+	  <li><a href="/listaUsuarios">Usuario</a></li>
+	  <li><a href="/listaPersonas">Persona</a></li>
+	  <li><a href="/listaFunciones">Funcion</a></li>
+	  <li><a href="/listaDepartamentos">Departamento</a></li>
+	  <li><a href="/listaCargos">Cargo</a></li>
+	  <li><a href="/listaSalarios">Salario</a></li>
+	  <li><a href="/listaContratos">Contrato</a></li>
+	  <li class="divider"></li> 
+	  <li><a href="/listaBonificaciones">Bonificacion</a></li>
+	  
+	</ul>
+			
 			
 <!-- 		<nav class="menu"> -->
 		    
@@ -159,12 +184,11 @@
 	 <script>
     	  $(document).ready(function(){
 		    	  $(".dropdown-trigger").dropdown();
-		    	//  $(".dropdown-button").dropdown();
-		    	 //   $(".button-collapse").sideNav();
-		    	    //$('.collapsible').collapsible();
-		    	      $('.sidenav').sidenav();
-		    	    
-    	    
+		    	  $(".dropdown-button").dropdown();
+		    	   // $(".button-collapse").sideNav();
+		    	  $('.collapsible').collapsible();
+		    	  $('.sidenav').sidenav();
+		    	  $('select').material_select()
     	  
       });
       

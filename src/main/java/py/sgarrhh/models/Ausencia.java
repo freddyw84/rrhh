@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Ausencia implements Serializable{
 	/**
@@ -19,13 +22,21 @@ public class Ausencia implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
+	
 	@ManyToOne
 	private Persona persona;
-	@Temporal(TemporalType.TIMESTAMP)
+	
+	@NotNull(message="Fecha es una informacion necesaria")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date fechaInicio;
-	@Temporal(TemporalType.TIMESTAMP)
+	
+	@NotNull(message="Fecha es una informacion necesaria")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date fechaFin;
-    private String descripcion;
+   
+	private String descripcion;
    
     @ManyToOne
     private TipoAusencia tipoAusencia;

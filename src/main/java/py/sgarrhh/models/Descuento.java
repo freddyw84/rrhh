@@ -2,22 +2,22 @@ package py.sgarrhh.models;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Descuento implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
@@ -34,25 +34,34 @@ public class Descuento implements Serializable{
 		this.id = id;
 	}
 
+	
+	@NotEmpty
+	@NotNull
+	private String descripcion;
+	
+	@NotNull
+	private Double monto;
+	
+	@NotNull(message="Fecha es una informacion necesaria")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date fecha;
+	
+	
+	@NotNull
 	@ManyToOne
 	private TipoDescuento tipoDescuento;
 	
-	private Double monto;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fecha;
-	
+	@NotNull
 	@ManyToOne
 	private Persona persona;
-	
+
+	@NotNull
 	private String estado;
 	
 	private String observacion;
 	
-	@OneToMany(mappedBy="descuento")
-	private List<HaberDetalle> haberDetalle;
-
 	
-
 	public TipoDescuento getTipoDescuento() {
 		return tipoDescuento;
 	}
@@ -101,12 +110,13 @@ public class Descuento implements Serializable{
 		this.observacion = observacion;
 	}
 
-	public List<HaberDetalle> getHaberDetalle() {
-		return haberDetalle;
+	
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setHaberDetalle(List<HaberDetalle> haberDetalle) {
-		this.haberDetalle = haberDetalle;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 
