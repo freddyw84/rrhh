@@ -34,14 +34,13 @@ public class Cargo  implements Serializable {
 	@ManyToOne
 	private Departamento departamento;
 	
-	@NotNull
-	@ManyToOne
-	private Funcion funcion;
-    
 
 	@OneToMany(mappedBy="cargo") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Contrato> contrato;
 	
+
+	@OneToMany(mappedBy="cargo")
+	private List<CargoDetalle> cargoDetalle;
 	
 	public long getId() {
 		return id;
@@ -70,14 +69,6 @@ public class Cargo  implements Serializable {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
-	}
-
-	public Funcion getFuncion() {
-		return funcion;
-	}
-
-	public void setFuncion(Funcion funcion) {
-		this.funcion = funcion;
 	}
 
 	public List<Contrato> getContrato() {

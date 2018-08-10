@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css" media="screen,print" href="style/stylePrint.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection,print"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="style/styleCss.css"/>
+    <title>Listado de Personas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h3>Listado de Personas</h3>
+	
+    <form   method="get">
+    	
+		<table id="customers" border="1">
+		<thead>
+			<tr>
+			<th>Id contr.</th>
+				<th>Descrip.</th>
+				<th>Documento</th>
+				<th>Apellido</th>
+				<th>Nombre</th>
+				<th>Salario</th>
+				<th>Fecha Ingreso</th>
+				<th>Fecha Salida</th>
+			</tr>
+		</thead>
+	      <tr th:each="contrato : ${contratos}">
+	      		<td><span th:text="${contrato.id}"></span></td>
+				<td><span th:text="${contrato.descripcion}"></span></td>
+				<td><span th:text="${contrato.persona.documento}"></span></td>
+				<td><span th:text="${contrato.persona.apellido}"></span></td>
+				<td><span th:text="${contrato.persona.nombre}"></span></td>
+				<td><span th:text="${contrato.salario.monto}"></span></td>
+				<td><span th:text="${contrato.fechaIngreso}"></span></td>
+				<td><span th:text="${contrato.fechaSalida}"></span></td>
+	</tr>
+	    </table>
+	    
+	    <br/><br/>
+    
+    
+		<br/>
+    	
+	</form>
+ 
+</body>
+</html>

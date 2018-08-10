@@ -17,10 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Cargo;
 import py.sgarrhh.models.Departamento;
-import py.sgarrhh.models.Funcion;
 import py.sgarrhh.repository.CargoRepository;
 import py.sgarrhh.repository.DepartamentoRepository;
-import py.sgarrhh.repository.FuncionRepository;
 
 
 
@@ -32,9 +30,9 @@ public class CargoController {
 	@Autowired
 	private CargoRepository cr;
 
-
-	@Autowired
-	private FuncionRepository fr;
+//
+//	@Autowired
+//	private FuncionRepository fr;
 	
 
 	@Autowired
@@ -77,8 +75,8 @@ public class CargoController {
 	 
 	    Cargo form = new Cargo();
 	    model.addAttribute("cargo", form);
-	    Iterable <Funcion> funciones= fr.findAll();
-	    model.addAttribute("funciones", funciones);
+//	    Iterable <Funcion> funciones= fr.findAll();
+//	    model.addAttribute("funciones", funciones);
 	    
 	    Departamento departamento = new Departamento();
 	    model.addAttribute("departamento", departamento);
@@ -95,8 +93,8 @@ public class CargoController {
 		ModelAndView mvf= new ModelAndView("cargo/detalleCargo");
 		mvf.addObject("cargos",cargo);
 		
-		Iterable <Funcion> funciones= fr.findAll();
-		mvf.addObject("funciones",funciones);
+//		Iterable <Funcion> funciones= fr.findAll();
+//		mvf.addObject("funciones",funciones);
 		
 		Iterable <Departamento> departamentos= dr.findAll();
 		mvf.addObject("departamentos",departamentos);

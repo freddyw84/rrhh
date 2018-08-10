@@ -26,6 +26,7 @@ Cuenta Bancaria
 - estado
 
 CONTRATO
+- Nro de cédula
 - tipo periodo contractual : definido o indefinido
 - Fecha inició y fin --- ok
 - Estado
