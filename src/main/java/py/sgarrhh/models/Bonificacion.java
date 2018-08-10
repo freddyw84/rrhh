@@ -31,7 +31,7 @@ public class Bonificacion implements Serializable {
 	private String descripcion;
 	
 	@OneToMany(mappedBy="bonificacion")
-	private List<HaberDetalle> haberDetalle;
+	private List<LiquidacionBonificacion> liquidacionBonificacion;
 	
 	
 	@ManyToOne
@@ -70,12 +70,13 @@ public class Bonificacion implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<HaberDetalle> getHaberDetalle() {
-		return haberDetalle;
+		
+	public List<LiquidacionBonificacion> getLiquidacionBonificacion() {
+		return liquidacionBonificacion;
 	}
 
-	public void setHaberDetalle(List<HaberDetalle> haberDetalle) {
-		this.haberDetalle = haberDetalle;
+	public void setLiquidacionBonificacion(List<LiquidacionBonificacion> liquidacionBonificacion) {
+		this.liquidacionBonificacion = liquidacionBonificacion;
 	}
 
 	public TipoBonificacion getTipoBonificacion() {

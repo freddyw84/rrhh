@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 
-public class LiquidacionDetalle implements Serializable{
+public class LiquidacionBonificacion implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -30,11 +30,13 @@ public class LiquidacionDetalle implements Serializable{
 	@ManyToOne
 	private Concepto concepto;
 	
+	@NotNull
+	@ManyToOne
+	private Bonificacion bonificacion;
+	
 	//@NotEmpty
 	@NotNull
 	private Double monto;
-
-	
 
 	public long getId() {
 		return id;
@@ -53,8 +55,6 @@ public class LiquidacionDetalle implements Serializable{
 	}
 
 	
-	
-
 	public Concepto getConcepto() {
 		return concepto;
 	}
@@ -62,6 +62,8 @@ public class LiquidacionDetalle implements Serializable{
 	public void setConcepto(Concepto concepto) {
 		this.concepto = concepto;
 	}
+
+	
 
 	public Double getMonto() {
 		return monto;
@@ -71,6 +73,13 @@ public class LiquidacionDetalle implements Serializable{
 		this.monto = monto;
 	}
 
+	public Bonificacion getBonificacion() {
+		return bonificacion;
+	}
+
+	public void setBonificacion(Bonificacion bonificacion) {
+		this.bonificacion = bonificacion;
+	}
 	
 	
 }

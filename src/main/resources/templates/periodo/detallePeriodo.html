@@ -21,21 +21,34 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Tipo de Descuento:</a>
+		      <a href="#" class="brand-logo">Registro de Periodo:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaTipoDescuentos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Tipo de Descuentos</a></li>
+		        <li><a href="/listaPeriodos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Periodos</a></li>
 		      </ul>
 		    </div>
 		</nav>
 		</header>
-	<th:block th:include="mensajeValidacion"></th:block>
-	<div class="container formTipoDescuento">
+	
+	<div class="container formPeriodo">
+		<th:block th:include="mensajeValidacion"></th:block>
 	
 	<form class="container" method="post">
 	
 
-		<input type="text" th:value="${tipoDescuentos.descripcion}" th:name="descripcion" th:id="id" />
-		<input type="number" th:value="${tipoDescuentos.porcentaje}" th:name="porcentaje" th:id="id" />
+		<input type="text" th:value="${periodos.descripcion}" th:name="descripcion" th:id="id" />
+		
+		 <div class="row">
+		
+					
+			Fecha de Inicio: <input type="date" th:value="${periodos.fechaInicio}"
+				th:name="fechaInicio" th:id="id" />
+				
+			Fecha de Finalizacion: <input type="date" th:value="${periodos.fechaFin}"
+				th:name="fechaFin" th:id="id" />
+			
+			
+		</div>
+		
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	

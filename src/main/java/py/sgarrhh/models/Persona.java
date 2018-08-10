@@ -42,10 +42,10 @@ public class Persona  implements Serializable{
 	@ManyToOne
 	private Ciudad ciudad;
 	
-	@NotEmpty
+	//@NotEmpty
 	@NotNull
 	private String documento;
-	@NotEmpty
+	//@NotEmpty
 	@NotNull
 	private String nombre;
 	@NotEmpty
@@ -58,9 +58,6 @@ public class Persona  implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
 	
-	
-	
-
 	@ManyToOne
 	private Nacionalidad nacionalidad;
 	
@@ -68,7 +65,7 @@ public class Persona  implements Serializable{
 	private String domicilio;
 	
 	
-	@NotEmpty
+	//@NotEmpty
 	@NotNull
 	private String estadoCivil;
 	

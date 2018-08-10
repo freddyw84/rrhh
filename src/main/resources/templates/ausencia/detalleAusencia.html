@@ -21,21 +21,56 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Tipo de Descuento:</a>
+		      <a href="#" class="brand-logo">Registro de Ausencia:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaTipoDescuentos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Tipo de Descuentos</a></li>
+		        <li><a href="/listaAusencias" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Ausencias</a></li>
 		      </ul>
 		    </div>
 		</nav>
 		</header>
-	<th:block th:include="mensajeValidacion"></th:block>
-	<div class="container formTipoDescuento">
+	
+	<div class="container formAusencia">
+		<th:block th:include="mensajeValidacion"></th:block>
 	
 	<form class="container" method="post">
 	
 
-		<input type="text" th:value="${tipoDescuentos.descripcion}" th:name="descripcion" th:id="id" />
-		<input type="number" th:value="${tipoDescuentos.porcentaje}" th:name="porcentaje" th:id="id" />
+		<input type="text" th:value="${ausencia.descripcion}" th:name="descripcion" th:id="id" />
+		
+		 <div class="row">
+		
+			Tipo de Ausencia:
+			<select id="tipoAusencia" th:field="*{ausencia.tipoAusencia.id}" class="browser-default" >
+			 
+			<option th:each="tipoAusencia : ${tipoAusencias}" 
+					th:value="${tipoAusencia.id}" 
+					th:text="${tipoAusencia.descripcion}"></option>
+	
+				</select>
+	
+		
+			Persona:
+			<select id="persona" th:field="*{ausencia.persona.id}" class="browser-default" >
+			 
+			<option th:each="persona : ${personas}" 
+					th:value="${persona.id}" 
+					th:text="${persona.nombre}+' '+${persona.apellido}"></option>
+	
+			</select>
+					
+		
+			
+			Fecha de Inicio: <input type="date" th:value="${ausencia.fechaInicio}" th:name="fechaInicio" th:id="id" />
+				
+			Fecha de Fin: <input type="date" th:value="${ausencia.fechaFin}" th:name="fechaFin" th:id="id" />
+			
+			
+		</div>
+		
+		
+		
+		
+		
 		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	

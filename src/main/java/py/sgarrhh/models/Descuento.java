@@ -2,12 +2,14 @@ package py.sgarrhh.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -26,15 +28,6 @@ public class Descuento implements Serializable{
 	private long id;
 	
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	
 	@NotEmpty
 	@NotNull
 	private String descripcion;
@@ -61,7 +54,18 @@ public class Descuento implements Serializable{
 	
 	private String observacion;
 	
+	@OneToMany(mappedBy="descuento")
+	private List<LiquidacionDescuento> liquidacionDescuento;
 	
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public TipoDescuento getTipoDescuento() {
 		return tipoDescuento;
 	}
@@ -118,7 +122,16 @@ public class Descuento implements Serializable{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
+	public List<LiquidacionDescuento> getLiquidacionDescuento() {
+		return liquidacionDescuento;
+	}
+
+	public void setLiquidacionDescuento(List<LiquidacionDescuento> liquidacionDescuento) {
+		this.liquidacionDescuento = liquidacionDescuento;
+	}
+
+
 
 
 }

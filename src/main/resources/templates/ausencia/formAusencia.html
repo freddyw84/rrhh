@@ -16,6 +16,17 @@
 		         $(document).ready(function() {
 		            $('select').material_select();
 		         });
+		         
+		         
+		         
+		         
+		         $('.datepicker').pickadate({
+		        	    selectMonths: true, // Creates a dropdown to control month
+		        	    selectYears: 15 // Creates a dropdown of 15 years to control year
+		        	  });
+		         
+		       
+		         
 		      </script>
 			  
 	  </head>
@@ -25,9 +36,9 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Liquidacion:</a>
+		      <a href="#" class="brand-logo">Registro de Ausencia:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaLiquidaciones" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Liquidaciones</a></li>
+		        <li><a href="/listaAusencias" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Ausencias</a></li>
 		      </ul>
 		    </div>
 		</nav>
@@ -35,37 +46,39 @@
 		
 		<th:block th:include="mensajeValidacion"></th:block>
 	
-	<div class="container formLiquidacion">
+	<div class="container formAusencia">
 	
 	
  	<div class="row"> 
-		<form name ="f" method="post" th:object="${liquidacion}" class = "col s12">
-		
-		  <div class="row">
+		<form name ="f" method="post" th:object="${ausencia}" class = "col s12">
+			Descripcion: <input type="text" value="" name="descripcion"/>
 			
+		  <div class="row">
+				
+		Tipo de Ausencia:
+			<select id="tipoAusencia" th:field="*{tipoAusencia.id}" class="browser-default" >
+			 
+			<option th:each="tipoAusencia : ${tipoAusencia}" 
+					th:value="${tipoAusencia.id}" 
+					th:text="${tipoAusencia.descripcion}"></option>
+	
+				</select>
+	
+		
 			Persona:
 			<select id="persona" th:field="*{persona.id}" class="browser-default" >
 			 
 			<option th:each="persona : ${personas}" 
 					th:value="${persona.id}" 
-					th:text="${persona.nombre}+ ' ' +${persona.apellido}"></option>
+					th:text="${persona.nombre}+' '+${persona.apellido}"></option>
 	
-				</select>
-		
-			Periodo:
-			<select id="periodo" th:field="*{periodo.id}" class="browser-default" >
-			 
-			<option th:each="periodo : ${periodos}" 
-					th:value="${periodo.id}" 
-					th:text="${periodo.descripcion}+ ' - ' +${#dates.format(periodo.fechaInicio, 'dd/MM/yyyy')}+ ' al ' +${#dates.format(periodo.fechaFin, 'dd/MM/yyyy')}"></option>
-				</select>
-				
-			Fecha: <input type="date" value="" name="fecha"/>
-				
-			Monto: <input type="number" value=0 name="monto"/>
-			Observacion: <input type="text" value="" name="observacion"/>
+			</select>
 			
 			
+			Fecha de Inicio:   <input type="date"  value=""  name="fechaInicio">
+			Fecha de Fin:   <input type="date"  value=""  name="fechaFin">
+					
+					
 		</div>
 		
  		<button class="waves-effect waves-light btn" type="submit">Guardar</button> 

@@ -7,11 +7,13 @@
 	  <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection, print"/>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link rel="stylesheet" href="style/styleCss.css"/>
+   
+  
 </head>
 <body>
 	<!-- Dropdown Structure -->
@@ -24,11 +26,23 @@
 	   <li><a href="/listaTipoDocumentos">Tipo de Documento</a></li>
 	  <li><a href="/listaTipoBonificaciones">Tipo de Bonificacion</a></li>
 	  <li><a href="/listaTipoDescuentos">Tipo de Descuento</a></li>
+	   <li><a href="/listaTipoAusencias">Tipo de Ausencias</a></li>
 	  
 	</ul>
 	
 	<!-- Dropdown Structure -->
 	<ul id="gestion" class="dropdown-content">
+	  <li><a href="/listaBonificaciones">Bonificacion</a></li>
+	  <li><a href="/listaDescuentos">Descuentos</a></li>
+	  <li><a href="/listaAusencias">Ausencias</a></li>
+	  <li><a href="/listaLiquidaciones">Liquidaciones</a></li>
+	  
+	  
+	  
+	</ul>
+	
+	<!-- Dropdown Structure -->
+	<ul id="registro" class="dropdown-content">
 	  <li><a href="/listaUsuarios">Usuario</a></li>
 	  <li><a href="/listaPersonas">Persona</a></li>
 	  <li><a href="/listaFunciones">Funcion</a></li>
@@ -36,11 +50,16 @@
 	  <li><a href="/listaCargos">Cargo</a></li>
 	  <li><a href="/listaSalarios">Salario</a></li>
 	  <li><a href="/listaContratos">Contrato</a></li>
-	  <li class="divider"></li> 
-	  <li><a href="/listaBonificaciones">Bonificacion</a></li>
-	  <li><a href="/listaDescuentos">Descuentos</a></li>
-	  
+	   <li><a href="/listaPeriodos">Periodos</a></li>
+	 
 	</ul>
+	
+	<!-- Dropdown Structure -->
+	<ul id="informes" class="dropdown-content">
+	  <li><a href="#!">INFORMES1</a></li>
+	
+	</ul>
+	
 	
 	
 	<nav>
@@ -48,8 +67,10 @@
 	    <a href="#!"  class="brand-logo">Menu</a>
 	    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 	    <ul class="right hide-on-med-and-down">
-	      <li><a class="dropdown-trigger" href="#!" data-target="comun">Comun<i class="material-icons right">arrow_drop_down</i></a></li>
-	     	<li><a class="dropdown-trigger" href="#!" data-target="gestion">Gestion<i class="material-icons right">arrow_drop_down</i></a></li>
+	      <li><a class="dropdown-trigger" href="#!" data-target="comun">Comunes<i class="material-icons right">arrow_drop_down</i></a></li>
+	      <li><a class="dropdown-trigger" href="#!" data-target="registro">Registros<i class="material-icons right">arrow_drop_down</i></a></li>
+	      <li><a class="dropdown-trigger" href="#!" data-target="gestion">Gestiones<i class="material-icons right">arrow_drop_down</i></a></li>
+	      <li><a class="dropdown-trigger" href="#!" data-target="informes">Informes<i class="material-icons right">arrow_drop_down</i></a></li>
 	     
 	      <li><a href="/logout">Salir</a></li>
 	      <!-- Dropdown Trigger -->
@@ -58,8 +79,12 @@
 	</nav>
 	
 	 <ul class="sidenav" id="mobile-demo">
-	    <li><a class="dropdown-trigger" href="#!" data-target="comunmob">Comun<i class="material-icons right">arrow_drop_down</i></a></li>
-	    <li><a class="dropdown-trigger" href="#!" data-target="gestionmob">Gestion<i class="material-icons right">arrow_drop_down</i></a></li>
+	    <li><a class="dropdown-trigger" href="#!" data-target="comunmob">Comunes<i class="material-icons right">arrow_drop_down</i></a></li>
+	    <li><a class="dropdown-trigger" href="#!" data-target="registromob">Registros<i class="material-icons right">arrow_drop_down</i></a></li>
+	   <li><a class="dropdown-trigger" href="#!" data-target="gestionmob">Gestiones<i class="material-icons right">arrow_drop_down</i></a></li>
+	    <li><a class="dropdown-trigger" href="#!" data-target="informesmob">Informes<i class="material-icons right">arrow_drop_down</i></a></li>
+	      <li><a href="/logout">Salir</a></li>
+	    
 	 </ul>
 	
 	<ul id="comunmob" class="dropdown-content">
@@ -68,24 +93,36 @@
 	  <li class="divider"></li>
 	   <li><a href="/listaRubros">Rubro</a></li>
 	  <li><a href="/listaConceptos">Concepto</a></li>
-	   <li><a href="/listaTipoDocumentos">Tipo de Documento</a></li>
-	  <li><a href="/listaTipoBonificaciones">Tipo de Bonificacion</a></li>
-	 <li><a href="/listaTipoDescuentos">Tipo de Descuento</a></li>
+	   <li><a href="/listaTipoDocumentos">Tipo de Documentos</a></li>
+	  <li><a href="/listaTipoBonificaciones">Tipo de Bonificaciones</a></li>
+	 <li><a href="/listaTipoDescuentos">Tipo de Descuentos</a></li>
+	    <li><a href="/listaTipoAusencias">Tipo de Ausencias</a></li>
 	  
 	</ul>
-			
-				<!-- Dropdown Structure -->
-	<ul id="gestionmob" class="dropdown-content">
-	  <li><a href="/listaUsuarios">Usuario</a></li>
+		
+	 <ul id="registromob" class="dropdown-content">
+	   <li><a href="/listaUsuarios">Usuario</a></li>
 	  <li><a href="/listaPersonas">Persona</a></li>
 	  <li><a href="/listaFunciones">Funcion</a></li>
 	  <li><a href="/listaDepartamentos">Departamento</a></li>
 	  <li><a href="/listaCargos">Cargo</a></li>
 	  <li><a href="/listaSalarios">Salario</a></li>
 	  <li><a href="/listaContratos">Contrato</a></li>
-	  <li class="divider"></li> 
-	  <li><a href="/listaBonificaciones">Bonificacion</a></li>
+		  
+	</ul>
+			
+				<!-- Dropdown Structure -->
+	<ul id="gestionmob" class="dropdown-content">
+	  <li><a href="/listaBonificaciones">Bonificaciones</a></li>
+	  <li><a href="/listaBonificaciones">Ausencias</a></li>
 	  
+	  
+	</ul>
+	
+	<!-- Dropdown Structure -->
+	<ul id="informesmob" class="dropdown-content">
+	  <li><a href="#!">INFORMES1</a></li>
+	
 	</ul>
 			
 			

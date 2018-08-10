@@ -17,9 +17,9 @@
 	<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Lista de Tipo de Bonificacion</a>
+		      <a href="#" class="brand-logo">Lista de Tipo de Ausencia</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/registrarTipoDescuento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registrar Tipo de Descuento</a></li>
+		        <li><a href="/registrarTipoAusencia" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registrar Tipo de Ausencia</a></li>
 		      </ul>
 		    </div>
 		</nav>
@@ -30,18 +30,16 @@
 			<tr>
 				<th>ID</th>
 				<th>Descripcion</th>
-				<th>Porcentaje</th>
 				
 			</tr>
 		</thead>
 		<tbody>
 		<th:block th:include="mensajeValidacion"></th:block>
-		 <tr th:each="tipoDescuento : ${tipoDescuentos}">
-				<td><span th:text="${tipoDescuento.id}"></span></td>
-				<td><a th:href="${(#mvc.url('TDC#detalleTipoDescuento').arg(0, tipoDescuento.id)).build()}"><span th:text="${tipoDescuento.descripcion}"></span></a></td>
-				<td><span th:text="${tipoDescuento.porcentaje}"></span></td>
+		 <tr th:each="tipoAusencia : ${tipoAusencias}">
+				<td><span th:text="${tipoAusencia.id}"></span></td>
+				<td><a th:href="${(#mvc.url('TAC#detalleTipoAusencia').arg(0, tipoAusencia.id)).build()}"><span th:text="${tipoAusencia.descripcion}"></span></a></td>
 				
-				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '�eliminar el registro?' + '\');'" th:href="${(#mvc.url('TDC#eliminarTipoDescuento').arg(0, tipoDescuento.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '�eliminar el registro?' + '\');'" th:href="${(#mvc.url('TAC#eliminarTipoAusencia').arg(0, tipoAusencia.id)).build()}"><i class="material-icons left">delete</i></a></td>
 		</tr>
 		</tbody>
 	

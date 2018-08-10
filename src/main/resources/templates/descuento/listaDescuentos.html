@@ -43,13 +43,13 @@
 		 <tr th:each="descuento : ${descuentos}">
 				<td><span th:text="${descuento.id}"></span></td>
 <!-- 				<td><span th:text="${cargo.descripcion}"></span></td> -->
-				<td><a th:href="${(#mvc.url('CD#detalleDescuento').arg(0, descuento.id)).build()}"><span th:text="${descuento.descripcion}"></span></a></td>
+				<td><a th:href="${(#mvc.url('DC#detalleDescuento').arg(0, descuento.id)).build()}"><span th:text="${descuento.descripcion}"></span></a></td>
 				<td><span th:text="${descuento.monto}"></span></td>
 				<td><span th:text="${descuento.fecha}"></span></td>
-				<td><span th:text="${descuento.tipoDescuento.id}+'|'+${cargo.tipoDescuento.descripcion}"></span></td>
+				<td><span th:text="${descuento.tipoDescuento.id}+'|'+${descuento.tipoDescuento.descripcion}"></span></td>
 				<td><span th:text="${descuento.persona.id}+'|'+${descuento.persona.nombre}+${descuento.persona.apellido}"></span></td>
 				<td><span th:text="${descuento.estado}"></span></td>
-				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'"  th:href="${(#mvc.url('CD#eliminarDescuento').arg(0, descuento.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'"  th:href="${(#mvc.url('DC#eliminarDescuento').arg(0, descuento.id)).build()}"><i class="material-icons left">delete</i></a></td>
 				
 		</tr>
 		</tbody>

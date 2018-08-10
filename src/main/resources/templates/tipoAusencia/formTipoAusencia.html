@@ -21,35 +21,30 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Tipo de Descuento:</a>
+		      <a href="#" class="brand-logo">Registro de Tipo Ausencia:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaTipoDescuentos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Tipo de Descuentos</a></li>
+		        <li><a href="/listaTipoAusencias" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Tipo Ausencias</a></li>
 		      </ul>
 		    </div>
 		</nav>
 		</header>
 	<th:block th:include="mensajeValidacion"></th:block>
-	<div class="container formTipoDescuento">
+	<div class="container formTipoAusencia">
 	
 	<form class="container" method="post">
-	
+		Descripcion: <input type="text" value="" name="descripcion"/>
 
-		<input type="text" th:value="${tipoDescuentos.descripcion}" th:name="descripcion" th:id="id" />
-		<input type="number" th:value="${tipoDescuentos.porcentaje}" th:name="porcentaje" th:id="id" />
-		
 		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
 	
 	</form>	
-	
-	
 			
 	</div>	
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		    <script type="text/javascript" src="js/materialize.min.js"></script>
 
 	  </body>
-		
-		<footer>
+	  
+	  <footer>
 		
 			<nav class="menu">
 		    <div class="nav-wrapper">
@@ -60,4 +55,5 @@
 		    </div>
 		</nav>
 		</footer>
+
 </html>

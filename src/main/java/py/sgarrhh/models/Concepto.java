@@ -27,10 +27,6 @@ public class Concepto implements Serializable{
 	private List<LiquidacionDetalle> liquidacionDetalle;
 	
 
-	@OneToMany(mappedBy="concepto")
-	private List<HaberDetalle> haberDetalle;
-	
-
 	@NotEmpty
 	@NotNull
 	private String descripcion;
@@ -57,14 +53,7 @@ public class Concepto implements Serializable{
 		this.liquidacionDetalle = liquidacionDetalle;
 	}
 
-	public List<HaberDetalle> getHaberDetalle() {
-		return haberDetalle;
-	}
-
-	public void setHaberDetalle(List<HaberDetalle> haberDetalle) {
-		this.haberDetalle = haberDetalle;
-	}
-
+	
 	public String getDescripcion() {
 		return descripcion;
 	}

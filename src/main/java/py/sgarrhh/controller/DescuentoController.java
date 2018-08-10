@@ -44,7 +44,7 @@ public class DescuentoController {
 
 		ModelAndView mv= new ModelAndView("descuento/listaDescuentos");
 		Iterable <Descuento> descuentos= dr.findAll();
-		mv.addObject("Descuentos",descuentos);
+		mv.addObject("descuentos",descuentos);
 		return mv;
 	}
 
@@ -73,8 +73,9 @@ public class DescuentoController {
 	 
 		Descuento form = new Descuento();
 	    model.addAttribute("descuento", form);
-	    Iterable <TipoDescuento> tipoDescuento= tdr.findAll();
-	    model.addAttribute("tipoDescuento", tipoDescuento);
+	 
+	    Iterable <TipoDescuento> tipoDescuentos= tdr.findAll();
+	    model.addAttribute("tipoDescuentos", tipoDescuentos);
 	    
 	    Persona persona = new Persona();
 	    model.addAttribute("persona", persona);
@@ -89,9 +90,9 @@ public class DescuentoController {
 	
 	@RequestMapping("/de{id}")
 	private ModelAndView detalleDescuento(@PathVariable("id") long id) {
-		Descuento descuento =dr.findById(id);
+		Descuento descuentos =dr.findById(id);
 		ModelAndView mvf= new ModelAndView("descuento/detalleDescuento");
-		mvf.addObject("descuentos",descuento);
+		mvf.addObject("descuentos",descuentos);
 		
 		Iterable <TipoDescuento> tipoDescuentos= tdr.findAll();
 		mvf.addObject("tipoDescuentos",tipoDescuentos);

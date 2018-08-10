@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Liquidacion implements Serializable{
 	
@@ -22,12 +23,13 @@ public class Liquidacion implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
+
 	@OneToMany(mappedBy="liquidacion")
 	private List<LiquidacionDetalle> liquidacionDetalle;
+
 	@ManyToOne
-	private HaberDetalle haberDetalle;
-	@ManyToOne
-	private Persona persona;
+	private Periodo periodo;
+	
 	@NotNull(message="Fecha es una informacion necesaria")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -37,7 +39,10 @@ public class Liquidacion implements Serializable{
 	private Double monto;
 	
 	private String observacion;
-
+	
+	@ManyToOne
+	private Persona persona;
+	
 	public long getId() {
 		return id;
 	}
@@ -54,20 +59,13 @@ public class Liquidacion implements Serializable{
 		this.liquidacionDetalle = liquidacionDetalle;
 	}
 
-	public HaberDetalle getHaberDetalle() {
-		return haberDetalle;
+	
+	public Periodo getPeriodo() {
+		return periodo;
 	}
 
-	public void setHaberDetalle(HaberDetalle haberDetalle) {
-		this.haberDetalle = haberDetalle;
-	}
-
-	public Persona getPersona() {
-		return persona;
-	}
-
-	public void setPersona(Persona persona) {
-		this.persona = persona;
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
 	}
 
 	public Date getFecha() {
@@ -92,6 +90,14 @@ public class Liquidacion implements Serializable{
 
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 	
 	

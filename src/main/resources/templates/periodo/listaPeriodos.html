@@ -17,9 +17,9 @@
 	<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Lista de Tipo de Bonificacion</a>
+		      <a href="#" class="brand-logo">Lista de Periodos</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/registrarTipoDescuento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registrar Tipo de Descuento</a></li>
+		        <li><a href="/registrarPeriodo" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registrar Periodo</a></li>
 		      </ul>
 		    </div>
 		</nav>
@@ -30,29 +30,38 @@
 			<tr>
 				<th>ID</th>
 				<th>Descripcion</th>
-				<th>Porcentaje</th>
-				
+				<th>Fecha de Inicio</th>
+				<th>Fecha Fin</th>
+			
 			</tr>
 		</thead>
 		<tbody>
 		<th:block th:include="mensajeValidacion"></th:block>
-		 <tr th:each="tipoDescuento : ${tipoDescuentos}">
-				<td><span th:text="${tipoDescuento.id}"></span></td>
-				<td><a th:href="${(#mvc.url('TDC#detalleTipoDescuento').arg(0, tipoDescuento.id)).build()}"><span th:text="${tipoDescuento.descripcion}"></span></a></td>
-				<td><span th:text="${tipoDescuento.porcentaje}"></span></td>
+		
+		 <tr th:each="periodo : ${periodos}">
+				<td><span th:text="${periodo.id}"></span></td>
+				<td><span th:text="${periodo.descripcion}"></span></td>
 				
-				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + 'ï¿½eliminar el registro?' + '\');'" th:href="${(#mvc.url('TDC#eliminarTipoDescuento').arg(0, tipoDescuento.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><span th:text="${periodo.fechaInicio}"></span></td>
+				<td><span th:text="${periodo.fechaFin}"></span></td>
+			
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿Editar el registro?' + '\');'" th:href="${(#mvc.url('PC#detallePeriodo').arg(0, periodo.id)).build()}"><i class="material-icons left">edit</i></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + 'ï¿½eliminar el registro?' + '\');'"  th:href="${(#mvc.url('PC#eliminarPeriodo').arg(0, periodo.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				
 		</tr>
 		</tbody>
 	
 	</table>
 
+
+	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
 </body>
-
-	<footer>
+	
+	
+		<footer>
 		
 			<nav class="menu">
 		    <div class="nav-wrapper">
@@ -63,6 +72,5 @@
 		    </div>
 		</nav>
 		</footer>
-
 
 </html>

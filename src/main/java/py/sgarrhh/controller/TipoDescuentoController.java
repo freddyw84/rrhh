@@ -76,7 +76,7 @@ public class TipoDescuentoController {
 		try {
 			tdr.delete(tipoDescuento);
 		} catch (Exception e) {
-			attributes.addFlashAttribute("mensaje", "TipoBonificacion está siendo utilizado!");
+			attributes.addFlashAttribute("mensaje", "TipoDescuento está siendo utilizado!");
 			return "redirect:/listaTipoDescuentos";
 		}
 		

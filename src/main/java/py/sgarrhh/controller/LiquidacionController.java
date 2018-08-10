@@ -16,10 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import py.sgarrhh.models.Concepto;
 import py.sgarrhh.models.Liquidacion;
 import py.sgarrhh.models.LiquidacionDetalle;
+import py.sgarrhh.models.Periodo;
 import py.sgarrhh.models.Persona;
 import py.sgarrhh.repository.ConceptoRepository;
 import py.sgarrhh.repository.LiquidacionDetalleRepository;
 import py.sgarrhh.repository.LiquidacionRepository;
+import py.sgarrhh.repository.PeriodoRepository;
 import py.sgarrhh.repository.PersonaRepository;
 
 
@@ -37,6 +39,9 @@ public class LiquidacionController {
 	
 	@Autowired
 	private LiquidacionDetalleRepository ldr;
+	
+	@Autowired
+	private PeriodoRepository per;
 
 	@RequestMapping("/listaLiquidaciones")
 	public ModelAndView listaLiquidaciones() {
@@ -78,6 +83,12 @@ public class LiquidacionController {
 	    model.addAttribute("persona", persona);
 	    Iterable <Persona> personas= pr.findAll();
 	    model.addAttribute("personas", personas);
+	    
+	    Periodo periodo = new Periodo();
+	    model.addAttribute("periodo", periodo);
+	 
+	    Iterable <Periodo> periodos= per.findAll();
+	    model.addAttribute("periodos", periodos);
 	 
 	    return "liquidacion/formLiquidacion";
 	}
@@ -96,12 +107,11 @@ public class LiquidacionController {
 		mvf.addObject("liquidacionDetalle",liquidacionDetalle);
 	  
 		
-	    Iterable <Concepto> concepto= cr.findAll();
-	   /* for(Concepto s:conceptos) {
-	    	System.out.println("concepto: "+s.getId()+" "+s.getDescripcion()+" "+s.getHaberDetalle()+" "+s.getLiquidaciondetalle());
-	    }*/
-	    mvf.addObject("concepto", concepto);
-		
+		Concepto concepto = new Concepto();
+		mvf.addObject("concepto", concepto);
+		 
+		Iterable <Concepto> conceptos= cr.findAll();
+		mvf.addObject("conceptos", conceptos);
 		
 		return mvf;
 	}
