@@ -53,7 +53,6 @@ public class LiquidacionDetalle implements Serializable{
 	}
 
 	
-	
 
 	public Concepto getConcepto() {
 		return concepto;

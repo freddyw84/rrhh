@@ -1,5 +1,7 @@
 package py.sgarrhh.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.assertj.core.util.Arrays;
@@ -13,16 +15,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+
+import py.sgarrhh.models.Cargo;
 import py.sgarrhh.models.Concepto;
 import py.sgarrhh.models.Liquidacion;
 import py.sgarrhh.models.LiquidacionDetalle;
 import py.sgarrhh.models.Periodo;
 import py.sgarrhh.models.Persona;
+import py.sgarrhh.models.TipoLiquidacion;
 import py.sgarrhh.repository.ConceptoRepository;
 import py.sgarrhh.repository.LiquidacionDetalleRepository;
 import py.sgarrhh.repository.LiquidacionRepository;
 import py.sgarrhh.repository.PeriodoRepository;
 import py.sgarrhh.repository.PersonaRepository;
+import py.sgarrhh.repository.TipoLiquidacionRepository;
 
 
 @Controller
@@ -32,10 +39,14 @@ public class LiquidacionController {
 	private LiquidacionRepository lr;
 
 	@Autowired
-	private ConceptoRepository cr;
+	private PersonaRepository pr;
 	
 	@Autowired
-	private PersonaRepository pr;
+	private ConceptoRepository cr;
+	
+
+	@Autowired
+	private TipoLiquidacionRepository tlr;
 	
 	@Autowired
 	private LiquidacionDetalleRepository ldr;
@@ -84,6 +95,13 @@ public class LiquidacionController {
 	    Iterable <Persona> personas= pr.findAll();
 	    model.addAttribute("personas", personas);
 	    
+	    
+	    TipoLiquidacion tipoLiquidacion = new TipoLiquidacion();
+	    model.addAttribute("tipoLiquidacion", tipoLiquidacion);
+	    Iterable <TipoLiquidacion> tipoLiquidaciones= tlr.findAll();
+	    model.addAttribute("tipoLiquidaciones", tipoLiquidaciones);
+	    
+	    
 	    Periodo periodo = new Periodo();
 	    model.addAttribute("periodo", periodo);
 	 
@@ -99,25 +117,21 @@ public class LiquidacionController {
 		//System.out.println("pasé por aquí:");
 		
 		Liquidacion liquidacion =lr.findById(id);
-		ModelAndView mvf= new ModelAndView("liquidacion/detalleLiquidacion");
-		mvf.addObject("liquidacion",liquidacion);
+		ModelAndView mv= new ModelAndView("liquidacion/detalleLiquidacion");
+		mv.addObject("liquidacion",liquidacion);
+		
+		LiquidacionDetalle liquidacionDetalles = ldr.findByLiquidacion(liquidacion);
+		mv.addObject("liquidacionDetalles", liquidacionDetalles);
 		
 		
-		LiquidacionDetalle liquidacionDetalle =ldr.findByLiquidacion(liquidacion);
-		mvf.addObject("liquidacionDetalle",liquidacionDetalle);
-	  
+		Iterable<LiquidacionDetalle> concepto = ldr.findAll();
+		mv.addObject("concepto", concepto);
 		
-		Concepto concepto = new Concepto();
-		mvf.addObject("concepto", concepto);
-		 
-		Iterable <Concepto> conceptos= cr.findAll();
-		mvf.addObject("conceptos", conceptos);
-		
-		return mvf;
-	}
 	
+		return mv;
+	}	
 	@RequestMapping(value="/lq{id}", method=RequestMethod.POST)
-	private String detalleLiquidacionPost(@Valid LiquidacionDetalle liquidacionDetalle,  BindingResult result, RedirectAttributes attributes) {
+	private String detalleLiquidacionPost(@PathVariable("id") long id, @Valid LiquidacionDetalle liquidacionDetalle,  BindingResult result, RedirectAttributes attributes) {
 		
 		//System.out.println("pasé por aquí:");
 		if(result.hasErrors()){
@@ -125,7 +139,12 @@ public class LiquidacionController {
 			return "redirect:/lq{id}";
 		}
 		
+		
+		Liquidacion liquidacion = lr.findById(id);
+		liquidacionDetalle.setLiquidacion(liquidacion);
 		ldr.save(liquidacionDetalle);
+				
+//		ldr.save(liquidacionDetalle);
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 
 		return "redirect:liquidacion/detalleLiquidacion";
@@ -140,14 +159,30 @@ public class LiquidacionController {
 		return "redirect:/listaLiquidaciones";
 	}
 	
+	
+	
 	@RequestMapping("/eliminarLiquidacionDetalle")
 	public String eliminarLiquidacionDetalle(long id, RedirectAttributes attributes){
 		
-		Liquidacion liquidacion =lr.findById(id);
+		
+		LiquidacionDetalle liquidacionDetalle = ldr.findById(id);
+		ldr.delete(liquidacionDetalle);
+		
+		Liquidacion liquidacion = liquidacionDetalle.getLiquidacion();
+		long codigoLong = liquidacion.getId();
+		
+		String codigo = "" + codigoLong;
+		return "redirect:/lq" + codigo;
+		
+	
+		
+		/*Liquidacion liquidacion =lr.findById(id);
 		
 		LiquidacionDetalle liquidacionDetalle = ldr.findByLiquidacion(liquidacion);
+		
+		
 		ldr.delete(liquidacionDetalle);
 		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
-		return "redirect:liquidacion/detalleLiquidacion";
+		return "redirect:/detalleLiquidacion";*/
 	}
 }

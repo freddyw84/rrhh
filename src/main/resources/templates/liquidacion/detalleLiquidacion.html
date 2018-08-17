@@ -38,6 +38,8 @@
 			<h5>Detalle de Liquidacion</h5>
 				<div class="row">
 					<p>ID: <span th:text="${liquidacion.id}"></span></p>
+					<p>Periodo: <span th:text="${liquidacion.periodo.descripcion}"></span></p>
+					<p>Tipo de Liquidacion:<span th:text="${liquidacion.tipoLiquidacion.descripcion}"></span></p>
 					<p>Persona: <span th:text="${liquidacion.persona.nombre}+' '+${liquidacion.persona.apellido}"></span></p>
 					<p>Fecha: <span th:text="${#dates.format(liquidacion.fecha,'dd-MM-yyyy')}"></span></p>
 					<p>Monto: <span th:text="${liquidacion.monto}"></span></p>
@@ -51,22 +53,24 @@
 	<th:block th:include="mensajeValidacion"></th:block>
 
 
+
 	<div class="container formLiquidacionDetalle">
-		<form method="post" th:object="${concepto}" class = "col s12" >
+		<form class="container" method="post" th:object="${liquidacionDetalles}">
 	
 			 <div class="row">
-			
+		
+				
 <!-- 				Concepto: -->
 <!-- 				<select id="concepto" th:field="*{concepto.id}" class="browser-default" >  -->
 <!-- 				<option th:each="concepto : ${conceptos}"  -->
 <!-- 						th:value="${concepto.id}"  -->
 <!-- 						th:text="${concepto.descripcion}"></option> -->
 <!-- 				</select> -->
-				
+				Concepto: <input type="number" value="" name="concepto" placeholder="concepto"/>
 			
-				<input type="hidden" th:value="${liquidacion.id}" th:name="liquidacion" th:id="id" disabled="true"/>
+				<input th:value="${liquidacion.id}" th:name="liquidacion" th:id="id" disabled="true"/>
 					
-				Monto Parcial: <input type="number"  value=0 th:name="montoParcial" th:id="id"/>
+				Monto: <input type="number"  value=0 th:name="monto" th:id="id"/>
 				
 			
 			</div>
@@ -90,10 +94,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="liquidacionDetalle : ${liquidacionDetalle}">
+			<tr th:each="liquidacionDetalle : ${liquidacionDetalles}">
 				<td><span th:text="${liquidacionDetalle.concepto.descripcion}"></span></td>
-				<td><span th:text="${liquidacionDetalle.montoParcial}"></span></td>
-				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('LC#eliminarLiquidacionDetalle').arg(0, liquidacionDetalle.id)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><span th:text="${liquidacionDetalle.monto}"></span></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('LC#eliminarLiquidacionDetalle').arg(0, liquidacionDetalle.id)).build()}"><i class="material-icons left">delete</i></a></td>
+			
+			
 			</tr>
 		</tbody>
 	</table>

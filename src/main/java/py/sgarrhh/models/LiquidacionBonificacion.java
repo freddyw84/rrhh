@@ -64,7 +64,6 @@ public class LiquidacionBonificacion implements Serializable{
 	}
 
 	
-
 	public Double getMonto() {
 		return monto;
 	}

@@ -30,12 +30,15 @@ public class Liquidacion implements Serializable{
 	@ManyToOne
 	private Periodo periodo;
 	
+	@ManyToOne
+	private TipoLiquidacion tipoLiquidacion;
+	
 	@NotNull(message="Fecha es una informacion necesaria")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	
-	@NotNull
+	
 	private Double monto;
 	
 	private String observacion;
@@ -86,6 +89,14 @@ public class Liquidacion implements Serializable{
 
 	public String getObservacion() {
 		return observacion;
+	}
+
+	public TipoLiquidacion getTipoLiquidacion() {
+		return tipoLiquidacion;
+	}
+
+	public void setTipoLiquidacion(TipoLiquidacion tipoLiquidacion) {
+		this.tipoLiquidacion = tipoLiquidacion;
 	}
 
 	public void setObservacion(String observacion) {

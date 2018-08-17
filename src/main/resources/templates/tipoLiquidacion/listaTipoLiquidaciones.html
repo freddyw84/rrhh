@@ -17,9 +17,9 @@
 	<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Lista de Liquidaciones</a>
+		      <a href="#" class="brand-logo">Lista de Tipo de Liquidacion</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/registrarLiquidacion" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registrar Liquidacion</a></li>
+		        <li><a href="/registrarTipoLiquidacion" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registrar Tipo de Liquidacion</a></li>
 		      </ul>
 		    </div>
 		</nav>
@@ -29,48 +29,27 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Periodo</th>
-				<th>Tipo de Liquidacion</th>
-				<th>Persona</th>
-				<th>Fecha</th>
-				<th>Monto</th>
+				<th>Descripcion</th>
+				
 			</tr>
 		</thead>
 		<tbody>
 		<th:block th:include="mensajeValidacion"></th:block>
-		
-		 <tr th:each="liquidacion : ${liquidaciones}">
-				<td><span th:text="${liquidacion.id}"></span></td>
-				<td><span th:text="${liquidacion.periodo.descripcion}"></span></td>
-				<td><span th:text="${liquidacion.tipoLiquidacion.descripcion}"></span></td>
-				
-				<td><a th:href="${(#mvc.url('LC#detalleLiquidacion').arg(0, liquidacion.id)).build()}">
-				  <span th:text="${liquidacion.persona.nombre}+' '+${liquidacion.persona.apellido}"></span></a></td>
-				
-				
-				<td><span th:text="${#dates.format(liquidacion.fecha,'dd-MM-yyyy')}"></span></td>
-				
-				<td><span th:text="${liquidacion.monto}"></span></td>
-				
-				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿Editar el registro?' + '\');'" th:href="${(#mvc.url('LC#detalleLiquidacion').arg(0, liquidacion.id)).build()}"><i class="material-icons left">edit</i></a></td>
-				
-				
-				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'"  th:href="${(#mvc.url('LC#eliminarLiquidacion').arg(0, liquidacion.id)).build()}"><i class="material-icons left">delete</i></a></td>
-				
+		 <tr th:each="tipoLiquidacion : ${tipoLiquidaciones}">
+				<td><span th:text="${tipoLiquidacion.id}"></span></td>
+				<td><a th:href="${(#mvc.url('TLC#detalleTipoLiquidacion').arg(0, tipoLiquidacion.id)).build()}"><span th:text="${tipoLiquidacion.descripcion}"></span></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + 'ï¿½eliminar el registro?' + '\');'" th:href="${(#mvc.url('TLC#eliminartipoLiquidacion').arg(0, tipoLiquidacion.id)).build()}"><i class="material-icons left">delete</i></a></td>
 		</tr>
 		</tbody>
 	
 	</table>
 
-
-	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
 </body>
-	
-	
-		<footer>
+
+	<footer>
 		
 			<nav class="menu">
 		    <div class="nav-wrapper">
@@ -81,5 +60,6 @@
 		    </div>
 		</nav>
 		</footer>
+
 
 </html>
