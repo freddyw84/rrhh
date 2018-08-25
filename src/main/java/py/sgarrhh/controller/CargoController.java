@@ -3,6 +3,7 @@ package py.sgarrhh.controller;
 
 
 
+import javax.sound.midi.Soundbank;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Cargo;
 import py.sgarrhh.models.Departamento;
+import py.sgarrhh.models.Funcion;
 import py.sgarrhh.repository.CargoRepository;
 import py.sgarrhh.repository.DepartamentoRepository;
-
-
+import py.sgarrhh.repository.FuncionRepository;
 
 
 
@@ -30,9 +31,9 @@ public class CargoController {
 	@Autowired
 	private CargoRepository cr;
 
-//
-//	@Autowired
-//	private FuncionRepository fr;
+
+	@Autowired
+	private FuncionRepository fr;
 	
 
 	@Autowired
@@ -50,19 +51,14 @@ public class CargoController {
 		return mv;
 	}
 
-
-	
 	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
 	public String cargoPost( @Valid Cargo cargo,  BindingResult result, RedirectAttributes attributes) {
-	/*System.out.println("pasé por aquí: "+ cargo.getId()+" "+cargo.getDescripcion()
-						+" "+cargo.getDepartamento()
-						+" "+cargo.getFuncion());*/
-		
+		System.out.println("pos1");
+
 		if(result.hasErrors()){
 			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
 			return "redirect:/registrarCargo";
 		}
-		
 		
 		cr.save(cargo);
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
@@ -75,8 +71,8 @@ public class CargoController {
 	 
 	    Cargo form = new Cargo();
 	    model.addAttribute("cargo", form);
-//	    Iterable <Funcion> funciones= fr.findAll();
-//	    model.addAttribute("funciones", funciones);
+	    Iterable <Funcion> funciones= fr.findAll();
+	    model.addAttribute("funciones", funciones);
 	    
 	    Departamento departamento = new Departamento();
 	    model.addAttribute("departamento", departamento);
@@ -89,12 +85,12 @@ public class CargoController {
 	
 	@RequestMapping("/c{id}")
 	private ModelAndView detalleCargo(@PathVariable("id") long id) {
-        Cargo cargo =cr.findById(id);
+		Cargo cargos =cr.findById(id);
 		ModelAndView mvf= new ModelAndView("cargo/detalleCargo");
-		mvf.addObject("cargos",cargo);
+		mvf.addObject("cargos",cargos);
 		
-//		Iterable <Funcion> funciones= fr.findAll();
-//		mvf.addObject("funciones",funciones);
+		Iterable <Funcion> funciones= fr.findAll();
+		mvf.addObject("funciones",funciones);
 		
 		Iterable <Departamento> departamentos= dr.findAll();
 		mvf.addObject("departamentos",departamentos);
@@ -103,16 +99,32 @@ public class CargoController {
 		return mvf;
 	}
 	@RequestMapping(value="/c{id}", method=RequestMethod.POST)
-	private String detalleCargoPost(@Valid Cargo cargo,  BindingResult result, RedirectAttributes attributes) {
+	private String detalleCargoPost(@PathVariable("id") long id, @Valid Funcion funcion,  BindingResult result, RedirectAttributes attributes) {
+		
+		System.out.println("pasé por posttttt: "+result);
 		if(result.hasErrors()){
 			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
 			return "redirect:/c{id}";
 		}
 		
-		cr.save(cargo);
+		Cargo cargo = cr.findById(id);
+		funcion.setCargo(cargo);
+		fr.save(funcion);
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
-
 		return "redirect:/listaCargos";
+	}
+
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ModelAndView detallesCargo(@PathVariable("id") long id){
+		Cargo cargo = cr.findById(id);
+		ModelAndView mv = new ModelAndView("cargo/detalleCargo");
+		mv.addObject("cargo", cargo);
+
+		Iterable<Funcion> funciones = fr.findByCargo(cargo);
+		mv.addObject("funciones", funciones);
+		
+		return mv;
 	}
 	
 	@RequestMapping("/eliminarCargo")
@@ -121,5 +133,15 @@ public class CargoController {
 		cr.delete(cargo);
 		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
 		return "redirect:/listaCargos";
+	}
+	@RequestMapping("/eliminarFuncionDeCargo")
+	public String deletarFuncion(long id){
+		Funcion funcion = fr.findById(id);
+		fr.delete(funcion);
+		
+		Cargo cargo = funcion.getCargo();
+		long codigoLong = cargo.getId();
+		String codigo = "" + codigoLong;
+		return "redirect:/" + codigo;
 	}
 }

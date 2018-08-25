@@ -29,7 +29,7 @@ public class FuncionController {
 	@RequestMapping(value="/registrarFuncion", method=RequestMethod.POST)
 	public String form(@Valid Funcion funcion, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()){
-			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
+			attributes.addFlashAttribute("mensaje", "Verifique66 los campos!");
 			return "redirect:/f{id}";
 		}
 		fr.save(funcion);

@@ -51,17 +51,7 @@
 			<option th:each="departamento : ${departamentos}" 
 					th:value="${departamento.id}" 
 					th:text="${departamento.descripcion}"></option>
-	
 				</select>
-		
-<!-- 			Funcion: -->
-<!-- 			<select id="funcion" th:field="*{funcion.id}" class="browser-default" > -->
-			 
-<!-- 			<option th:each="funcion : ${funciones}"  -->
-<!-- 					th:value="${funcion.id}"  -->
-<!-- 					th:text="${funcion.descripcion}"></option> -->
-	
-<!-- 				</select> -->
 		</div>
 		
  		<button class="waves-effect waves-light btn" type="submit">Guardar</button> 
@@ -70,8 +60,44 @@
 	</div>	
 	
 	</div>	
-	
-		
+	<div class="container formCargo">
+	 <div class="row">
+			<h5>Detalles de cargo:</h5>
+			Funcion:
+			<select id="funcion" th:field="*{funciones}" class="browser-default" >
+			 
+			<option th:each="funcion : ${funciones}" 
+					th:value="${funcion.id}" 
+					th:text="${funcion.descripcion}"></option>
+				</select>
+				<button class="waves-effect waves-light btn" type="submit">Agregar</button>
+		</div>
+
+</div>
+	<div class="container formDetalleCargo">
+
+		<th:block th:include="mensajeValidacion"></th:block>
+
+		<form class="container" method="post" th:object="${funcion}">
+
+			<div class="row">
+
+							<!-- Concepto:
+							<select id="funcion" th:field="*{funcion.id}" class="browser-default" > 
+							<option th:each="funcion : ${funciones}" 
+									th:value="${funcion.id}" 
+									th:text="${funcion.descripcion}"></option>
+							</select>
+ -->
+<!-- 				<input type="hidden" th:value="${haber.id}" th:name="haber" -->
+<!-- 					th:id="id"  /> -->
+
+				<!-- 			Monto Parcial: <input type="number" th:value="${haberDetalle.montoParcial}" th:name="montoParcial" th:id="id"/> -->
+
+
+			</div>
+			</form>
+			</div>
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		    <script type="text/javascript" src="js/materialize.min.js"></script>
 

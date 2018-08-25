@@ -15,6 +15,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 
+
 @Entity
 public class Cargo  implements Serializable {
 	
@@ -34,7 +35,8 @@ public class Cargo  implements Serializable {
 	@ManyToOne
 	private Departamento departamento;
 	
-
+	@OneToMany
+	private List<Funcion> funciones;
 	@OneToMany(mappedBy="cargo") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Contrato> contrato;
 	
@@ -42,6 +44,14 @@ public class Cargo  implements Serializable {
 	@OneToMany(mappedBy="cargo")
 	private List<CargoDetalle> cargoDetalle;
 	
+	public List<Funcion> getFunciones() {
+		return funciones;
+	}
+
+	public void setFunciones(List<Funcion> funciones) {
+		this.funciones = funciones;
+	}
+
 	public long getId() {
 		return id;
 	}

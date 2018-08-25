@@ -21,7 +21,7 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Cargo:</a>
+		      <a href="#" class="brand-logo">Detalle de Cargo:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
 		        <li><a href="/listaCargos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Cargos</a></li>
 		      </ul>
@@ -49,7 +49,7 @@
 				</select>
 		
 <!-- 			Funcion: -->
-<!-- 			<select id="funcion" th:field="*{cargos.funcion.id}" class="browser-default" > -->
+<!-- 			<select id="funcion" th:field="*{cargo.funcion.id}" class="browser-default" > -->
 			 
 <!-- 			<option th:each="funcion : ${funciones}"  -->
 <!-- 					th:value="${funcion.id}"  -->
@@ -67,9 +67,41 @@
 	
 	</form>	
 	
-	
 			
-	</div>	
+	</div>	<div class="container formFuncion">
+		<form method="post" th:object="${funciones}">
+		
+		Funcion:
+			 <select id="cargo" th:field="*{cargo.funciones}" class="browser-default" >
+			 
+			<!-- <option th:each="funcion : ${funcion}" 
+					th:value="${funcion.id}" 
+					th:text="${funcion.descripcion}"></option> -->
+	
+				</select>  
+			<!-- Id: <input type="text" value="" name="id" placeholder="Nome Completo"/>
+			Descripcion: <input type="text" value="" name="descripcion" placeholder="AA-00.000.000" class="validate"/> -->
+			<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+		</form>
+		</div>
+
+	<table class="container tabelaConvidado">
+		<thead>
+			<tr>
+				<th>Función</th>
+				<th>descripción</th>
+				<th>Deletar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="funcion : ${funciones}">
+				<td><span th:text="${funcion.id}"></span></td>
+				<td><span th:text="${funcion.descripcion}"></span></td>
+				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('CC#eliminarFuncion').arg(0, funcion.id)).build()}"><i class="material-icons left">delete</i></a></td>
+			</tr>
+		</tbody>
+	</table>
+	
 			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		    <script type="text/javascript" src="js/materialize.min.js"></script>
 

@@ -6,9 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
 
 
 
@@ -21,6 +22,9 @@ public class Funcion implements Serializable {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
+
+	@ManyToOne
+	private Cargo cargo;
 	
 	
     /*@OneToMany(mappedBy="funcion")//, cascade={CascadeType.PERSIST}, orphanRemoval=true
@@ -31,6 +35,14 @@ public class Funcion implements Serializable {
 	private String descripcion;
 
 	
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
 
 	public long getId() {
 		return id;
