@@ -26,6 +26,15 @@ public class Liquidacion implements Serializable{
 
 	@OneToMany(mappedBy="liquidacion")
 	private List<LiquidacionDetalle> liquidacionDetalle;
+	
+	@OneToMany(mappedBy="liquidacion")
+	private List<LiquidacionBonificacion> liquidacionBonificacion;
+	
+	@OneToMany(mappedBy="liquidacion")
+	private List<LiquidacionDescuento> liquidacionDescuento;
+	
+	@OneToMany(mappedBy="liquidacion")
+	private List<LiquidacionDetalle> liquidacion;
 
 	@ManyToOne
 	private Periodo periodo;
