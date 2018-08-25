@@ -30,7 +30,9 @@
 			<tr>
 				<th>ID</th>
 				<th>Descripcion</th>
+				<th>Fecha</th>
 				<th>Tipo de Bonificacion</th>
+				<th>Periodo</th>
 				<th>Monto</th>
 				<th>Persona</th>
 								
@@ -43,8 +45,12 @@
 				<td><span th:text="${bonificacion.id}"></span></td>
 				<td><a th:href="${(#mvc.url('BC#detalleBonificacion').arg(0, bonificacion.id)).build()}">
 						<span th:text="${bonificacion.descripcion}"></span></a></td>
-						
+				
+				<td><span th:text="${#dates.format(bonificacion.fecha,'dd-MM-yyyy')}"></span></td>
+				
 				<td><span th:text="${bonificacion.tipoBonificacion.descripcion}"></span></td>
+							
+				<td><span th:text="${bonificacion.periodo.descripcion}"></span></td>
 				<td><span th:text="${bonificacion.monto}"></span></td>
 				<td><span th:text="${bonificacion.persona.nombre}+' '+${bonificacion.persona.apellido}"></span></td>
 				

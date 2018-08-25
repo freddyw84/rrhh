@@ -21,12 +21,6 @@ public class Concepto implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-
-	
-	@OneToMany(mappedBy="concepto")
-	private List<LiquidacionDetalle> liquidacionDetalle;
-	
-
 	@NotEmpty
 	@NotNull
 	private String descripcion;
@@ -41,17 +35,7 @@ public class Concepto implements Serializable{
 		this.id = id;
 	}
 
-	public List<LiquidacionDetalle> getLiquidacionDetalle() {
-		return liquidacionDetalle;
-	}
-
-	public List<LiquidacionDetalle> getLiquidaciondetalle() {
-		return liquidacionDetalle;
-	}
-
-	public void setLiquidacionDetalle(List<LiquidacionDetalle> liquidacionDetalle) {
-		this.liquidacionDetalle = liquidacionDetalle;
-	}
+	
 
 	
 	public String getDescripcion() {

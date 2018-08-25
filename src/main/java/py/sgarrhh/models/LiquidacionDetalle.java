@@ -26,10 +26,6 @@ public class LiquidacionDetalle implements Serializable{
 	@ManyToOne
 	private Liquidacion liquidacion;
 	
-	@NotNull
-	@ManyToOne
-	private Concepto concepto;
-	
 	//@NotEmpty
 	@NotNull
 	private Double monto;
@@ -53,14 +49,6 @@ public class LiquidacionDetalle implements Serializable{
 	}
 
 	
-
-	public Concepto getConcepto() {
-		return concepto;
-	}
-
-	public void setConcepto(Concepto concepto) {
-		this.concepto = concepto;
-	}
 
 	public Double getMonto() {
 		return monto;

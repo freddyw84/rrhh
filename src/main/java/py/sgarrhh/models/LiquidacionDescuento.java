@@ -28,17 +28,8 @@ public class LiquidacionDescuento implements Serializable{
 	
 	@NotNull
 	@ManyToOne
-	private Concepto concepto;
-	
-	@NotNull
-	@ManyToOne
 	private Descuento descuento;
-	
-	//@NotEmpty
-	@NotNull
-	private Double monto;
-
-	
+		
 
 	public long getId() {
 		return id;
@@ -56,16 +47,7 @@ public class LiquidacionDescuento implements Serializable{
 		this.liquidacion = liquidacion;
 	}
 
-	
-	public Concepto getConcepto() {
-		return concepto;
-	}
-
-	public void setConcepto(Concepto concepto) {
-		this.concepto = concepto;
-	}
-
-	
+		
 	public Descuento getDescuento() {
 		return descuento;
 	}
@@ -74,15 +56,7 @@ public class LiquidacionDescuento implements Serializable{
 		this.descuento = descuento;
 	}
 
-	public Double getMonto() {
-		return monto;
-	}
-
-	public void setMonto(Double monto) {
-		this.monto = monto;
-	}
-
-	
+		
 	
 	
 }

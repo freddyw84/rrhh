@@ -43,6 +43,16 @@
 	<form name ="f" method="post" th:object="${bonificacion}" class = "col s12">
 		Descripcion: <input type="text" value="" name="descripcion"/>
 		
+		Periodo:
+			<select id="periodo" th:field="*{periodo.id}" class="browser-default" >
+			 
+			<option th:each="periodo : ${periodos}" 
+					th:value="${periodo.id}" 
+					th:text="${periodo.descripcion}"></option>
+	
+				</select>
+	
+		
 		Tipo de Bonificacion:
 			<select id="tipoBonificacion" th:field="*{tipoBonificacion.id}" class="browser-default" >
 			 

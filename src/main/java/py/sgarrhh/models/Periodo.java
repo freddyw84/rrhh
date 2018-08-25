@@ -20,6 +20,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Periodo  implements Serializable {
 	
+	public List<Bonificacion> getBonificacion() {
+		return bonificacion;
+	}
+
+	public void setBonificacion(List<Bonificacion> bonificacion) {
+		this.bonificacion = bonificacion;
+	}
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -42,6 +50,13 @@ public class Periodo  implements Serializable {
 	
 	@OneToMany(mappedBy="periodo") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Liquidacion> liquidacion;
+	
+	@OneToMany(mappedBy="periodo") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Bonificacion> bonificacion;
+	
+	
+	@OneToMany(mappedBy="periodo") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
+	private List<Descuento> descuento;
 	
 	public long getId() {
 		return id;

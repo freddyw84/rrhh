@@ -54,6 +54,10 @@ public class Descuento implements Serializable{
 	
 	private String observacion;
 	
+
+	@ManyToOne
+	private Periodo periodo;
+	
 	@OneToMany(mappedBy="descuento")
 	private List<LiquidacionDescuento> liquidacionDescuento;
 	
@@ -129,6 +133,14 @@ public class Descuento implements Serializable{
 
 	public void setLiquidacionDescuento(List<LiquidacionDescuento> liquidacionDescuento) {
 		this.liquidacionDescuento = liquidacionDescuento;
+	}
+
+	public Periodo getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
 	}
 
 

@@ -16,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Descuento;
+import py.sgarrhh.models.Periodo;
 import py.sgarrhh.models.Persona;
 import py.sgarrhh.models.TipoDescuento;
 import py.sgarrhh.repository.DescuentoRepository;
+import py.sgarrhh.repository.PeriodoRepository;
 import py.sgarrhh.repository.PersonaRepository;
 import py.sgarrhh.repository.TipoDescuentoRepository;
 
@@ -35,6 +37,10 @@ public class DescuentoController {
 
 	@Autowired
 	private PersonaRepository pr;
+	
+	@Autowired
+	private PeriodoRepository prr;
+	
 	
 
 
@@ -83,6 +89,13 @@ public class DescuentoController {
 	    
 	    Iterable <Persona> personas= pr.findAll();
 	    model.addAttribute("personas", personas);
+	    
+	    Periodo periodo = new Periodo();
+	    model.addAttribute("periodo", periodo);
+	    Iterable <Periodo> periodos= prr.findAll();
+	    model.addAttribute("periodos", periodos);  
+	    
+	    
 	
 	    return "descuento/formDescuento";
 	}
@@ -99,6 +112,11 @@ public class DescuentoController {
 		
 		Iterable <Persona> personas= pr.findAll();
 		mvf.addObject("personas",personas);
+		
+		   
+	     Iterable <Periodo> periodos= prr.findAll();
+		 mvf.addObject("periodos", periodos);  
+			
 		
 		return mvf;
 	}

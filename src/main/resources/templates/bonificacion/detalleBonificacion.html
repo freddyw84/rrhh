@@ -45,6 +45,13 @@
 
 		<input type="text" th:value="${bonificaciones.descripcion}" th:name="descripcion" th:id="id" />
 		
+		Periodo:
+			<select id="periodo" th:field="*{bonificaciones.periodo.id}" class="browser-default">
+			<option th:each="periodo : ${periodos}" 
+					th:value="${periodo.id}" 
+					th:text="${periodo.descripcion}"></option>
+			</select>	
+		
 		Tipo de Bonificacion:
 			<select id="bonificacion" th:field="*{bonificaciones.tipoBonificacion.id}" class="browser-default">
 			<option th:each="tipoBonificacion : ${tipoBonificaciones}" 

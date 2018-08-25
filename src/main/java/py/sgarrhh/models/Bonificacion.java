@@ -47,6 +47,9 @@ public class Bonificacion implements Serializable {
 	@NotNull
 	private String estado;
 	
+	@ManyToOne
+	private Periodo periodo;
+	
 	@NotNull(message="Fecha es una informacion necesaria")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -127,6 +130,15 @@ public class Bonificacion implements Serializable {
 		this.observacion = observacion;
 	}
 
+	public Periodo getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
+	}
+
+	
 	
 	
 

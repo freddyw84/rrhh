@@ -33,6 +33,7 @@
 				<th>Monto</th>
 				<th>Fecha</th>
 				<th>Tipo de Descuento</th>
+				<th>Periodo</th>
 				<th>Persona</th>
 				<th>Estado</th>
 			</tr>
@@ -47,6 +48,7 @@
 				<td><span th:text="${descuento.monto}"></span></td>
 				<td><span th:text="${descuento.fecha}"></span></td>
 				<td><span th:text="${descuento.tipoDescuento.id}+'|'+${descuento.tipoDescuento.descripcion}"></span></td>
+				<td><span th:text="${descuento.periodo.descripcion}"></span></td>
 				<td><span th:text="${descuento.persona.id}+'|'+${descuento.persona.nombre}+${descuento.persona.apellido}"></span></td>
 				<td><span th:text="${descuento.estado}"></span></td>
 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'"  th:href="${(#mvc.url('DC#eliminarDescuento').arg(0, descuento.id)).build()}"><i class="material-icons left">delete</i></a></td>

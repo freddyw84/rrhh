@@ -26,18 +26,12 @@ public class LiquidacionBonificacion implements Serializable{
 	@ManyToOne
 	private Liquidacion liquidacion;
 	
-	@NotNull
-	@ManyToOne
-	private Concepto concepto;
-	
+		
 	@NotNull
 	@ManyToOne
 	private Bonificacion bonificacion;
 	
-	//@NotEmpty
-	@NotNull
-	private Double monto;
-
+	
 	public long getId() {
 		return id;
 	}
@@ -55,23 +49,7 @@ public class LiquidacionBonificacion implements Serializable{
 	}
 
 	
-	public Concepto getConcepto() {
-		return concepto;
-	}
-
-	public void setConcepto(Concepto concepto) {
-		this.concepto = concepto;
-	}
-
 	
-	public Double getMonto() {
-		return monto;
-	}
-
-	public void setMonto(Double monto) {
-		this.monto = monto;
-	}
-
 	public Bonificacion getBonificacion() {
 		return bonificacion;
 	}
@@ -79,6 +57,7 @@ public class LiquidacionBonificacion implements Serializable{
 	public void setBonificacion(Bonificacion bonificacion) {
 		this.bonificacion = bonificacion;
 	}
-	
+
+
 	
 }

@@ -14,10 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import py.sgarrhh.models.Bonificacion;
-
+import py.sgarrhh.models.Periodo;
 import py.sgarrhh.models.Persona;
 import py.sgarrhh.models.TipoBonificacion;
 import py.sgarrhh.repository.BonificacionRepository;
+import py.sgarrhh.repository.PeriodoRepository;
 import py.sgarrhh.repository.PersonaRepository;
 import py.sgarrhh.repository.TipoBonificacionRepository;
 
@@ -30,6 +31,10 @@ public class BonificacionController {
 	
 	@Autowired
 	private TipoBonificacionRepository tbr;
+	
+	@Autowired
+	private PeriodoRepository prr;
+	
 	
 	@Autowired
 	private PersonaRepository pr;
@@ -57,6 +62,10 @@ public class BonificacionController {
 	    Iterable <Persona> personas= pr.findAll();
 	    model.addAttribute("personas", personas);  
 	    
+	    Periodo periodo = new Periodo();
+	    model.addAttribute("periodo", periodo);
+	    Iterable <Periodo> periodos= prr.findAll();
+	    model.addAttribute("periodos", periodos);  
 	    
 	    
 	    return "bonificacion/formBonificacion";
@@ -109,6 +118,10 @@ public class BonificacionController {
 		  
 	   Iterable <Persona> personas= pr.findAll();
 	   mvf.addObject("personas", personas);  
+		
+	   
+	   Iterable <Periodo> periodos= prr.findAll();
+	   mvf.addObject("periodos", periodos);  
 		
 		
 		return mvf;

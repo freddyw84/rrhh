@@ -42,6 +42,13 @@
 			</div>	
 			
 	 <div class="row">
+		
+		Periodo:
+			<select id="periodo" th:field="*{descuentos.periodo.id}" class="browser-default">
+			<option th:each="periodo : ${periodos}" 
+					th:value="${periodo.id}" 
+					th:text="${periodo.descripcion}"></option>
+			</select>	
 			 
 		Tipo de Descuento:
 			<select id="tipoDescuento" th:field="*{descuentos.tipoDescuento.id}" class="browser-default" >

@@ -1,10 +1,9 @@
 package py.sgarrhh.controller;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
-import org.assertj.core.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,16 +14,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
-import py.sgarrhh.models.Cargo;
-import py.sgarrhh.models.Concepto;
+import py.sgarrhh.models.Bonificacion;
+import py.sgarrhh.models.Descuento;
 import py.sgarrhh.models.Liquidacion;
+import py.sgarrhh.models.LiquidacionBonificacion;
+import py.sgarrhh.models.LiquidacionDescuento;
 import py.sgarrhh.models.LiquidacionDetalle;
 import py.sgarrhh.models.Periodo;
 import py.sgarrhh.models.Persona;
 import py.sgarrhh.models.TipoLiquidacion;
-import py.sgarrhh.repository.ConceptoRepository;
+import py.sgarrhh.repository.BonificacionRepository;
+import py.sgarrhh.repository.DescuentoRepository;
+import py.sgarrhh.repository.LiquidacionBonificacionRepository;
+import py.sgarrhh.repository.LiquidacionDescuentoRepository;
 import py.sgarrhh.repository.LiquidacionDetalleRepository;
 import py.sgarrhh.repository.LiquidacionRepository;
 import py.sgarrhh.repository.PeriodoRepository;
@@ -41,15 +43,24 @@ public class LiquidacionController {
 	@Autowired
 	private PersonaRepository pr;
 	
+		
 	@Autowired
-	private ConceptoRepository cr;
+	private BonificacionRepository br;
 	
+	@Autowired
+	private DescuentoRepository dr;
 
 	@Autowired
 	private TipoLiquidacionRepository tlr;
 	
 	@Autowired
 	private LiquidacionDetalleRepository ldr;
+	
+	@Autowired
+	private LiquidacionBonificacionRepository lbr;
+	
+	@Autowired
+	private LiquidacionDescuentoRepository lder;
 	
 	@Autowired
 	private PeriodoRepository per;
@@ -77,8 +88,24 @@ public class LiquidacionController {
 			return "redirect:/registrarLiquidacion";
 		}
 		
-		
 		lr.save(liquidacion);
+			
+		Bonificacion bonificacion = br.findByPeriodo(liquidacion.getPeriodo());
+		
+		LiquidacionBonificacion liquidacionBonificacion = new LiquidacionBonificacion();
+		liquidacionBonificacion.setBonificacion(bonificacion);
+		liquidacionBonificacion.setLiquidacion(liquidacion);
+		lbr.save(liquidacionBonificacion);
+		
+		Descuento descuento = dr.findByPeriodo(liquidacion.getPeriodo());
+		
+		LiquidacionDescuento liquidacionDescuento = new LiquidacionDescuento();
+		liquidacionDescuento.setDescuento(descuento);
+		liquidacionDescuento.setLiquidacion(liquidacion);
+		lder.save(liquidacionDescuento);
+		
+		
+		
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 
 		return "liquidacion/formLiquidacion";
@@ -120,14 +147,24 @@ public class LiquidacionController {
 		ModelAndView mv= new ModelAndView("liquidacion/detalleLiquidacion");
 		mv.addObject("liquidacion",liquidacion);
 		
+		
+        ///Detalle de las liquidaciones
+
 		LiquidacionDetalle liquidacionDetalles = ldr.findByLiquidacion(liquidacion);
 		mv.addObject("liquidacionDetalles", liquidacionDetalles);
 		
-		
-		Iterable<LiquidacionDetalle> concepto = ldr.findAll();
-		mv.addObject("concepto", concepto);
-		
 	
+        ///Bonificacion de las liquidaciones
+
+		LiquidacionBonificacion liquidacionBonificaciones = lbr.findByLiquidacion(liquidacion);
+		mv.addObject("liquidacionBonificaciones", liquidacionBonificaciones);
+		
+		
+        ///Descuento de las liquidaciones
+		LiquidacionDescuento liquidacionDescuentos = lder.findByLiquidacion(liquidacion);
+		mv.addObject("liquidacionDescuentos", liquidacionDescuentos);
+		
+		
 		return mv;
 	}	
 	@RequestMapping(value="/lq{id}", method=RequestMethod.POST)
@@ -164,17 +201,38 @@ public class LiquidacionController {
 	@RequestMapping("/eliminarLiquidacionDetalle")
 	public String eliminarLiquidacionDetalle(long id, RedirectAttributes attributes){
 		
+		String codigo="";
+		long codigoLong = 0L;
 		
 		LiquidacionDetalle liquidacionDetalle = ldr.findById(id);
-		ldr.delete(liquidacionDetalle);
-		
-		Liquidacion liquidacion = liquidacionDetalle.getLiquidacion();
-		long codigoLong = liquidacion.getId();
-		
-		String codigo = "" + codigoLong;
-		return "redirect:/lq" + codigo;
-		
+		if (liquidacionDetalle != null) {
+			ldr.delete(liquidacionDetalle);
+			Liquidacion liquidacion = liquidacionDetalle.getLiquidacion();
+			codigoLong = liquidacion.getId();
+			codigo = "" + codigoLong;
+		}
 	
+		
+		
+		LiquidacionBonificacion liquidacionBonificacion  = lbr.findById(id);
+		
+		if (liquidacionBonificacion != null) {
+			lbr.delete(liquidacionBonificacion);
+			Liquidacion liquidacion = liquidacionBonificacion.getLiquidacion();
+			codigoLong = liquidacion.getId();
+			codigo = "" + codigoLong;
+		}
+		
+		LiquidacionDescuento liquidacionDescuento = lder.findById(id);
+		
+		if (liquidacionDescuento != null) {
+			lder.delete(liquidacionDescuento);
+			Liquidacion liquidacion = liquidacionDescuento.getLiquidacion();
+			codigoLong = liquidacion.getId();
+			codigo = "" + codigoLong;
+		}
+		
+		return "redirect:/lq" + codigo;
 		
 		/*Liquidacion liquidacion =lr.findById(id);
 		
@@ -185,4 +243,7 @@ public class LiquidacionController {
 		attributes.addFlashAttribute("mensaje", "Eliminado con exito");
 		return "redirect:/detalleLiquidacion";*/
 	}
+	
+	
+
 }
