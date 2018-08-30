@@ -9,6 +9,8 @@ import py.sgarrhh.models.CargoDetalle;
 public interface CargoDetalleRepository extends CrudRepository<CargoDetalle, String>{
 	CargoDetalle findById(long id);
 	Iterable<CargoDetalle> findByCargo(Cargo cargo);
+	Iterable<CargoDetalle> findByFuncion(Iterable<CargoDetalle> cargoDetalles);
+	
 
 	
 }

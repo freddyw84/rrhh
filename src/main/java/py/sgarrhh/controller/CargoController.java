@@ -3,6 +3,7 @@ package py.sgarrhh.controller;
 
 
 
+import javax.sound.midi.Soundbank;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,7 @@ System.out.println("pase por lista cargo");
 	 
 	    Cargo form = new Cargo();
 	    model.addAttribute("cargo", form);
+	    
 	    Iterable <Funcion> funciones= fr.findAll();
 	    model.addAttribute("funciones", funciones);
 	    
@@ -116,6 +118,8 @@ System.out.println("pase por lista cargo");
 		if(action.equals("guardar")) {
 			cr.save(cargo);
 		}else {
+			System.out.println("funcion id "+funcion.getId());
+			System.out.println("otro id "+id);
 			CargoDetalle cargoDetalle=new CargoDetalle();
 			cargoDetalle.setCargo(cargo);
 			cargoDetalle.setFuncion(funcion);
@@ -129,18 +133,28 @@ System.out.println("pase por lista cargo");
 	
 	@RequestMapping(value="/c{id}", method=RequestMethod.GET)
 	public ModelAndView detalleCargo(@PathVariable("id") long id){
+		System.out.println("pase por cargo detalle");
 		Cargo cargo = cr.findById(id);
 		ModelAndView mv = new ModelAndView("cargo/detalleCargo");
 		mv.addObject("cargo", cargo);
 		
 		Iterable<Departamento> departamentos = dr.findAll();
 		mv.addObject("departamentos", departamentos);
-		
-		Iterable<Funcion> funciones = fr.findByCargo(cargo);
+			    
+		Iterable<Funcion> funciones = fr.findAll();
 		mv.addObject("funciones", funciones);
+		for(Funcion fu:funciones) {
+			System.out.println("f: "+fu.getId()+" "+fu.getDescripcion());
+		}
 		
 		Iterable <CargoDetalle> cargoDetalles= cf.findByCargo(cargo);
 		mv.addObject("cargoDetalles",cargoDetalles);
+		
+		/*Iterable <CargoDetalle> funciones= cf.findByFuncion(cargoDetalles);
+		mv.addObject("funciones",funciones);
+		*/
+		
+		
 		return mv;
 	}
 	
