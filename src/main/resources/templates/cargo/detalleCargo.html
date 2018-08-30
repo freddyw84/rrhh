@@ -35,18 +35,18 @@
 	<form class="container" method="post">
 	
 
-		<input type="text" th:value="${cargos.descripcion}" th:name="descripcion" th:id="id" />
+		<input type="text" th:value="${cargo.descripcion}" th:name="descripcion" th:id="id" />
 		
 		 <div class="row">
 		
-			Departamento:
-			<select id="departamento" th:field="*{cargos.departamento.id}" class="browser-default" >
+			 Departamento:
+			<select id="departamento" th:field="*{cargo.departamento.id}" class="browser-default" >
 			 
 			<option th:each="departamento : ${departamentos}" 
 					th:value="${departamento.id}" 
 					th:text="${departamento.descripcion}"></option>
 	
-				</select>
+				</select> 
 		
 <!-- 			Funcion: -->
 <!-- 			<select id="funcion" th:field="*{cargo.funcion.id}" class="browser-default" > -->
@@ -63,25 +63,23 @@
 		
 		
 		
-		<button class="waves-effect waves-light btn" type="submit">Guardar</button>
+		<button class="waves-effect waves-light btn" name="action" value="guardar" type="submit">Guardar</button>
 	
 	</form>	
-	
+
 			
-	</div>	<div class="container formFuncion">
+	</div>		<div class="container formFuncion">
 		<form method="post" th:object="${funciones}">
 		
 		Funcion:
-			 <select id="cargo" th:field="*{cargo.funciones}" class="browser-default" >
+			  <select id="funcion"  class="browser-default" >
 			 
-			<!-- <option th:each="funcion : ${funcion}" 
+			 <option th:each="funcion : ${funciones}" 
 					th:value="${funcion.id}" 
-					th:text="${funcion.descripcion}"></option> -->
-	
+					th:text="${funcion.descripcion}"></option> 
+	 
 				</select>  
-			<!-- Id: <input type="text" value="" name="id" placeholder="Nome Completo"/>
-			Descripcion: <input type="text" value="" name="descripcion" placeholder="AA-00.000.000" class="validate"/> -->
-			<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+						<button class="waves-effect waves-light btn" name="action" value ="agregar" type="submit">agregar</button>
 		</form>
 		</div>
 
@@ -94,11 +92,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="funcion : ${funciones}">
-				<td><span th:text="${funcion.id}"></span></td>
-				<td><span th:text="${funcion.descripcion}"></span></td>
-				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('CC#eliminarFuncion').arg(0, funcion.id)).build()}"><i class="material-icons left">delete</i></a></td>
-			</tr>
+			 <tr th:each="cargoDetalle : ${cargoDetalles}">
+				<td><span th:text="${cargoDetalle.funcion.id}"></span></td>
+				<td><span th:text="${cargoDetalle.funcion.descripcion}"></span></td>
+ 				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('CC#eliminarDetalleCargo').arg(0, cargoDetalle.id)).build()}"><i class="material-icons left">delete</i></a></td> 
+			</tr> 
 		</tbody>
 	</table>
 	

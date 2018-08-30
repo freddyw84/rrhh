@@ -30,8 +30,8 @@ public class Funcion implements Serializable {
     /*@OneToMany(mappedBy="funcion")//, cascade={CascadeType.PERSIST}, orphanRemoval=true
 	private List<Cargo> cargo;*/
     
-	@NotEmpty
-	@NotNull
+	//@NotEmpty
+	//@NotNull
 	private String descripcion;
 
 	
