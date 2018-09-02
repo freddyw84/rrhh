@@ -33,7 +33,7 @@ public class Funcion implements Serializable {
 	//@NotEmpty
 	//@NotNull
 	private String descripcion;
-
+	
 	
 
 	public Cargo getCargo() {
@@ -58,6 +58,14 @@ public class Funcion implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public List<CargoDetalle> getCargoDetalle() {
+		return cargoDetalle;
+	}
+
+	public void setCargoDetalle(List<CargoDetalle> cargoDetalle) {
+		this.cargoDetalle = cargoDetalle;
 	}
 
 	/*public List<Cargo> getCargo() {

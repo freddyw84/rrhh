@@ -57,20 +57,23 @@
 	</form>	
 
 			
-	</div>		<div class="container formFuncion">
+	</div>		
 	
-		<form method="post" th:object="${funciones}">
-		
-		Funcion:
-			  <select id="funcion" th:field="*{funcion.id}"  class="browser-default" >
+	
+	<div class="container formFuncion">
+	
+		<form method="post" th:object="${cargoDetalle}" class = "col s12">
+
+ Funcion:
+			<select id="funcion" th:field="*{funcion.id}" class="browser-default" >
 			 
-			 <option th:each="funcion : ${funciones}" 
+			<option th:each="funcion: ${funciones}" 
 					th:value="${funcion.id}" 
-					th:text="${funcion.descripcion}"
-					></option> 
-	 
-				</select>  
-						<button class="waves-effect waves-light btn" name="action" value ="agregar" type="submit">agregar</button>
+					th:text="${funcion.descripcion}"></option>
+				</select>
+				
+
+		 <button class="waves-effect waves-light btn" name="action" value ="agregar" type="submit">agregar</button>
 		</form>
 		</div>
 
