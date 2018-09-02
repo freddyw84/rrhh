@@ -22,11 +22,11 @@ public class LiquidacionDescuento implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
+	//@NotNull
 	@ManyToOne
 	private Liquidacion liquidacion;
 	
-	@NotNull
+	//@NotNull
 	@ManyToOne
 	private Descuento descuento;
 		

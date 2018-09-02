@@ -22,7 +22,7 @@ public class LiquidacionDetalle implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
+	//@NotNull
 	@ManyToOne
 	private Liquidacion liquidacion;
 	
@@ -48,8 +48,6 @@ public class LiquidacionDetalle implements Serializable{
 		this.liquidacion = liquidacion;
 	}
 
-	
-
 	public Double getMonto() {
 		return monto;
 	}
@@ -58,6 +56,10 @@ public class LiquidacionDetalle implements Serializable{
 		this.monto = monto;
 	}
 
+	
+	
+
+	
 	
 	
 }

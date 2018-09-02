@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 
@@ -22,12 +23,12 @@ public class LiquidacionBonificacion implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
+	//@NotNull
 	@ManyToOne
 	private Liquidacion liquidacion;
 	
 		
-	@NotNull
+	//@NotNull
 	@ManyToOne
 	private Bonificacion bonificacion;
 	
@@ -48,8 +49,6 @@ public class LiquidacionBonificacion implements Serializable{
 		this.liquidacion = liquidacion;
 	}
 
-	
-	
 	public Bonificacion getBonificacion() {
 		return bonificacion;
 	}
@@ -58,6 +57,4 @@ public class LiquidacionBonificacion implements Serializable{
 		this.bonificacion = bonificacion;
 	}
 
-
-	
 }

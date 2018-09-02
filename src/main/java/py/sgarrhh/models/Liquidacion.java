@@ -33,9 +33,7 @@ public class Liquidacion implements Serializable{
 	@OneToMany(mappedBy="liquidacion")
 	private List<LiquidacionDescuento> liquidacionDescuento;
 	
-	@OneToMany(mappedBy="liquidacion")
-	private List<LiquidacionDetalle> liquidacion;
-
+	
 	@ManyToOne
 	private Periodo periodo;
 	
@@ -55,12 +53,29 @@ public class Liquidacion implements Serializable{
 	@ManyToOne
 	private Persona persona;
 	
+	
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public List<LiquidacionBonificacion> getLiquidacionBonificacion() {
+		return liquidacionBonificacion;
+	}
+
+	public void setLiquidacionBonificacion(List<LiquidacionBonificacion> liquidacionBonificacion) {
+		this.liquidacionBonificacion = liquidacionBonificacion;
+	}
+
+	public List<LiquidacionDescuento> getLiquidacionDescuento() {
+		return liquidacionDescuento;
+	}
+
+	public void setLiquidacionDescuento(List<LiquidacionDescuento> liquidacionDescuento) {
+		this.liquidacionDescuento = liquidacionDescuento;
 	}
 
 	public List<LiquidacionDetalle> getLiquidacionDetalle() {

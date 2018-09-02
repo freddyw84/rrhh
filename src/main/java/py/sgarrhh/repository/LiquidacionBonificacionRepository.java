@@ -12,5 +12,7 @@ public interface LiquidacionBonificacionRepository extends CrudRepository<Liquid
 	LiquidacionBonificacion findByLiquidacion(Liquidacion liquidacion);
 
 	LiquidacionBonificacion findById(long id);
+
+	LiquidacionBonificacion findByLiquidacion(long id);
 	
 }

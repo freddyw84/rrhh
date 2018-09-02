@@ -71,10 +71,15 @@
 			
 		
 		Estado:
-			<select id="estado" th:field="*{bonificaciones.estado}" class="browser-default" > 
-			  <option value="ACTIVO">ACTIVO</option>
-			    <option value="INACTIVO">INACTIVO</option>
-			 </select>
+			
+			<p>
+				<label> <input name="estado" readonly="true" value="ACTIVO" type="radio"  th:checked="*{bonificaciones.estado}==ACTIVO"/> <span>Activo</span>
+				</label>
+			</p>
+			<p>
+				<label> <input name="estado" readonly="true" value="PROCESADO" type="radio" th:checked="*{bonificaciones.estado}==PROCESADO" /> <span>Procesado</span>
+				</label>
+			</p>
 					
 		Monto: <input type="number"th:value="${bonificaciones.monto}" th:name="monto" th:id="id"/>
 		

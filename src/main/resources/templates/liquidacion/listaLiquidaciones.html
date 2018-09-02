@@ -50,7 +50,13 @@
 				
 				<td><span th:text="${#dates.format(liquidacion.fecha,'dd-MM-yyyy')}"></span></td>
 				
-				<td><span th:text="${liquidacion.monto}"></span></td>
+<!-- 				<td><span th:text="${liquidacion.monto}"></span></td> -->
+				
+<!-- 			    <td> <span  th:text="${#numbers.formatDecimal(liquidacion.monto, 0, 'DEFAULT', 2, 'DEFAULT')}">10.00</span></td> -->
+				
+				 <td> <span  th:text="${#numbers.formatCurrency(liquidacion.monto)}">10.00</span></td>
+				
+				
 				
 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿Editar el registro?' + '\');'" th:href="${(#mvc.url('LC#detalleLiquidacion').arg(0, liquidacion.id)).build()}"><i class="material-icons left">edit</i></a></td>
 				

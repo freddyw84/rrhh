@@ -8,6 +8,8 @@ import py.sgarrhh.models.Liquidacion;
 
 
 public interface LiquidacionRepository extends CrudRepository<Liquidacion, String>{
+	//Liquidacion findById(Liquidacion liquidacion);
+
 	Liquidacion findById(long id);
 	
 

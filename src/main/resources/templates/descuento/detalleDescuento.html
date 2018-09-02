@@ -71,17 +71,14 @@
 			Estado:
 			
 			<p>
-				<label> <input name="estado" value="ACTIVO" type="radio"  th:checked="*{descuentos.estado}==ACTIVO"/> <span>Activo</span>
+				<label> <input name="estado" readonly value="ACTIVO" type="radio"  th:checked="*{descuentos.estado}==ACTIVO"/> <span>Activo</span>
 				</label>
 			</p>
 			<p>
-				<label> <input name="estado" value="CANCELADO" type="radio" th:checked="*{descuentos.estado}==CANCELADO" /> <span>Cancelado</span>
+				<label> <input name="estado" readonly value="PROCESADO" type="radio" th:checked="*{descuentos.estado}==PROCESADO" /> <span>Procesado</span>
 				</label>
 			</p>
-			<p>
-				<label> <input name="estado" value="ANULADO" type="radio" th:checked="*{descuentos.estado}==ANULADO" /> <span>Anulado</span>
-				</label>
-			</p>
+		
 			
 			Observacion: <input type="text" th:value="${descuentos.observacion}" th:name="observacion" th:id="id" />
 			

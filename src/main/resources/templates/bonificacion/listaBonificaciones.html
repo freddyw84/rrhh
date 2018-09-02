@@ -35,6 +35,8 @@
 				<th>Periodo</th>
 				<th>Monto</th>
 				<th>Persona</th>
+				<th>Estado</th>
+				
 								
 			</tr>
 		</thead>
@@ -53,6 +55,7 @@
 				<td><span th:text="${bonificacion.periodo.descripcion}"></span></td>
 				<td><span th:text="${bonificacion.monto}"></span></td>
 				<td><span th:text="${bonificacion.persona.nombre}+' '+${bonificacion.persona.apellido}"></span></td>
+				<td><span th:text="${bonificacion.estado}"></span></td>
 				
 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('BC#eliminarBonificacion').arg(0, bonificacion.id)).build()}"><i class="material-icons left">delete</i></a></td>
 		</tr>
