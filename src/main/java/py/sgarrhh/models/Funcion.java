@@ -1,14 +1,14 @@
 package py.sgarrhh.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToMany;
 
 
 
@@ -27,13 +27,13 @@ public class Funcion implements Serializable {
 	private Cargo cargo;
 	
 	
-    /*@OneToMany(mappedBy="funcion")//, cascade={CascadeType.PERSIST}, orphanRemoval=true
-	private List<Cargo> cargo;*/
+    @OneToMany(mappedBy="funcion")//, cascade={CascadeType.PERSIST}, orphanRemoval=true
+	private List<CargoDetalle> cargoDetalle;
     
 	//@NotEmpty
 	//@NotNull
 	private String descripcion;
-
+	
 	
 
 	public Cargo getCargo() {
@@ -58,6 +58,14 @@ public class Funcion implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public List<CargoDetalle> getCargoDetalle() {
+		return cargoDetalle;
+	}
+
+	public void setCargoDetalle(List<CargoDetalle> cargoDetalle) {
+		this.cargoDetalle = cargoDetalle;
 	}
 
 	/*public List<Cargo> getCargo() {
