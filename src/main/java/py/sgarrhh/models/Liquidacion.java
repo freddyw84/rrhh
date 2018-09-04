@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -27,13 +30,24 @@ public class Liquidacion implements Serializable{
 	@OneToMany(mappedBy="liquidacion")
 	private List<LiquidacionDetalle> liquidacionDetalle;
 	
-	@OneToMany(mappedBy="liquidacion")
-	private List<LiquidacionBonificacion> liquidacionBonificacion;
+	/*@OneToMany(mappedBy="liquidacion")
+	private List<LiquidacionBonificacion> liquidacionBonificacion;*/
 	
 	@OneToMany(mappedBy="liquidacion")
 	private List<LiquidacionDescuento> liquidacionDescuento;
 	
 	
+	@ManyToMany//(mappedBy="bonificacion")
+	/*@JoinTable( 
+	        name = "liquidaciones_bonificaciones", 
+	        joinColumns = @JoinColumn(
+	          name = "liquidacion_id", referencedColumnName = "id"), 
+	        inverseJoinColumns = @JoinColumn(
+	          name = "bonificacion_id", referencedColumnName = "id")) */
+	private List<Bonificacion> bonificacion;
+	
+
+
 	@ManyToOne
 	private Periodo periodo;
 	
@@ -62,14 +76,14 @@ public class Liquidacion implements Serializable{
 		this.id = id;
 	}
 
-	public List<LiquidacionBonificacion> getLiquidacionBonificacion() {
+	/*public List<LiquidacionBonificacion> getLiquidacionBonificacion() {
 		return liquidacionBonificacion;
 	}
 
 	public void setLiquidacionBonificacion(List<LiquidacionBonificacion> liquidacionBonificacion) {
 		this.liquidacionBonificacion = liquidacionBonificacion;
 	}
-
+*/
 	public List<LiquidacionDescuento> getLiquidacionDescuento() {
 		return liquidacionDescuento;
 	}
@@ -135,5 +149,14 @@ public class Liquidacion implements Serializable{
 		this.persona = persona;
 	}
 	
+	public List<Bonificacion> getBonificacion() {
+		return bonificacion;
+	}
+
+	public void setBonificacion(List<Bonificacion> bonificacion) {
+		this.bonificacion = bonificacion;
+	}
+
+
 	
 }

@@ -1,6 +1,8 @@
 package py.sgarrhh.controller;
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 
@@ -14,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+
 import py.sgarrhh.models.Bonificacion;
 import py.sgarrhh.models.Contrato;
 import py.sgarrhh.models.Descuento;
 import py.sgarrhh.models.Liquidacion;
-import py.sgarrhh.models.LiquidacionBonificacion;
 import py.sgarrhh.models.LiquidacionDescuento;
 import py.sgarrhh.models.LiquidacionDetalle;
 import py.sgarrhh.models.Periodo;
@@ -28,7 +31,6 @@ import py.sgarrhh.models.TipoLiquidacion;
 import py.sgarrhh.repository.BonificacionRepository;
 import py.sgarrhh.repository.ContratoRepository;
 import py.sgarrhh.repository.DescuentoRepository;
-import py.sgarrhh.repository.LiquidacionBonificacionRepository;
 import py.sgarrhh.repository.LiquidacionDescuentoRepository;
 import py.sgarrhh.repository.LiquidacionDetalleRepository;
 import py.sgarrhh.repository.LiquidacionRepository;
@@ -60,9 +62,7 @@ public class LiquidacionController {
 	@Autowired
 	private LiquidacionDetalleRepository ldr;
 	
-	@Autowired
-	private LiquidacionBonificacionRepository lbr;
-	
+
 	@Autowired
 	private LiquidacionDescuentoRepository lder;
 	
@@ -128,28 +128,44 @@ public class LiquidacionController {
 		}
 		
 	
-		Bonificacion bonificacion = br.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
+		List<Bonificacion> bonificacion = br.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
+
+			liquidacion.setBonificacion(bonificacion);
+			liquidacion.setMonto(totalLiquidacion);
+			lr.save(liquidacion);
+			
 		
-		LiquidacionBonificacion liquidacionBonificacion = new LiquidacionBonificacion();
-		liquidacionBonificacion.setBonificacion(bonificacion);
-		liquidacionBonificacion.setLiquidacion(liquidacion);
-		lbr.save(liquidacionBonificacion);
-		bonificacion.setEstado("PROCESADO");
-		br.save(bonificacion);
+		
+			for (Bonificacion bon:bonificacion) {
+			
+				
+				totalLiquidacion = totalLiquidacion + bon.getMonto();
+
+				bon.setEstado("PROCESADO");
+				br.save(bon);
+				
+		
+			}
+	
 		
 		Descuento descuento = dr.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
 		
-		LiquidacionDescuento liquidacionDescuento = new LiquidacionDescuento();
-		liquidacionDescuento.setDescuento(descuento);
-		liquidacionDescuento.setLiquidacion(liquidacion);
-		lder.save(liquidacionDescuento);
-		descuento.setEstado("PROCESADO");
-		dr.save(descuento);
+		if (descuento != null) {
+			LiquidacionDescuento liquidacionDescuento = new LiquidacionDescuento();
+			liquidacionDescuento.setDescuento(descuento);
+			liquidacionDescuento.setLiquidacion(liquidacion);
+			lder.save(liquidacionDescuento);
+			descuento.setEstado("PROCESADO");
+			dr.save(descuento);
 		
-		totalLiquidacion = totalLiquidacion + liquidacionBonificacion.getBonificacion().getMonto()- liquidacionDescuento.getDescuento().getMonto();
+			totalLiquidacion = totalLiquidacion - liquidacionDescuento.getDescuento().getMonto();
+		
+
+		}
+		
 		liquidacion.setMonto(totalLiquidacion);
+
 		lr.save(liquidacion);
-		
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 
 		return "liquidacion/formLiquidacion";
@@ -201,28 +217,33 @@ public class LiquidacionController {
 		
 	
         ///Bonificacion de las liquidaciones
+		List<Bonificacion> liquidacionBonificaciones = br.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
 
-		LiquidacionBonificacion liquidacionBonificaciones = lbr.findByLiquidacion(liquidacion);
 		mv.addObject("liquidacionBonificaciones", liquidacionBonificaciones);
 		
 		if (liquidacionBonificaciones != null) {
 	
-			totalBonificaciones = totalBonificaciones + liquidacionBonificaciones.getBonificacion().getMonto();
-			mv.addObject("totalBonificaciones", totalBonificaciones);
+			for (Bonificacion lisBon:liquidacionBonificaciones) {
+				System.out.println("pasé por aquí sumando:");
 
+				totalBonificaciones = totalBonificaciones + lisBon.getMonto();
+			}
+		
+			mv.addObject("totalBonificaciones", totalBonificaciones);
 		}
+		
 		
         ///Descuento de las liquidaciones
 		LiquidacionDescuento liquidacionDescuentos = lder.findByLiquidacion(liquidacion);
 		mv.addObject("liquidacionDescuentos", liquidacionDescuentos);
 		
 		
-		if (liquidacionDescuentos != null) {
+		/*if (liquidacionDescuentos != null) {
 			
 			totalDescuentos = totalDescuentos + liquidacionDescuentos.getDescuento().getMonto();
 			mv.addObject("totalDescuentos", totalDescuentos);
 
-		}
+		}*/
 		
 		
 		return mv;
@@ -236,17 +257,17 @@ public class LiquidacionController {
 			return "redirect:/lq{id}";
 		}
 		
-		
+
 		Liquidacion liquidacion = lr.findById(id);
 		liquidacionDetalle.setLiquidacion(liquidacion);
 		ldr.save(liquidacionDetalle);
 				
-//		ldr.save(liquidacionDetalle);
+		ldr.save(liquidacionDetalle);
 		attributes.addFlashAttribute("mensaje", "Registro guardado!");
 
 		return "redirect:liquidacion/detalleLiquidacion";
 	}
-	
+
 	
 	@RequestMapping("/eliminarLiquidacion")
 	public String eliminarLiquidacion(long id, RedirectAttributes attributes){
@@ -259,16 +280,23 @@ public class LiquidacionController {
 			
 		}
 		
-		
-		LiquidacionBonificacion liquidacionBonificacion  = lbr.findByLiquidacion(liquidacion);
-		
-		if (liquidacionBonificacion != null) {
-			Bonificacion bonificacion = br.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
+	
+		 List<Bonificacion> liquidacionBonificacion = liquidacion.getBonificacion();
+		//System.out.println("pasé por aquí:"+liquidacionBonificacion.toString());
 
-			bonificacion.setEstado("ACTIVO");
-			br.save(bonificacion);
-			lbr.delete(liquidacionBonificacion);
+		// lr.deleteById(liquidacionBonificacion);
+
+		if (liquidacionBonificacion != null) {
 			
+			for (Bonificacion bon:liquidacionBonificacion) {
+				
+				bon.setEstado("ACTIVO");
+				br.save(bon);
+				
+				
+				
+			}
+		
 		}
 		
 		LiquidacionDescuento liquidacionDescuento = lder.findByLiquidacion(liquidacion);

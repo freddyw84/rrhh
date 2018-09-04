@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -31,8 +30,11 @@ public class Bonificacion implements Serializable {
 	@NotNull
 	private String descripcion;
 	
-	@OneToMany(mappedBy="bonificacion")
-	private List<LiquidacionBonificacion> liquidacionBonificacion;
+	/*@ManyToMany(mappedBy="bonificacion")
+	private List<LiquidacionBonificacion> liquidacionBonificacion;*/
+	
+	@ManyToMany(mappedBy="bonificacion")
+	private List<Liquidacion> liquidacion;
 	
 	
 	@ManyToOne
@@ -75,13 +77,13 @@ public class Bonificacion implements Serializable {
 	}
 
 		
-	public List<LiquidacionBonificacion> getLiquidacionBonificacion() {
+	/*public List<LiquidacionBonificacion> getLiquidacionBonificacion() {
 		return liquidacionBonificacion;
 	}
 
 	public void setLiquidacionBonificacion(List<LiquidacionBonificacion> liquidacionBonificacion) {
 		this.liquidacionBonificacion = liquidacionBonificacion;
-	}
+	}*/
 
 	public TipoBonificacion getTipoBonificacion() {
 		return tipoBonificacion;
@@ -139,6 +141,7 @@ public class Bonificacion implements Serializable {
 		this.periodo = periodo;
 	}
 
+	
 	
 	
 	

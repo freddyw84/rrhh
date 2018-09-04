@@ -57,42 +57,12 @@
 	
 	<th:block th:include="mensajeValidacion"></th:block>
 
-
-
-<!-- 	<div class="container formLiquidacionDetalle"> -->
-<!-- 		<form class="container" method="post" th:object="${liquidacionDetalles}"> -->
-	
-<!-- 			 <div class="row"> -->
-		
-				
-<!-- 				Concepto: --> 
-<!-- 				<select id="concepto" th:field="*{concepto.id}" class="browser-default" >   -->
-<!-- 				<option th:each="concepto : ${conceptos}"   -->
-<!-- 						th:value="${concepto.id}"   -->
-<!-- 						th:text="${concepto.descripcion}"></option>  -->
-<!--  				</select> -->
-<!-- 				Concepto: <input type="number" value="" name="concepto" placeholder="concepto"/> -->
-			
-<!-- 				<input th:value="${liquidacion.id}" th:name="liquidacion" th:id="id" disabled="true"/> -->
-					
-<!-- 				Monto: <input type="number"  value=0 th:name="monto" th:id="id"/> -->
-				
-			
-<!-- 			</div> -->
-		
-		
-<!-- 			<button class="waves-effect waves-light btn" type="submit">Agregar</button> -->
-		
-<!-- 		</form>	 -->
-<!-- 	</div> -->
-	
-		
-	</div>	
+</div>	
 	
 	 	
 	 	
 	<table class="container tabelaDetalleLiquidacion">
-	<h4>Detalle Principal</h4>
+		<h4>Detalle Principal</h4>
 	
 
 		<thead>
@@ -104,7 +74,8 @@
 		</thead>
 		<tbody>
 			<tr th:each="liquidacionDetalle : ${liquidacionDetalles}">
-				<td><span th:text="${liquidacionDetalle.monto}"></span></td>
+				<td><span th:text="${#numbers.formatDecimal(liquidacionDetalle.monto, 0, 'POINT', 2, 'COMMA')}"></span></td>
+				
 <!-- 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('LC#eliminarLiquidacionDetalle').arg(0, liquidacionDetalle.id)).build()}"><i class="material-icons left">delete</i></a></td> -->
 			
 			
@@ -117,15 +88,29 @@
 
 		<thead>
 			<tr>
+				<th>Descripcion</th>
 				<th>Fecha</th>
 				<th>Monto Parcial</th>
-				<th>Monto Transformer</th>
 			</tr>
 		</thead>
+		
+		<tfoot>
+		
+			<tr>
+				<th>Total</th>
+				<th></th>
+				
+				<td> 
+					<span th:text="${#numbers.formatDecimal(totalBonificaciones, 0, 'POINT', 2, 'COMMA')}"></span>
+				</td>
+			</tr>
+		</tfoot>
 		<tbody>
-			<tr th:each="liquidacionBonificacion : ${liquidacionBonificaciones}">
-				<td><span th:text="${#dates.format(liquidacionBonificacion.bonificacion.fecha,'dd-MM-yyyy')}"></span></td>
-				<td><span th:text="${liquidacionBonificacion.bonificacion.monto}"></span></td>
+			<tr th:each="liquidacionBonificaciones : ${liquidacionBonificaciones}">
+			    <td><span th:text="${liquidacionBonificaciones.descripcion}"></span></td>
+  
+				<td><span th:text="${#dates.format(liquidacionBonificaciones.fecha,'dd-MM-yyyy')}"></span></td>
+				<td><span th:text="${#numbers.formatDecimal(liquidacionBonificaciones.monto, 0, 'POINT', 2, 'COMMA')}"></span></td>
 				
 				
 				
@@ -138,22 +123,6 @@
 	
 	
 	
-	<table class="container tabelaTotalBonificaciones">
-		<thead>
-			<tr>
-				<th>Total Bonificaciones</th>
-			
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="totalBonificacion : ${totalBonificaciones}">
-				<td><span th:text="${totalBonificacion}"></span></td>
-		
-			</tr>
-		</tbody>
-	</table>
-	
-	
 	
 	
 	<table class="container tabelaDetalleLiquidacion">
@@ -161,34 +130,33 @@
 
 		<thead>
 			<tr>
+				<th>Descripcion</th>
 				<th>Fecha</th>
 				<th>Monto Parcial</th>
 <!-- 				<th>Eliminar</th> -->
 			</tr>
 		</thead>
+		
+		<tfoot>
+		
+			<tr>
+				<th>Total</th>
+				<th></th>
+				
+				<td> 
+					<span th:text="${#numbers.formatDecimal(totalDescuentos, 0, 'POINT', 2, 'COMMA')}"></span>
+				</td>
+			</tr>
+		</tfoot>
+		
 		<tbody>
 			<tr th:each="liquidacionDescuento : ${liquidacionDescuentos}">
+			   <td><span th:text="${liquidacionDescuento.descuento.descripcion}"></span></td>
 				<td><span th:text="${#dates.format(liquidacionDescuento.descuento.fecha,'dd-MM-yyyy')}"></span></td>
-				<td><span th:text="${liquidacionDescuento.descuento.monto}"></span></td>
+				<td><span th:text="${#numbers.formatDecimal(liquidacionDescuento.descuento.monto, 0, 'POINT', 2, 'COMMA')}"></span></td>
 <!-- 			    <td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('LC#eliminarLiquidacionDetalle').arg(0, liquidacionDescuento.id)).build()}"><i class="material-icons left">delete</i></a></td> -->
 			
 			
-			</tr>
-		</tbody>
-	</table>
-	
-	
-	<table class="container tabelaTotaltotalDescuentoss">
-		<thead>
-			<tr>
-				<th>Total Descuentos</th>
-			
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="totalDescuento : ${totalDescuentos}">
-				<td><span th:text="${totalDescuento}"></span></td>
-		
 			</tr>
 		</tbody>
 	</table>
