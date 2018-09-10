@@ -223,12 +223,12 @@ public class LiquidacionController {
 		LiquidacionDetalle liquidacionDetalles = ldr.findByLiquidacion(liquidacion);
 		mv.addObject("liquidacionDetalles", liquidacionDetalles);
 		
-		List<Bonificacion> liquidacionBonificacion = lr.findAllById((Liquidacion) liquidacion);
+		//List<Bonificacion> liquidacionBonificacion = lr.findAllById((Liquidacion) liquidacion);
 
 		
 		
         ///Bonificacion de las liquidaciones
-		List<Bonificacion> liquidacionBonificaciones = br.findAllById(liquidacionBonificacion);
+		List<Bonificacion> liquidacionBonificaciones = br.findAllByLiquidacion(liquidacion);
 		
 		mv.addObject("liquidacionBonificaciones", liquidacionBonificaciones);
 		
@@ -241,6 +241,7 @@ public class LiquidacionController {
 			}
 		
 			mv.addObject("totalBonificaciones", totalBonificaciones);
+			System.out.println("pasé por aquí: "+totalBonificaciones);
 		}
 		
 		

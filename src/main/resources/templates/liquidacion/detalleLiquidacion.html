@@ -107,10 +107,10 @@
 		</tfoot>
 		<tbody>
 			<tr th:each="liquidacionBonificaciones : ${liquidacionBonificaciones}">
-			    <td><span th:text="${liquidacionBonificaciones.bonificacion.descripcion}"></span></td>
+			    <td><span th:text="${liquidacionBonificaciones.descripcion}"></span></td>
   
-				<td><span th:text="${#dates.format(liquidacionBonificaciones.bonificacion.fecha,'dd-MM-yyyy')}"></span></td>
-				<td><span th:text="${#numbers.formatDecimal(liquidacionBonificaciones.bonificacion.monto, 0, 'POINT', 2, 'COMMA')}"></span></td>
+				<td><span th:text="${#dates.format(liquidacionBonificaciones.fecha,'dd-MM-yyyy')}"></span></td>
+				<td><span th:text="${#numbers.formatDecimal(liquidacionBonificaciones.monto, 0, 'POINT', 2, 'COMMA')}"></span></td>
 				
 				
 				
