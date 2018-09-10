@@ -27,14 +27,6 @@ public class Liquidacion implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 
-	@OneToMany(mappedBy="liquidacion")
-	private List<LiquidacionDetalle> liquidacionDetalle;
-	
-	/*@OneToMany(mappedBy="liquidacion")
-	private List<LiquidacionBonificacion> liquidacionBonificacion;*/
-	
-	@OneToMany(mappedBy="liquidacion")
-	private List<LiquidacionDescuento> liquidacionDescuento;
 	
 	
 	@ManyToMany//(mappedBy="bonificacion")
@@ -46,8 +38,13 @@ public class Liquidacion implements Serializable{
 	          name = "bonificacion_id", referencedColumnName = "id")) */
 	private List<Bonificacion> bonificacion;
 	
+	@ManyToMany//(mappedBy="bonificacion")
+	private List<Descuento> descuento;
+	
 
-
+	@ManyToMany//(mappedBy="bonificacion")
+	private List<Contrato> contrato;
+	
 	@ManyToOne
 	private Periodo periodo;
 	
@@ -76,31 +73,29 @@ public class Liquidacion implements Serializable{
 		this.id = id;
 	}
 
-	/*public List<LiquidacionBonificacion> getLiquidacionBonificacion() {
-		return liquidacionBonificacion;
+	
+	
+
+	
+	public List<Descuento> getDescuento() {
+		return descuento;
 	}
 
-	public void setLiquidacionBonificacion(List<LiquidacionBonificacion> liquidacionBonificacion) {
-		this.liquidacionBonificacion = liquidacionBonificacion;
-	}
-*/
-	public List<LiquidacionDescuento> getLiquidacionDescuento() {
-		return liquidacionDescuento;
-	}
-
-	public void setLiquidacionDescuento(List<LiquidacionDescuento> liquidacionDescuento) {
-		this.liquidacionDescuento = liquidacionDescuento;
-	}
-
-	public List<LiquidacionDetalle> getLiquidacionDetalle() {
-		return liquidacionDetalle;
-	}
-
-	public void setLiquidacionDetalle(List<LiquidacionDetalle> liquidacionDetalle) {
-		this.liquidacionDetalle = liquidacionDetalle;
+	public void setDescuento(List<Descuento> descuento) {
+		this.descuento = descuento;
 	}
 
 	
+
+	
+	public List<Contrato> getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(List<Contrato> contrato) {
+		this.contrato = contrato;
+	}
+
 	public Periodo getPeriodo() {
 		return periodo;
 	}

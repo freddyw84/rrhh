@@ -62,19 +62,35 @@
 	 	
 	 	
 	<table class="container tabelaDetalleLiquidacion">
-		<h4>Detalle Principal</h4>
+		<h4>Contratos</h4>
 	
 
 		<thead>
 			<tr>
-<!-- 				<th>Concepto</th> -->
-				<th>Monto Parcial</th>
+ 				<th>Descripcion</th> 
+ 				<th>Salario</th> 				
+				<th>Monto</th>
 <!-- 				<th>Eliminar</th> -->
 			</tr>
 		</thead>
+		
+			<tfoot>
+		
+			<tr>
+				<th>Total</th>
+				<th></th>
+				
+				<td> 
+					<span th:text="${#numbers.formatDecimal(totalContratos, 0, 'POINT', 2, 'COMMA')}"></span>
+				</td>
+			</tr>
+		</tfoot>
+		
 		<tbody>
-			<tr th:each="liquidacionDetalle : ${liquidacionDetalles}">
-				<td><span th:text="${#numbers.formatDecimal(liquidacionDetalle.monto, 0, 'POINT', 2, 'COMMA')}"></span></td>
+			<tr th:each="liquidacionContrato : ${liquidacionContratos}">
+			<td><span th:text="${liquidacionContrato.descripcion}"></span></td>
+			<td><span th:text="${liquidacionContrato.salario.descripcion}"></span></td>
+			<td><span th:text="${#numbers.formatDecimal(liquidacionContrato.salario.monto, 0, 'POINT', 2, 'COMMA')}"></span></td>
 				
 <!-- 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('LC#eliminarLiquidacionDetalle').arg(0, liquidacionDetalle.id)).build()}"><i class="material-icons left">delete</i></a></td> -->
 			
@@ -151,9 +167,9 @@
 		
 		<tbody>
 			<tr th:each="liquidacionDescuento : ${liquidacionDescuentos}">
-			   <td><span th:text="${liquidacionDescuento.descuento.descripcion}"></span></td>
-				<td><span th:text="${#dates.format(liquidacionDescuento.descuento.fecha,'dd-MM-yyyy')}"></span></td>
-				<td><span th:text="${#numbers.formatDecimal(liquidacionDescuento.descuento.monto, 0, 'POINT', 2, 'COMMA')}"></span></td>
+			   <td><span th:text="${liquidacionDescuento.descripcion}"></span></td>
+				<td><span th:text="${#dates.format(liquidacionDescuento.fecha,'dd-MM-yyyy')}"></span></td>
+				<td><span th:text="${#numbers.formatDecimal(liquidacionDescuento.monto, 0 , 'POINT', 2, 'COMMA')}"></span></td>
 <!-- 			    <td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('LC#eliminarLiquidacionDetalle').arg(0, liquidacionDescuento.id)).build()}"><i class="material-icons left">delete</i></a></td> -->
 			
 			

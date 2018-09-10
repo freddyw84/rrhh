@@ -2,11 +2,13 @@ package py.sgarrhh.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import javax.persistence.Temporal;
@@ -30,6 +32,8 @@ public class Contrato  implements Serializable {
 	private String descripcion;
 	
 	
+	@ManyToMany(mappedBy="contrato")
+	private List<Liquidacion> liquidacion;
 	
 	@ManyToOne
 	private Salario salario;
@@ -41,6 +45,9 @@ public class Contrato  implements Serializable {
 	
 	@ManyToOne 
 	private Cargo cargo;
+	
+	@NotNull
+	private String estado;
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -95,9 +102,18 @@ public class Contrato  implements Serializable {
 	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
-	
-	
+	public List<Liquidacion> getLiquidacion() {
+		return liquidacion;
+	}
+	public void setLiquidacion(List<Liquidacion> liquidacion) {
+		this.liquidacion = liquidacion;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 	
 
-	
 }

@@ -22,21 +22,15 @@ import py.sgarrhh.models.Bonificacion;
 import py.sgarrhh.models.Contrato;
 import py.sgarrhh.models.Descuento;
 import py.sgarrhh.models.Liquidacion;
-import py.sgarrhh.models.LiquidacionDescuento;
-import py.sgarrhh.models.LiquidacionDetalle;
 import py.sgarrhh.models.Periodo;
 import py.sgarrhh.models.Persona;
-import py.sgarrhh.models.Salario;
 import py.sgarrhh.models.TipoLiquidacion;
 import py.sgarrhh.repository.BonificacionRepository;
 import py.sgarrhh.repository.ContratoRepository;
 import py.sgarrhh.repository.DescuentoRepository;
-import py.sgarrhh.repository.LiquidacionDescuentoRepository;
-import py.sgarrhh.repository.LiquidacionDetalleRepository;
 import py.sgarrhh.repository.LiquidacionRepository;
 import py.sgarrhh.repository.PeriodoRepository;
 import py.sgarrhh.repository.PersonaRepository;
-import py.sgarrhh.repository.SalarioRepository;
 import py.sgarrhh.repository.TipoLiquidacionRepository;
 
 
@@ -59,24 +53,14 @@ public class LiquidacionController {
 	@Autowired
 	private TipoLiquidacionRepository tlr;
 	
-	@Autowired
-	private LiquidacionDetalleRepository ldr;
-	
 
-	@Autowired
-	private LiquidacionDescuentoRepository lder;
-	
+
 	@Autowired
 	private PeriodoRepository per;
 	
 	@Autowired
-	private ContratoRepository con;
+	private ContratoRepository cr;
 	
-	
-	@Autowired
-	private SalarioRepository sal;
-
-
 	
 	@RequestMapping("/listaLiquidaciones")
 	public ModelAndView listaLiquidaciones() {
@@ -113,19 +97,23 @@ public class LiquidacionController {
 		lr.save(liquidacion);
 		
 		
-		Iterable<Contrato> contrato = con.findByPersona(liquidacion.getPersona());
+		List<Contrato> contrato = cr.findByPersonaInAndEstadoIn(liquidacion.getPersona(), estado);
 		
 		if (contrato != null) {
+			
+			liquidacion.setContrato(contrato);
+			liquidacion.setMonto(totalLiquidacion);
+			
 			for (Contrato con:contrato) {
+									
+					totalLiquidacion = totalLiquidacion + con.getSalario().getMonto();
+	
+					con.setEstado("PROCESADO");
+					cr.save(con);
 				
-					Salario salario = sal.findById(con.getSalario().getId());
 					
-					
-					LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle();
-					liquidacionDetalle.setMonto(salario.getMonto());
-					liquidacionDetalle.setLiquidacion(liquidacion);
-					ldr.save(liquidacionDetalle);
-					totalLiquidacion = totalLiquidacion + liquidacionDetalle.getMonto();
+					lr.save(liquidacion);
+					totalLiquidacion = totalLiquidacion + liquidacion.getMonto();
 	
 			}
 		}
@@ -139,7 +127,6 @@ public class LiquidacionController {
 			
 				for (Bonificacion bon:bonificacion) {
 				
-					System.out.println("pasé por aquí2222222: "+ bon.toString());
 
 					totalLiquidacion = totalLiquidacion + bon.getMonto();
 
@@ -154,20 +141,35 @@ public class LiquidacionController {
 				
 		}
 		
-		Descuento descuento = dr.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
 		
-		if (descuento != null) {
-			LiquidacionDescuento liquidacionDescuento = new LiquidacionDescuento();
-			liquidacionDescuento.setDescuento(descuento);
-			liquidacionDescuento.setLiquidacion(liquidacion);
-			lder.save(liquidacionDescuento);
-			descuento.setEstado("PROCESADO");
-			dr.save(descuento);
-		
-			totalLiquidacion = totalLiquidacion - liquidacionDescuento.getDescuento().getMonto();
 		
 
+		List<Descuento> descuento = dr.findByPeriodoInAndPersonaInAndEstadoIn(liquidacion.getPeriodo(), liquidacion.getPersona(), estado);
+		
+		
+		if (descuento != null) {
+				liquidacion.setDescuento(descuento);
+				liquidacion.setMonto(totalLiquidacion);
+			
+				for (Descuento des:descuento) {
+				
+					System.out.println("pasé por aquí2222222: "+ des.toString());
+
+					totalLiquidacion = totalLiquidacion - des.getMonto();
+
+					des.setEstado("PROCESADO");
+					dr.save(des);
+					
+			
+				}
+	
+				
+				lr.save(liquidacion);
+				
 		}
+		
+		
+		
 		
 		liquidacion.setMonto(totalLiquidacion);
 
@@ -208,8 +210,8 @@ public class LiquidacionController {
 	@RequestMapping(value = {"/lq{id}"} , method = RequestMethod.GET)
 	private ModelAndView detalleLiquidacion(@PathVariable("id") long id) {
 		double totalBonificaciones = 0 ;
-		String estado = "PROCESADO";
-
+		double totalDescuentos = 0 ;
+		double totalContratos = 0;
 		
 		//System.out.println("pasé por aquí:");
 		
@@ -218,16 +220,25 @@ public class LiquidacionController {
 		mv.addObject("liquidacion",liquidacion);
 		
 		
-        ///Detalle de las liquidaciones
+        ///Contratos de las liquidaciones
+		List<Contrato> liquidacionContratos = cr.findAllByLiquidacion(liquidacion);
 
-		LiquidacionDetalle liquidacionDetalles = ldr.findByLiquidacion(liquidacion);
-		mv.addObject("liquidacionDetalles", liquidacionDetalles);
-		
-		//List<Bonificacion> liquidacionBonificacion = lr.findAllById((Liquidacion) liquidacion);
+				
+		if (liquidacionContratos != null) {
+			
+			for (Contrato lisCon:liquidacionContratos) {
 
+					totalContratos = totalContratos + lisCon.getSalario().getMonto();
+				
+				}
+			
+				mv.addObject("totalContratos", totalContratos);
+			}
 		
+	
+		mv.addObject("liquidacionContratos", liquidacionContratos);
 		
-        ///Bonificacion de las liquidaciones
+	  ///Bonificacion de las liquidaciones
 		List<Bonificacion> liquidacionBonificaciones = br.findAllByLiquidacion(liquidacion);
 		
 		mv.addObject("liquidacionBonificaciones", liquidacionBonificaciones);
@@ -241,44 +252,50 @@ public class LiquidacionController {
 			}
 		
 			mv.addObject("totalBonificaciones", totalBonificaciones);
-			System.out.println("pasé por aquí: "+totalBonificaciones);
 		}
 		
 		
         ///Descuento de las liquidaciones
-		LiquidacionDescuento liquidacionDescuentos = lder.findByLiquidacion(liquidacion);
+		
+		List<Descuento> liquidacionDescuentos = dr.findAllByLiquidacion(liquidacion);
+		
 		mv.addObject("liquidacionDescuentos", liquidacionDescuentos);
 		
-		
-		/*if (liquidacionDescuentos != null) {
-			
-			totalDescuentos = totalDescuentos + liquidacionDescuentos.getDescuento().getMonto();
-			mv.addObject("totalDescuentos", totalDescuentos);
+		if (liquidacionDescuentos != null) {
+	
+			for (Descuento lisDes:liquidacionDescuentos) {
 
-		}*/
+				totalDescuentos = totalDescuentos + lisDes.getMonto();
+			
+			}
+		
+			mv.addObject("totalDescuentos", totalDescuentos);
+			
+		}
+		
 		
 		
 		return mv;
 	}	
-	@RequestMapping(value="/lq{id}", method=RequestMethod.POST)
-	private String detalleLiquidacionPost(@PathVariable("id") long id, @Valid LiquidacionDetalle liquidacionDetalle,  BindingResult result, RedirectAttributes attributes) {
-		
-		//System.out.println("pasé por aquí:");
-		if(result.hasErrors()){
-			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
-			return "redirect:/lq{id}";
-		}
-		
-
-		Liquidacion liquidacion = lr.findById(id);
-		liquidacionDetalle.setLiquidacion(liquidacion);
-		ldr.save(liquidacionDetalle);
-				
-		ldr.save(liquidacionDetalle);
-		attributes.addFlashAttribute("mensaje", "Registro guardado!");
-
-		return "redirect:liquidacion/detalleLiquidacion";
-	}
+//	@RequestMapping(value="/lq{id}", method=RequestMethod.POST)
+//	private String detalleLiquidacionPost(@PathVariable("id") long id,  BindingResult result, RedirectAttributes attributes) {
+//		
+//		//System.out.println("pasé por aquí:");
+//		if(result.hasErrors()){
+//			attributes.addFlashAttribute("mensaje", "Verifique los campos!");
+//			return "redirect:/lq{id}";
+//		}
+//		
+//
+//		Liquidacion liquidacion = lr.findById(id);
+//		liquidacionDetalle.setLiquidacion(liquidacion);
+//		ldr.save(liquidacionDetalle);
+//				
+//		ldr.save(liquidacionDetalle);
+//		attributes.addFlashAttribute("mensaje", "Registro guardado!");
+//
+//		return "redirect:liquidacion/detalleLiquidacion";
+//	}
 
 	
 	@RequestMapping("/eliminarLiquidacion")
@@ -286,17 +303,27 @@ public class LiquidacionController {
 
 		Liquidacion liquidacion = lr.findById(id);
 		
-		LiquidacionDetalle liquidacionDetalle = ldr.findByLiquidacion(liquidacion);
-		if (liquidacionDetalle != null) {
-			ldr.delete(liquidacionDetalle);
+		 List<Contrato> liquidacionContrato = liquidacion.getContrato();
 			
-		}
+
+			if (liquidacionContrato != null) {
+				
+				for (Contrato con:liquidacionContrato) {
+					
+					con.setEstado("ACTIVO");
+					cr.save(con);
+					
+					
+					
+				}
+			
+			}
+		
+		
 		
 	
 		 List<Bonificacion> liquidacionBonificacion = liquidacion.getBonificacion();
-		//System.out.println("pasé por aquí:"+liquidacionBonificacion.toString());
-
-		// lr.deleteById(liquidacionBonificacion);
+		
 
 		if (liquidacionBonificacion != null) {
 			
@@ -311,16 +338,23 @@ public class LiquidacionController {
 		
 		}
 		
-		LiquidacionDescuento liquidacionDescuento = lder.findByLiquidacion(liquidacion);
 		
-		if (liquidacionDescuento != null) {
-			Descuento descuento = dr.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
+		
+		 List<Descuento> liquidacionDescuento = liquidacion.getDescuento();
+			//System.out.println("pasé por aquí:"+liquidacionBonificacion.toString());
 
-			descuento.setEstado("ACTIVO");
-			dr.save(descuento);
-			lder.delete(liquidacionDescuento);
+			// lr.deleteById(liquidacionBonificacion);
+
+			if (liquidacionDescuento != null) {
+				
+				for (Descuento des:liquidacionDescuento) {
+					
+					des.setEstado("ACTIVO");
+					dr.save(des);
+				
+				}
 			
-		}
+			}
 		
 		
 		

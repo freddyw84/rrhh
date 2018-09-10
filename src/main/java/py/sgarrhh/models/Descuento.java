@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -58,9 +59,10 @@ public class Descuento implements Serializable{
 	@ManyToOne
 	private Periodo periodo;
 	
-	@OneToMany(mappedBy="descuento")
-	private List<LiquidacionDescuento> liquidacionDescuento;
+
 	
+	@ManyToMany(mappedBy="descuento")
+	private List<Liquidacion> liquidacion;
 	
 	public long getId() {
 		return id;
@@ -127,12 +129,14 @@ public class Descuento implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public List<LiquidacionDescuento> getLiquidacionDescuento() {
-		return liquidacionDescuento;
+	
+
+	public List<Liquidacion> getLiquidacion() {
+		return liquidacion;
 	}
 
-	public void setLiquidacionDescuento(List<LiquidacionDescuento> liquidacionDescuento) {
-		this.liquidacionDescuento = liquidacionDescuento;
+	public void setLiquidacion(List<Liquidacion> liquidacion) {
+		this.liquidacion = liquidacion;
 	}
 
 	public Periodo getPeriodo() {
