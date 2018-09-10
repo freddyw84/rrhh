@@ -17,10 +17,10 @@ public interface LiquidacionRepository extends CrudRepository<Liquidacion, Strin
 
 	Liquidacion findById(long id);
 
+	List<Bonificacion> findAllById(Liquidacion liquidacion);
 
 
 	Iterable<Liquidacion> findByBonificacion(Bonificacion bonificacion);
-
 
 	List<Bonificacion> findByBonificacion(List<Bonificacion> bonificacion);
 

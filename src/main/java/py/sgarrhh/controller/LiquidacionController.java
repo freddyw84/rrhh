@@ -94,6 +94,7 @@ public class LiquidacionController {
 	public String liquidacionPost( @Valid Liquidacion liquidacion,  BindingResult result, RedirectAttributes attributes) {
 		
 		double totalLiquidacion = 0;
+		String estado = "ACTIVO";
 		
 		/*System.out.println("pasé por aquí: "+ liquidacion.getId()+" "+liquidacion.getDeslripcion()
 						+" "+liquidacion.getDepartamento()
@@ -114,39 +115,44 @@ public class LiquidacionController {
 		
 		Iterable<Contrato> contrato = con.findByPersona(liquidacion.getPersona());
 		
-		for (Contrato con:contrato) {
-			
-				Salario salario = sal.findById(con.getSalario().getId());
+		if (contrato != null) {
+			for (Contrato con:contrato) {
 				
-				
-				LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle();
-				liquidacionDetalle.setMonto(salario.getMonto());
-				liquidacionDetalle.setLiquidacion(liquidacion);
-				ldr.save(liquidacionDetalle);
-				totalLiquidacion = totalLiquidacion + liquidacionDetalle.getMonto();
-
-		}
-		
+					Salario salario = sal.findById(con.getSalario().getId());
+					
+					
+					LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle();
+					liquidacionDetalle.setMonto(salario.getMonto());
+					liquidacionDetalle.setLiquidacion(liquidacion);
+					ldr.save(liquidacionDetalle);
+					totalLiquidacion = totalLiquidacion + liquidacionDetalle.getMonto();
 	
-		List<Bonificacion> bonificacion = br.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
-
-			liquidacion.setBonificacion(bonificacion);
-			liquidacion.setMonto(totalLiquidacion);
-			lr.save(liquidacion);
-			
-		
-		
-			for (Bonificacion bon:bonificacion) {
-			
-				
-				totalLiquidacion = totalLiquidacion + bon.getMonto();
-
-				bon.setEstado("PROCESADO");
-				br.save(bon);
-				
-		
 			}
+		}
 	
+		List<Bonificacion> bonificacion = br.findByPeriodoInAndPersonaInAndEstadoIn(liquidacion.getPeriodo(), liquidacion.getPersona(), estado);
+		
+		
+		if (bonificacion != null) {
+				liquidacion.setBonificacion(bonificacion);
+				liquidacion.setMonto(totalLiquidacion);
+			
+				for (Bonificacion bon:bonificacion) {
+				
+					System.out.println("pasé por aquí2222222: "+ bon.toString());
+
+					totalLiquidacion = totalLiquidacion + bon.getMonto();
+
+					bon.setEstado("PROCESADO");
+					br.save(bon);
+					
+			
+				}
+	
+				
+				lr.save(liquidacion);
+				
+		}
 		
 		Descuento descuento = dr.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
 		
@@ -202,7 +208,9 @@ public class LiquidacionController {
 	@RequestMapping(value = {"/lq{id}"} , method = RequestMethod.GET)
 	private ModelAndView detalleLiquidacion(@PathVariable("id") long id) {
 		double totalBonificaciones = 0 ;
-		double totalDescuentos = 0;
+		String estado = "PROCESADO";
+
+		
 		//System.out.println("pasé por aquí:");
 		
 		Liquidacion liquidacion =lr.findById(id);
@@ -215,18 +223,21 @@ public class LiquidacionController {
 		LiquidacionDetalle liquidacionDetalles = ldr.findByLiquidacion(liquidacion);
 		mv.addObject("liquidacionDetalles", liquidacionDetalles);
 		
-	
-        ///Bonificacion de las liquidaciones
-		List<Bonificacion> liquidacionBonificaciones = br.findByPeriodoInAndPersonaIn(liquidacion.getPeriodo(), liquidacion.getPersona());
+		List<Bonificacion> liquidacionBonificacion = lr.findAllById((Liquidacion) liquidacion);
 
+		
+		
+        ///Bonificacion de las liquidaciones
+		List<Bonificacion> liquidacionBonificaciones = br.findAllById(liquidacionBonificacion);
+		
 		mv.addObject("liquidacionBonificaciones", liquidacionBonificaciones);
 		
 		if (liquidacionBonificaciones != null) {
 	
-			for (Bonificacion lisBon:liquidacionBonificaciones) {
-				System.out.println("pasé por aquí sumando:");
+		for (Bonificacion lisBon:liquidacionBonificaciones) {
 
 				totalBonificaciones = totalBonificaciones + lisBon.getMonto();
+			
 			}
 		
 			mv.addObject("totalBonificaciones", totalBonificaciones);

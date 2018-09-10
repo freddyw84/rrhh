@@ -148,7 +148,7 @@ public class Liquidacion implements Serializable{
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-	
+
 	public List<Bonificacion> getBonificacion() {
 		return bonificacion;
 	}
@@ -156,7 +156,9 @@ public class Liquidacion implements Serializable{
 	public void setBonificacion(List<Bonificacion> bonificacion) {
 		this.bonificacion = bonificacion;
 	}
+	
+	
 
-
+	
 	
 }

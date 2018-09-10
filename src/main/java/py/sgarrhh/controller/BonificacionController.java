@@ -68,6 +68,8 @@ public class BonificacionController {
 	    model.addAttribute("periodos", periodos);  
 	    
 	    
+	    
+	    
 	    return "bonificacion/formBonificacion";
 	}
 	

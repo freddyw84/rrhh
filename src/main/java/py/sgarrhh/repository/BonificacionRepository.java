@@ -14,7 +14,7 @@ import py.sgarrhh.models.Persona;
 
 public interface BonificacionRepository extends CrudRepository<Bonificacion, String>{
 	Bonificacion findById(long id);
-	List<Bonificacion> findByPeriodoInAndPersonaIn(Periodo periodo, Persona persona);
+	List<Bonificacion> findByPeriodoInAndPersonaInAndEstadoIn(Periodo periodo, Persona persona, String estado);
 	List<Bonificacion> findAllById(List<Bonificacion> bonificacion);
 	
 

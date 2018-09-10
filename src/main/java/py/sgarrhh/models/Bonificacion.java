@@ -117,6 +117,14 @@ public class Bonificacion implements Serializable {
 		this.estado = estado;
 	}
 
+	public List<Liquidacion> getLiquidacion() {
+		return liquidacion;
+	}
+
+	public void setLiquidacion(List<Liquidacion> liquidacion) {
+		this.liquidacion = liquidacion;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -139,6 +147,13 @@ public class Bonificacion implements Serializable {
 
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
+	}
+
+	@Override
+	public String toString() {
+		return "Bonificacion [id=" + id + ", descripcion=" + descripcion + ", liquidacion=" + liquidacion
+				+ ", tipoBonificacion=" + tipoBonificacion + ", monto=" + monto + ", persona=" + persona + ", estado="
+				+ estado + ", periodo=" + periodo + ", fecha=" + fecha + ", observacion=" + observacion + "]";
 	}
 
 	
