@@ -72,14 +72,17 @@
 			Fecha de Salida: <input type="date" th:value="${contratos.fechaSalida}"
 				th:name="fechaSalida" th:id="id" />
 			
+			
+				
+			
 			Estado:
 			
 			<p>
-				<label> <input name="estado" readonly="true" value="ACTIVO" type="radio"  th:checked="*{contrato.estado}==ACTIVO"/> <span>Activo</span>
+				<label> <input name="estado" readonly="true" value="ACTIVO" type="radio"  th:checked="*{contratos.estado}==ACTIVO"/> <span>Activo</span>
 				</label>
 			</p>
 			<p>
-				<label> <input name="estado" readonly="true" value="PROCESADO" type="radio" th:checked="*{contrato.estado}==PROCESADO" /> <span>Procesado</span>
+				<label> <input name="estado" readonly="true" value="PROCESADO" type="radio" th:checked="*{contratos.estado}==INCACTIVO" /> <span>Procesado</span>
 				</label>
 			</p>
 			

@@ -108,12 +108,11 @@ public class LiquidacionController {
 									
 					totalLiquidacion = totalLiquidacion + con.getSalario().getMonto();
 	
-					con.setEstado("PROCESADO");
+					//con.setEstado("PROCESADO");
 					cr.save(con);
 				
 					
 					lr.save(liquidacion);
-					totalLiquidacion = totalLiquidacion + liquidacion.getMonto();
 	
 			}
 		}
@@ -153,7 +152,6 @@ public class LiquidacionController {
 			
 				for (Descuento des:descuento) {
 				
-					System.out.println("pasé por aquí2222222: "+ des.toString());
 
 					totalLiquidacion = totalLiquidacion - des.getMonto();
 
