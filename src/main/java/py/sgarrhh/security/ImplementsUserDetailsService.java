@@ -23,15 +23,19 @@ public class ImplementsUserDetailsService implements UserDetailsService{
 	@Autowired
 	private UsuarioRepository ur;
 	
+
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-			
+		
+		
+		System.out.println("pasé por aquí: "+login);
 		Usuario usuario = ur.findByLogin(login);
 	
-		//System.out.println("pasé por aquí: "+usuario);
+		System.out.println("pasé por aquí: "+usuario);
 		
 		if(usuario == null){
-		
+			System.out.println("pasé por aquí NULOO: "+usuario);
+
 			throw new UsernameNotFoundException("Usuario o senha incorrecta!");
 			
 		}

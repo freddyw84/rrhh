@@ -1,4 +1,4 @@
-package py.sgarrhh.security;
+package py.sgarrhh.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import py.sgarrhh.security.ImplementsUserDetailsService;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -20,7 +22,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		http.csrf().disable().authorizeRequests()
+		http.csrf()
+		.disable()
+		.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/").permitAll()
 		/*.antMatchers(HttpMethod.GET, "/listaCargos").hasRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/registrarCargo").hasRole("ADMIN")
@@ -32,9 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.POST, "/listaFunciones").hasRole("ADMIN")*/
 
 		.anyRequest().authenticated()
-		//.and().formLogin().loginPage("/login")
+		.and().formLogin().failureUrl("/login?error")
+		.and().formLogin().loginPage("/login")
 		.and().formLogin().permitAll()
-		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		//.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));	
+		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/j_spring_security_logout")).logoutSuccessUrl("/login");
 	}
 	
 	@Override

@@ -22,10 +22,10 @@
  <th:block th:include="mensajeValidacion"></th:block>
 	<div class="container formLogin">
 	
-	<form class="container" method="post">
+	<form class="container" th:action="@{/login}" method="post">
 		
-		Login: <input type="text" value="" name="login"/>
-		Senha: <input type="password"  value="" name="password"/>
+		Login: <input type="text" value="" id="login" name="login"/>
+		Senha: <input type="password"  value="" id="password" name="password"/>
 		
 		
 		<button class="waves-effect waves-light btn" type="submit">Ingresar</button>

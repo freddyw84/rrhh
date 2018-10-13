@@ -26,9 +26,9 @@
 		<header>
 		<nav class="menu">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Registro de Liquidacion:</a>
+		      <a href="#" class="brand-logo">Registro de Liquidacion por Persona:</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/listaLiquidaciones" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Liquidaciones</a></li>
+		        <li><a href="/listaLiquidaciones" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Liquidaciones por Persona</a></li>
 		      </ul>
 		    </div>
 		</nav>
@@ -104,6 +104,7 @@
 
 		<thead>
 			<tr>
+				<th>Tipo</th>
 				<th>Descripcion</th>
 				<th>Fecha</th>
 				<th>Monto Parcial</th>
@@ -115,6 +116,7 @@
 			<tr>
 				<th>Total</th>
 				<th></th>
+				<th></th>
 				
 				<td> 
 					<span th:text="${#numbers.formatDecimal(totalBonificaciones, 0, 'POINT', 2, 'COMMA')}"></span>
@@ -123,6 +125,7 @@
 		</tfoot>
 		<tbody>
 			<tr th:each="liquidacionBonificaciones : ${liquidacionBonificaciones}">
+				 <td><span th:text="${liquidacionBonificaciones.tipoBonificacion.descripcion}"></span></td>
 			    <td><span th:text="${liquidacionBonificaciones.descripcion}"></span></td>
   
 				<td><span th:text="${#dates.format(liquidacionBonificaciones.fecha,'dd-MM-yyyy')}"></span></td>
@@ -146,6 +149,7 @@
 
 		<thead>
 			<tr>
+				<th>Tipo</th>
 				<th>Descripcion</th>
 				<th>Fecha</th>
 				<th>Monto Parcial</th>
@@ -158,6 +162,7 @@
 			<tr>
 				<th>Total</th>
 				<th></th>
+				<th></th>
 				
 				<td> 
 					<span th:text="${#numbers.formatDecimal(totalDescuentos, 0, 'POINT', 2, 'COMMA')}"></span>
@@ -167,7 +172,8 @@
 		
 		<tbody>
 			<tr th:each="liquidacionDescuento : ${liquidacionDescuentos}">
-			   <td><span th:text="${liquidacionDescuento.descripcion}"></span></td>
+				<td><span th:text="${liquidacionDescuento.tipoDescuento.descripcion}"></span></td>
+			    <td><span th:text="${liquidacionDescuento.descripcion}"></span></td>
 				<td><span th:text="${#dates.format(liquidacionDescuento.fecha,'dd-MM-yyyy')}"></span></td>
 				<td><span th:text="${#numbers.formatDecimal(liquidacionDescuento.monto, 0 , 'POINT', 2, 'COMMA')}"></span></td>
 <!-- 			    <td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'" th:href="${(#mvc.url('LC#eliminarLiquidacionDetalle').arg(0, liquidacionDescuento.id)).build()}"><i class="material-icons left">delete</i></a></td> -->
