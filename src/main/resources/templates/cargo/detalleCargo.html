@@ -89,7 +89,7 @@
 			 <tr th:each="cargoDetalle : ${cargoDetalles}">
 				<td><span th:text="${cargoDetalle.funcion.id}"></span></td>
 				<td><span th:text="${cargoDetalle.funcion.descripcion}"></span></td>
- 				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('CC#eliminarDetalleCargo').arg(0, cargoDetalle.id)).build()}"><i class="material-icons left">delete</i></a></td> 
+ 				<td><a class="waves-effect waves-light btn-small" th:attr="onclick='return confirm(\'' + '¿eliminar el registro?' + '\');'"  th:href="${(#mvc.url('CC#eliminarDetalleCargo').arg(0, cargoDetalle.id)).build()}"><i class="material-icons left">delete</i></a></td> 
 			</tr> 
 		</tbody>
 	</table>

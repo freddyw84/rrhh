@@ -7,7 +7,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
+	<link type="text/css" rel="stylesheet" href="css/mainStyle.css"  media="screen,projection"/>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link rel="stylesheet" href="style/styleCss.css"/>
@@ -25,7 +25,27 @@
 		</nav>
 	
 	</header>
-	<table class="container">
+<div class="container">    
+            <div class="bgc">
+                <div th:if="${not #lists.isEmpty(cargos)}">
+                    <div style="text-align: right;"> 
+                        <form class="form-horizontal" method="get"> 
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                <input id="pdf" type="image" class="pdfexcelbutton"
+                                       formaction="/employees/pdf"
+                                       th:src="@{/images/pdf.png}" th:title="#{ExpPDF}"/>
+                                <input id="excel" type="image" class="pdfexcelbutton"
+                                       formaction="/employees/excel.xlsx"
+                                       th:src="@{/images/excel.png}" th:title="#{ExpExc}"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--if you use datatables-->
+                    <!--<table id="emplist" class="display" cellspacing="0" width="100%">-->
+                    <!--if you do not use datatables-->
+                    <table  id="emplist" class="table table-striped">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -50,6 +70,41 @@
 		</tbody>
 	
 	</table>
+                </div>
+               <!--  <div id="paginator">
+                    <div class="col-md-12 text-center">
+                        <div class='pagination pagination-centered'>
+                            <ul class="pagination">
+                                <li th:class="${pager.currentIndex == 0}? 'disabled' : ''"><span
+                                        th:if='${pager.currentIndex == 0}'>First</span> <a
+                                        th:if='${pager.currentIndex != 0}' th:href="@{/employees?page=0}"
+                                        title='Go to first page'>First</a>
+                                </li>
+                                <li th:class="${pager.currentIndex != 0}? '' : 'disabled'"><span
+                                        th:if='${pager.currentIndex == 0}'>«Previous</span> <a
+                                        th:if='${pager.currentIndex != 0}'
+                                        th:href="@{|${pager.baseUrl}${pager.currentIndex - 1}|}"
+                                        title='Go to previous page'>«Previous</a></li>
+
+                                <li th:class="${pager.currentIndex >= pager.totalPageCount}? 'disabled' : ''">
+                                    <span th:if='${pager.currentIndex == pager.totalPageCount}'>Next»</span> <a
+                                        th:if='${pager.currentIndex != pager.totalPageCount}'
+                                        th:href="@{|${pager.baseUrl}${pager.currentIndex + 1}|}"
+                                        title='Go to next page'>Next»</a>
+                                </li>
+                                <li th:class="${pager.currentIndex == pager.totalPageCount}? 'disabled' : ''">
+                                    <span th:if='${pager.currentIndex == pager.totalPageCount}'>Last</span>
+                                    <a th:if='${pager.currentIndex != pager.totalPageCount}'
+                                       th:href="@{|${pager.baseUrl}${pager.totalPageCount}|}"
+                                       title='Go to last page'>Last</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+	
 
 
 	
