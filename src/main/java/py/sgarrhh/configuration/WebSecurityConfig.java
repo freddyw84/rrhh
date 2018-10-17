@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 		.anyRequest().authenticated()
 		.and().formLogin().failureUrl("/login?error")
-		.and().formLogin().loginPage("/login")
+		//.and().formLogin().loginPage("/login")
 		.and().formLogin().permitAll()
 		//.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));	
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/j_spring_security_logout")).logoutSuccessUrl("/login");

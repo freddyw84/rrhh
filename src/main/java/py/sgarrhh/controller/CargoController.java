@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+//import org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView;
 
 import py.sgarrhh.models.Cargo;
 import py.sgarrhh.models.CargoDetalle;
@@ -76,7 +76,7 @@ public class CargoController {
 		return mv;
 	}
 	//comentar para probar
-	/*  private Pager currentPage(Pageable pgbl) {
+	  private Pager currentPage(Pageable pgbl) {
 
 	        String baseUrl = "/employees?page=";
 	        int currentIndex = pgbl.getPageNumber();
@@ -97,7 +97,7 @@ public class CargoController {
 	        return pager;
 	    }
 	    //comentar para probar
-	@ExceptionHandler()
+	  /*@ExceptionHandler()
     @RequestMapping(value = "/pdf", method = RequestMethod.GET, produces = "application/pdf")
     public ModelAndView getPdf(@ModelAttribute SGARRHHPojo ep, Model model) {
 
@@ -157,9 +157,9 @@ public class CargoController {
             return new ModelAndView(view, params);
         }
     }
-
+*/
 	
-	*/
+	
 	
 	
 	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
