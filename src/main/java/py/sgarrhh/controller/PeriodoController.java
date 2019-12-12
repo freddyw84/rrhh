@@ -15,14 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import py.sgarrhh.models.Cargo;
+
 import py.sgarrhh.models.Periodo;
-import py.sgarrhh.models.Salario;
-import py.sgarrhh.models.Persona;
-import py.sgarrhh.repository.CargoRepository;
+
 import py.sgarrhh.repository.PeriodoRepository;
-import py.sgarrhh.repository.SalarioRepository;
-import py.sgarrhh.repository.PersonaRepository;
+
 
 
 @Controller

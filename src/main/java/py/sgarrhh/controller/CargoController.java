@@ -1,23 +1,13 @@
 package py.sgarrhh.controller;
 
-
-
-
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.sql.DataSource;
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,14 +24,11 @@ import py.sgarrhh.repository.CargoDetalleRepository;
 import py.sgarrhh.repository.CargoRepository;
 import py.sgarrhh.repository.DepartamentoRepository;
 import py.sgarrhh.repository.FuncionRepository;
-import py.sgarrhh.util.Pager;
 import py.sgarrhh.pojo.SGARRHHPojo;
-
-
 
 @Controller
 public class CargoController {
-	private Logger log = Logger.getLogger(CargoController.class);
+
 	@Autowired
 	private CargoRepository cr;
 
@@ -54,11 +41,7 @@ public class CargoController {
 
 	@Autowired
 	private DepartamentoRepository dr;
-    @Autowired
-    private ApplicationContext appContext;
-    @Autowired
-    private DataSource dataSource;
-
+    
 	@RequestMapping("/listaCargos")
 	public ModelAndView listaCargos(Model model, Pageable pgbl) {
         model.addAttribute("ep", new SGARRHHPojo());//comentar para probar
@@ -75,91 +58,7 @@ public class CargoController {
 		
 		return mv;
 	}
-	//comentar para probar
-	  private Pager currentPage(Pageable pgbl) {
 
-	        String baseUrl = "/employees?page=";
-	        int currentIndex = pgbl.getPageNumber();
-	        int totalPageCount = cr.findAll(pgbl).getTotalPages();
-	        long totalItems = cr.findAll(pgbl).getTotalElements();
-
-	        Pager pager = new Pager();
-
-	        if (currentIndex > totalPageCount) {
-	            pager.setCurrentIndex(totalPageCount);
-	        } else {
-	            pager.setCurrentIndex(currentIndex);
-	        }
-
-	        pager.setTotalPageCount(totalPageCount - 1);
-	        pager.setTotalItems(totalItems);
-	        pager.setBaseUrl(baseUrl);
-	        return pager;
-	    }
-	    //comentar para probar
-	  /*@ExceptionHandler()
-    @RequestMapping(value = "/pdf", method = RequestMethod.GET, produces = "application/pdf")
-    public ModelAndView getPdf(@ModelAttribute SGARRHHPojo ep, Model model) {
-
-        model.addAttribute("ep", ep);
-
-        JasperReportsPdfView view = new JasperReportsPdfView();
-
-        view.setJdbcDataSource(dataSource);
-        if (ep.getGender().equals("A")) {
-            view.setUrl("classpath:/static/jasper/cargos.jasper");
-        } else {
-            view.setUrl("classpath:/static/jasper/AllEmployeesByGen.jasper");
-        }
-
-        view.setApplicationContext(appContext);
-
-        log.info("datasource is: " + dataSource);
-        log.info("appContext is: " + appContext.getApplicationName());
-        log.info("gender is: " + ep.getGender().toUpperCase());
-
-        if (ep.getGender().equals("A")) {
-            return new ModelAndView(view);
-        } else {
-            Map<String, Object> params = new HashMap<>();
-            params.put("gender", ep.getGender().toUpperCase());
-            return new ModelAndView(view, params);
-        }
-    }
-//comentar para probar
-    @ExceptionHandler()
-    @RequestMapping(value = "/excel.xlsx", method = RequestMethod.GET, produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    public ModelAndView getExcel(@ModelAttribute SGARRHHPojo ep, Model model) {
-
-        model.addAttribute("ep", ep);
-
-        JasperReportsXlsView view = new JasperReportsXlsView();
-
-        view.setJdbcDataSource(dataSource);
-        
-        if (ep.getGender().equals("A")) {
-            view.setUrl("classpath:/static/jasper/AllEmployees.jasper");
-        } else {
-            view.setUrl("classpath:/static/jasper/AllEmployeesByGen.jasper");
-        }
-        
-        view.setApplicationContext(appContext);
-        
-        log.info("datasource is: " + dataSource);
-        log.info("appContext is: " + appContext);
-        log.info("gender is: " + ep.getGender().toUpperCase());
-
-        if (ep.getGender().equals("A")) {
-            return new ModelAndView(view);
-        } else {
-            Map<String, Object> params = new HashMap<>();
-            params.put("gender", ep.getGender().toUpperCase());
-            return new ModelAndView(view, params);
-        }
-    }
-*/
-	
-	
 	
 	
 	@RequestMapping(value="/registrarCargo", method=RequestMethod.POST)
@@ -182,8 +81,8 @@ public class CargoController {
 	    Cargo form = new Cargo();
 	    model.addAttribute("cargo", form);
 	    
-	   /* Iterable <Funcion> funciones= fr.findAll();
-	    model.addAttribute("funciones", funciones);*/
+	    Iterable <Funcion> funciones= fr.findAll();
+	    model.addAttribute("funciones", funciones);
 	    
 	    Departamento departamento = new Departamento();
 	    model.addAttribute("departamento", departamento);
@@ -194,24 +93,7 @@ public class CargoController {
 	    return "cargo/formCargo";
 	}
 	
-	/*
-	@RequestMapping("/c{id}")
-	private ModelAndView detalleCargo(@PathVariable("id") long id) {
-		System.out.println("aaaaqui paseee");
-		Cargo cargo =cr.findById(id);
-		ModelAndView mvf= new ModelAndView("cargo/detalleCargo");
-		mvf.addObject("cargos",cargo);
-		
-		Iterable <Funcion> funciones= fr.findAll();
-		mvf.addObject("funciones",funciones);
-		
-		Iterable <Departamento> departamentos= dr.findAll();
-		mvf.addObject("departamentos",departamentos);
-		
-		Iterable <CargoDetalle> cargoDetalles= cf.findByCargo(cargo);
-		mvf.addObject("cargoDetalles",cargoDetalles);
-		return mvf;
-	}*/
+	
 	@RequestMapping( value="/c{id}", method=RequestMethod.POST)
 	private String detalleCargoPost(CargoDetalle cargoDetalle,Cargo cargo,@RequestParam String action,@PathVariable("id") long id,  BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()){

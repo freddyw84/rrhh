@@ -37,6 +37,7 @@ public class Cargo  implements Serializable {
 	
 	@OneToMany
 	private List<Funcion> funciones;
+	
 	@OneToMany(mappedBy="cargo") //, cascade={CascadeType.PERSIST}, orphanRemoval=true)
 	private List<Contrato> contrato;
 	
@@ -87,6 +88,14 @@ public class Cargo  implements Serializable {
 
 	public void setContrato(List<Contrato> contrato) {
 		this.contrato = contrato;
+	}
+
+	public List<CargoDetalle> getCargoDetalle() {
+		return cargoDetalle;
+	}
+
+	public void setCargoDetalle(List<CargoDetalle> cargoDetalle) {
+		this.cargoDetalle = cargoDetalle;
 	}
 	
 	
