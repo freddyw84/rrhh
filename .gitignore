@@ -23,3 +23,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+# Configuracion local de herramientas / credenciales
+.dbeaver-data-sources.xml
+credentials-config.json
+*.env
